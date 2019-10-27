@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('telefono_usuario');
             $table->string('direccion_usuario');
             $table->integer('intentos_usuario');
-            $table->unsignedInteger('id_perfil');
-            $table->unsignedInteger('id_tipo_cliente');
+            $table->unsignedInteger('id_perfil')->nullable();
+            $table->unsignedInteger('id_tipo_cliente')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

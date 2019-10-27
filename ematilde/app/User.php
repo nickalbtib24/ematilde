@@ -17,7 +17,16 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombre_usuario',
+        'apellido_usuario',
+        'edad_usuario',
+        'email_usuario',
+        'clave_usuario',
+        'identificacion_usuario',
+        'empresa_usuario',
+        'direccion_usuario',
+        'telefono_usuario',
+        'intentos_usuario',
     ];
 
     /**
@@ -58,5 +67,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function tipoCliente()
+    {
+        return $this->belongsTo(TipoCliente::class,'id_tipo_cliente');
+    }
+
+    public function perfil(){
+        return $this->belongsTo(Perfil::class,'id_perfil');
     }
 }

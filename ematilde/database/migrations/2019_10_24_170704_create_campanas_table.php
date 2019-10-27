@@ -16,11 +16,11 @@ class CreateCampanasTable extends Migration
         Schema::create('campanas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_campana');
-            $table->unsignedInteger('id_usuario');
+            $table->unsignedInteger('id_usuario')->nullable();
             $table->string('negocio_campana');
             $table->dateTime('fecha_inicio_campana');
             $table->dateTime('fecha_terminacion_campana');
-            $table->unsignedInteger('id_tipo_campana');
+            $table->unsignedInteger('id_tipo_campana')->nullable();
             $table->foreign('id_tipo_campana')->references('id')->on('tipo_campanas')->onDelete('cascade');
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

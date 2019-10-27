@@ -1,1 +1,95 @@
-<p>signup works!</p>
+<div class="container">
+    <form #signUpForm=ngForm (ngSubmit)="onSubmit()">
+        <div class="div alert alert-danger"[hidden]="!error">
+            {{error}}
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="nombre_usuario" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" name="nombre_usuario" class="form-control" [(ngModel)]="form.nombre_usuario" required id="inputNombre" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="edad_usuario" class="col-sm-2 col-form-label">Edad</label>
+                <div class="col-sm-10">
+                    <input type="number" name="edad_usuario" class="form-control" [(ngModel)]="form.edad_usuario" required id="inputEdad" placeholder="Edad">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="apellido_usuario" class="col-sm-2 col-form-label">Apellido</label>
+                <div class="col-sm-10">
+                    <input type="text" name="apellido_usuario" class="form-control" [(ngModel)]="form.apellido_usuario" required id="inputApellido" placeholder="Apellido">
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="identificacion_usuario" class="col-sm-2 col-form-label">Identificación</label>
+                <div class="col-sm-10">
+                    <input type="text" name="identificacion_usuario" class="form-control" [(ngModel)]="form.identificacion_usuario" required id="inputIdentificacion" placeholder="Identificación">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" name="email_usuario" class="form-control" [(ngModel)]="form.email_usuario" required id="inputEmail" placeholder="Email">
+                </div> 
+            </div>
+            <div class="col-md">
+                <label for="empresa_usuario" class="col-sm-2 col-form-label">Empresa</label>
+                <div class="col-sm-10">
+                    <input type="text" name="empresa_usuario" class="form-control" [(ngModel)]="form.empresa_usuario" required id="inputEmpresa" placeholder="Empresa">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="inputClave" class="col-sm-2 col-form-label">Clave</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" [(ngModel)]="form.password" required id="inputPassword" placeholder="Clave">
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="telefono_usuario" class="col-sm-2 col-form-label">Telefono</label>
+                <div class="col-sm-10">
+                    <input type="text" name="telefono_usuario" class="form-control" [(ngModel)]="form.telefono_usuario" required id="inputTelefono" placeholder="Telefono">
+                </div> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="inputConfirmacionClave" class="col-sm-2 col-form-label">Confirme</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password_confirmation" class="form-control" [(ngModel)]="form.password_confirmation" required id="inpuConfirmacionClave" placeholder="Re-escriba su clave">
+                </div>
+            </div>
+            <div class="col-md">
+                <label for="direccion_usuario" class="col-sm-2 col-form-label">Dirección</label>
+                <div class="col-sm-10">
+                    <input type="text" name="direccion_usuario" class="form-control" [(ngModel)]="form.direccion_usuario" required id="inputDireccion" placeholder="Dirección">
+                </div>   
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="tipo_cliente" class="col-sm-3 col-form-label">Tipo cliente</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="tipo_cliente"  [(ngModel)]="form.tipo_cliente">
+                        <option value="0">--Seleccione--</option>
+                        <option *ngFor="let tu of tipoUsuarios" [value]="tu.id">{{ tu.nombre_tipo_cliente }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md">
+                <br>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+
+            </div>
+             
+        </div>
+        
+    </form>
+</div>

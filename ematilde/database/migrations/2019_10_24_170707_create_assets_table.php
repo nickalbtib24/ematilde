@@ -15,11 +15,11 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_campana');
+            $table->unsignedInteger('id_campana')->nullable();
             $table->string('nombre_asset');
             $table->string('archivo_asset');
             $table->dateTime('fecha_subida_archivo');
-            $table->unsignedInteger('id_tipo_asset');
+            $table->unsignedInteger('id_tipo_asset')->nullable();
             $table->foreign('id_campana')->references('id')->on('campanas')->onDelete('cascade');
             $table->foreign('id_tipo_asset')->references('id')->on('tipo_assets')->onDelete('cascade');
             $table->timestamps();

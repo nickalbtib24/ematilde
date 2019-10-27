@@ -15,7 +15,7 @@ class CreateInformeCampanasTable extends Migration
     {
         Schema::create('informe_campanas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_campana');
+            $table->unsignedInteger('id_campana')->nullable();
             $table->decimal('kpi_1');
             $table->decimal('kpi_2');
             $table->decimal('kpi_3');

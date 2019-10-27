@@ -15,7 +15,7 @@ class CreateInformeAssetsTable extends Migration
     {
         Schema::create('informe_assets', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_asset');
+            $table->unsignedInteger('id_asset')->nullable();
             $table->decimal('kpi_1');
             $table->decimal('kpi_2');
             $table->decimal('kpi_3');
