@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
   }
 
   handleError(error){
-    this.error = error.error.error;
+    this.error = error;
   }
 
 

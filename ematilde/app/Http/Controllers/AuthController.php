@@ -65,7 +65,7 @@ class AuthController extends Controller
 
         }else
         {
-            print('lok');
+            return response()->json($validator->messages());
         }
     }
     /**
