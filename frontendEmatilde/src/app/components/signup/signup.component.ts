@@ -29,14 +29,14 @@ export class SignupComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:80/proyectoGrad1/ematilde/public/api/tipo_clientes').subscribe((data: any[])=>{
+    this.http.get('http://localhost:80/proyectoGrad1/ematilde/ematilde/public/api/tipo_clientes').subscribe((data: any[])=>{
       console.log(data);
       this.tipoUsuarios = data;
     })
   }
 
   onSubmit(){
-   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/public/api/signup',this.form).subscribe(
+   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/ematilde/public/api/signup',this.form).subscribe(
      data => console.log(data),
      error => this.handleError(error)
    );
