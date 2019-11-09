@@ -5,6 +5,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { UserComponent } from './components/user/user.component';
 
 const appRoutes: Routes = [
   {
@@ -26,7 +27,12 @@ const appRoutes: Routes = [
   {
     path:'response-password-reset',
     component: ResponseResetComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   }
+
 ]
 
 @NgModule({
