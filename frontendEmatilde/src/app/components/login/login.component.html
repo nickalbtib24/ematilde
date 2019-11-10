@@ -16,82 +16,39 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../../assets/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
+ <!-- Font Icon -->
+ <link rel="stylesheet" href="../../../assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+
 
 </head>
 <body>
+    <div class="main">
 
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('../../assets/images/login/bg-01.jpg');">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
-
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span>
-
-				<div class="form-group">
-        <label class="form-control-label">Email address</label>
-        <div class="input-group input-group-merge">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="far fa-user"></i></span>
+        <section class="login">
+            <div class="container">
+                <div class="signup-content">
+                    <form >
+                        <h2 class="form-title">Login</h2>
+                        <div class="form-group">
+                          <label class="form-control-label">Email address</label>
+                          <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Password</label>
+                            <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign In"/>
+                        </div>
+                    </form>
+                    <p class="signinhere">
+                        Create an account  <a href="../signup" class="loginhere-link">Signup here</a>
+                    </p>
+                </div>
             </div>
-            <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
-        </div>
+        </section>
+
     </div>
-    <div class="form-group mb-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <div>
-                <label class="form-control-label">Password</label>
-            </div>
-            <div class="mb-2">
-                <a href="#!" class="small text-muted text-underline--dashed border-primary">Lost password?</a>
-            </div>
-        </div>
-        <div class="input-group input-group-merge">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="far fa-key"></i></span>
-            </div>
-            <input type="password" class="form-control" id="input-password" placeholder="Password">
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <a href="#" data-toggle="password-text" data-target="#input-password">
-                        <i class="far fa-eye"></i>
-                    </a>
-                </span>
-            </div>
-        </div>
-    </div>
-
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" href="#">
-							Login
-						</button>
-					</div>
-
-					<div class="text-center p-t-90">
-            <br/>
-            <a class="txt1" href="#">
-              Signup
-						</a>
-          </div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 	<script src="../../../assets/vendor/select2/select2.min.js"></script>
