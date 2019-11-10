@@ -15,10 +15,10 @@ export class SignupComponent implements OnInit {
     email_usuario: null,
     password: null,
     password_confirmation:null,
-    identificacion_usuario: null,
+    identificacion_usuario: "11323",
     empresa_usuario: null,
     telefono_usuario: null,
-    direccion_usuario: null,
+    direccion_usuario: "Calle 174",
     tipo_cliente: null,
 
   }
@@ -29,14 +29,14 @@ export class SignupComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8888/proyectoGrad1/ematilde/ematilde/public/api/tipo_clientes').subscribe((data: any[])=>{
+    this.http.get('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/tipo_clientes').subscribe((data: any[])=>{
       console.log(data);
       this.tipoUsuarios = data;
     })
   }
 
   onSubmit(){
-   return this.http.post('http://localhost:8888/proyectoGrad1/ematilde/ematilde/public/api/signup',this.form).subscribe(
+   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/signup',this.form).subscribe(
      data => console.log(data),
      error => this.handleError(error)
    );
