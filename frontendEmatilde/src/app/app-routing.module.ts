@@ -8,6 +8,11 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 import { UserComponent } from './components/user/user.component';
 
 const appRoutes: Routes = [
+
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
   {
     path:'login',
     component: LoginComponent,
