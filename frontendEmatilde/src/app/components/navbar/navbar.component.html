@@ -1,8 +1,36 @@
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Navbar</a>
-    <div>
-        <a class="navbar-brand" routerLink="login" *ngIf="!loggedIn">Login</a>
-        <a class="navbar-brand" routerLink="login" *ngIf="loggedIn">Logout</a>
-        <a class="navbar-brand" routerLink="profile">Profile</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
+<div class="container">
+    <a class="navbar-brand" >
+        <img src="../assets/images/navbar/logo.png" alt="" height="35" >
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto ">
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="login" *ngIf="!loggedIn" routerLinkActive="router-link-active" >
+                Login
+                <span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-link" href="#" (click)="logout($event)" *ngIf="loggedIn" routerLinkActive="router-link-active" >
+                Logout
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link active" routerLink="profile" *ngIf="loggedIn" >Profile</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="http://www.matilde.agency" >
+                About
+            </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+        </li>
+    </ul>
     </div>
-  </nav>
+</div>
+</nav>
