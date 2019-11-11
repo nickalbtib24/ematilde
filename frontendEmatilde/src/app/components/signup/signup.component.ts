@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PrincipalService } from 'src/app/services/principal.service';
 
 @Component({
   selector: 'app-signup',
@@ -26,17 +26,17 @@ export class SignupComponent implements OnInit {
 
   public error = null;
 
-  constructor(private http:HttpClient) { }
+  constructor(private Principal:PrincipalService) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/tipo_clientes').subscribe((data: any[])=>{
+    this.Principal.getTipoClientes().subscribe((data: any[])=>{
       console.log(data);
       this.tipoUsuarios = data;
     })
   }
 
   onSubmit(){
-   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/signup',this.form).subscribe(
+    this.Principal.signup(this.form).subscribe(
      data => console.log(data),
      error => this.handleError(error)
    );

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PrincipalService } from 'src/app/services/principal.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,10 @@ export class LoginComponent implements OnInit {
 
   public error = null
 
-  constructor(private http:HttpClient) { }
+  constructor(private Principal:PrincipalService) { }
 
   onSubmit(){
-   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/login',this.form).subscribe(
+     this.Principal.login(this.form).subscribe(
      data => console.log(data),
      error => this.handleError(error)
    );
