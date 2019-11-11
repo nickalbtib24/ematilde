@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   onSubmit(){
-   return this.http.post('http://localhost:8888/proyectoGrad1/ematilde/ematilde/public/api/login',this.form).subscribe(
+   return this.http.post('http://localhost:80/proyectoGrad1/ematilde/public/index.php/api/login',this.form).subscribe(
      data => console.log(data),
      error => this.handleError(error)
    );

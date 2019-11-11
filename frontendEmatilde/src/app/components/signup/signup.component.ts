@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
     nombre_usuario: null,
     apellido_usuario: null,
     edad_usuario: null,
-    email_usuario: null,
+    email: null,
     password: null,
     password_confirmation:null,
     identificacion_usuario: "11323",

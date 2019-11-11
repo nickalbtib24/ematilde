@@ -26,10 +26,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
-        $credentials = request(['email_usuario', 'clave_usuario']);
-
+        $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Email or password doesn\'t exist'], 401);
@@ -48,8 +47,8 @@ class AuthController extends Controller
                 'nombre_usuario' => $input['nombre_usuario'],
                 'apellido_usuario' => $input['apellido_usuario'],
                 'edad_usuario' => $input['edad_usuario'],
-                'email_usuario' => $input['email_usuario'],
-                'clave_usuario' => $input['password'],
+                'email' => $input['email'],
+                'password' => bcrypt($input['password']),
                 'identificacion_usuario' => $input['identificacion_usuario'],
                 'empresa_usuario' => $input['empresa_usuario'],
                 'telefono_usuario' => $input['telefono_usuario'],
@@ -86,7 +85,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'direccion_usuario' => 'required',
             'edad_usuario' => 'required|integer',
-            'email_usuario' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'empresa_usuario' => 'required',
             'identificacion_usuario' => 'required',
             'telefono_usuario' => 'required',
@@ -131,7 +130,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'user' => auth()->user()->nombre_usuario
         ]);
     }
 }
