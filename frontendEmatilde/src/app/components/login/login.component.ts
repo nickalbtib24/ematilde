@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PrincipalService } from 'src/app/services/principal.service';
+import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +20,24 @@ export class LoginComponent implements OnInit {
 
   public error = null
 
-  constructor(private Principal:PrincipalService) { }
+  constructor(
+    private Principal:PrincipalService,
+    private Token:TokenService,
+    private Router : Router,
+    private Auth : AuthService,
+  ) { }
 
   onSubmit(){
      this.Principal.login(this.form).subscribe(
-     data => console.log(data),
+     data => this.handleResponse(data),
      error => this.handleError(error)
    );
+  }
+
+  handleResponse(data){
+    this.Token.handle(data.access_token)
+    this.Auth.changeAuthStatus(true)
+    this.Router.navigateByUrl('/profile')
   }
 
   handleError(error){
