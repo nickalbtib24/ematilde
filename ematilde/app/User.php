@@ -77,4 +77,10 @@ class User extends Authenticatable implements JWTSubject
     public function perfil(){
         return $this->belongsTo(Perfil::class,'id_perfil');
     }
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
+
 }

@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
+
+import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component';
 import { AddCampaignComponent } from './components/client/pages_client/add-campaign/add-campaign.component';
 import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
@@ -33,6 +35,7 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     RequestResetComponent,
     ResponseResetComponent,
     UserComponent,
+    VerifyUserComponent,
     DashboardCampaignComponent,
     AddCampaignComponent,
     ClientsComponent,
@@ -40,7 +43,8 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     DashboardClientComponent,
     ProfileClientComponent,
     ClientContainerComponent,
-    AdminContainerComponent
+    AdminContainerComponent,
+    ProfileClientComponent
   ],
   imports: [
     BrowserModule,

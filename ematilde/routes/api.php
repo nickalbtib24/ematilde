@@ -8,10 +8,12 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
     Route::post('signup', 'AuthController@signup');
+    Route::post('verify/{token}', 'AuthController@verifyUser');
 
     //--------Routes for TipoClientes
     Route::get('tipo_clientes','TipoClienteController@getTipoClientes');
 
     //--------Routes for Users
+
 });
 
