@@ -8,6 +8,8 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 import { UserComponent } from './components/user/user.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
+import { DashboardClientComponent} from './components/client/pages_client/dashboard-client/dashboard-client.component';
+import { CampaignsClientComponent} from './components/client/pages_client/campaigns-client/campaigns-client.component';
 
 const appRoutes: Routes = [
 
@@ -41,7 +43,17 @@ const appRoutes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-  }
+  },
+  {
+    path: 'dashboard-client',
+    component: DashboardClientComponent,
+  },
+  {
+    path: 'campaigns-client',
+    component: CampaignsClientComponent,
+  },
+
+
 
 ]
 
