@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
+import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserComponent } from './components/user/user.component';
     ProfileComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    UserComponent
+    UserComponent,
+    VerifyUserComponent
   ],
   imports: [
     BrowserModule,

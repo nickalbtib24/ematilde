@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\TipoCliente;
 use App\Perfil;
+use App\VerifyUser;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostSignUpMail;
+use Illuminate\Support\Str;
+
 class AuthController extends Controller
 {
     /**
@@ -62,10 +67,24 @@ class AuthController extends Controller
             $user->save();
             $perfil->users()->save($user);
 
+            $verifyUser = verifyUser::create([
+                'user_id' => $user->id,
+                'token' => Str::random(40)
+            ]);
+    
+            $user->verifyUser()->save($verifyUser);
+            $user->save();
+
+
+            Mail::to($user->email)->send(new PostSignUpMail($user));
         }else
         {
             return response()->json($validator->messages());
         }
+    }
+    public function verifyUser($token)
+    {
+       return "Quihubo";
     }
     /**
      * Get the authenticated User.

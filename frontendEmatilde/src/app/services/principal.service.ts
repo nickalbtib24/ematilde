@@ -22,4 +22,8 @@ export class PrincipalService {
   getTipoClientes(){
     return this.http.get(`${this.baseUrl}/tipo_clientes`)
   }
+
+  getActivationLink(){
+    return this.http.get(`${this.baseUrl}/verify`)
+  }
 }
