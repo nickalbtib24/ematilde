@@ -13,9 +13,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
-<<<<<<< HEAD
 import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
-=======
 import { NavbarClientComponent } from './components/client/start-bars/navbar-client/navbar-client.component';
 import { FooterClientComponent } from './components/client/start-bars/footer-client/footer-client.component';
 import { SidebarClientComponent } from './components/client/start-bars/sidebar-client/sidebar-client.component';
@@ -28,7 +26,6 @@ import { DashboardCampaignComponent } from './components/client/pages_client/das
 import { CampaignsClientComponent } from './components/client/pages_client/campaigns-client/campaigns-client.component';
 import { DashboardClientComponent } from './components/client/pages_client/dashboard-client/dashboard-client.component';
 import { ProfileClientComponent } from './components/client/pages_client/profile-client/profile-client.component';
->>>>>>> 9404201dc7fc93bee19ac7c6125c0a9d5c61120a
 
 @NgModule({
   declarations: [
@@ -40,9 +37,7 @@ import { ProfileClientComponent } from './components/client/pages_client/profile
     RequestResetComponent,
     ResponseResetComponent,
     UserComponent,
-<<<<<<< HEAD
-    VerifyUserComponent
-=======
+    VerifyUserComponent,
     NavbarClientComponent,
     FooterClientComponent,
     SidebarClientComponent,
@@ -55,7 +50,6 @@ import { ProfileClientComponent } from './components/client/pages_client/profile
     CampaignsClientComponent,
     DashboardClientComponent,
     ProfileClientComponent
->>>>>>> 9404201dc7fc93bee19ac7c6125c0a9d5c61120a
   ],
   imports: [
     BrowserModule,
