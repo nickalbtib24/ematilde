@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TokenService {
-  
-  private baseUrl = 'http://localhost/proyectoGrad1/ematilde/public/index.php/api'
-  
+
+  private baseUrl = 'http://localhost:8888/proyectoGrad1/ematilde/public/index.php/api'
+
   private iss = {
     login : `${this.baseUrl}/login`,
     signup : `${this.baseUrl}/signup`,
