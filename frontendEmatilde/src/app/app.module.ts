@@ -14,18 +14,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
-<<<<<<< HEAD
-import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
-import { NavbarClientComponent } from './components/client/start-bars/navbar-client/navbar-client.component';
-import { FooterClientComponent } from './components/client/start-bars/footer-client/footer-client.component';
-import { SidebarClientComponent } from './components/client/start-bars/sidebar-client/sidebar-client.component';
-import { SidebarAdminComponent } from './components/admin/admin-bars/sidebar-admin/sidebar-admin.component';
-import { NavbarAdminComponent } from './components/admin/admin-bars/navbar-admin/navbar-admin.component';
-import { FooterAdminComponent } from './components/admin/admin-bars/footer-admin/footer-admin.component';
-=======
+
 
 import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
->>>>>>> fa530767c94ea851598dee19130d035e00042d23
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component';
 import { AddCampaignComponent } from './components/client/pages_client/add-campaign/add-campaign.component';
 import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
@@ -46,12 +37,6 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     ResponseResetComponent,
     UserComponent,
     VerifyUserComponent,
-<<<<<<< HEAD
-    NavbarClientComponent,
-    FooterClientComponent,
-    SidebarClientComponent,
-=======
->>>>>>> fa530767c94ea851598dee19130d035e00042d23
     DashboardCampaignComponent,
     AddCampaignComponent,
     ClientsComponent,
