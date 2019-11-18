@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 
+
 import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component';
 import { AddCampaignComponent } from './components/client/pages_client/add-campaign/add-campaign.component';

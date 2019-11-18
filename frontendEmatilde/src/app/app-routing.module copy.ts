@@ -9,6 +9,7 @@ import { UserComponent } from './components/user/user.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
+import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
 
 const appRoutes: Routes = [
 
@@ -47,7 +48,14 @@ const appRoutes: Routes = [
     path: 'verify',
     component: VerifyUserComponent,
     canActivate: [BeforeLoginService]
+  },
+  {
+    path: 'dash',
+    component: DashboardCampaignComponent,
+    canActivate: [BeforeLoginService]
+
   }
+
 
 ]
 
