@@ -77,6 +77,9 @@ class AuthController extends Controller
 
 
             Mail::to($user->email)->send(new PostSignUpMail($user));
+            return response()->json([
+                'success' => 'Check your e-mail, we have send you an activation link.'
+            ]);
         }else
         {
             return response()->json($validator->messages());

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrincipalService } from 'src/app/services/principal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -24,9 +25,14 @@ export class SignupComponent implements OnInit {
   }
   public tipoUsuarios=null;
 
-  public error = null;
+  public response = [];
 
-  constructor(private Principal:PrincipalService) { }
+  public error = [];
+
+  constructor(
+    private Principal:PrincipalService,
+    private Router : Router,
+    ) { }
 
   ngOnInit() {
     this.Principal.getTipoClientes().subscribe((data: any[])=>{
@@ -37,14 +43,17 @@ export class SignupComponent implements OnInit {
 
   onSubmit(){
     this.Principal.signup(this.form).subscribe(
-     data => console.log(data),
-     error => this.handleError(error)
+     error => this.handleError(error),
+
    );
   }
 
   handleError(error){
     this.error = error;
-  }
+    if (error.success){
+      this.Router.navigateByUrl('/login')
 
+    }
+  }
 
 }

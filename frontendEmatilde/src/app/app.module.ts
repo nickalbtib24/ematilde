@@ -45,7 +45,8 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     ProfileClientComponent,
     ClientContainerComponent,
     AdminContainerComponent,
-    ProfileClientComponent
+    ProfileClientComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -54,6 +55,7 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     FormsModule,
     HttpClientModule,
     ChartsModule,
+    
 
   ],
   providers: [],

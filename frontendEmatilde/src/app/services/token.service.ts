@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
-  private baseUrl = 'http://localhost:8888/proyectoGrad1/ematilde/public/index.php/api'
+  private baseUrl = 'http://localhost/proyectoGrad1/ematilde/public/index.php/api'
 
   private iss = {
     login : `${this.baseUrl}/login`,
@@ -15,6 +15,8 @@ export class TokenService {
 
   handle(token){
     this.set(token)
+    console.log(this.isValid())
+
   }
 
   set(token){
@@ -35,7 +37,7 @@ export class TokenService {
     if(token){
       const payload = this.payload(token)
       if(payload){
-        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false
+       return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
       }
     }
     return false;

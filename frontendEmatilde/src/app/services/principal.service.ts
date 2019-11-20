@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PrincipalService {
 
-  private baseUrl = 'http://localhost:8888/proyectoGrad1/ematilde/public/index.php/api'
+  private baseUrl = 'http://localhost:80/proyectoGrad1/ematilde/public/index.php/api'
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,4 @@ export class PrincipalService {
     return this.http.get(`${this.baseUrl}/tipo_clientes`)
   }
 
-  getActivationLink(){
-    return this.http.get(`${this.baseUrl}/verify`)
-  }
 }

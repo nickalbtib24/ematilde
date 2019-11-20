@@ -37,30 +37,44 @@ const appRoutes: Routes = [
   {
     path:'request-password-reset',
     component: RequestResetComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path:'response-password-reset',
     component: ResponseResetComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path: 'dashboard-client',
     component: DashboardClientComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path: 'campaigns-client',
     component: CampaignsClientComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path: 'add-campaign',
     component: AddCampaignComponent,
+    canActivate: [AfterLoginService]
+
   },
   {
     path: 'profile-client',
     component: ProfileClientComponent,
+    canActivate: [AfterLoginService]
+
   },
 ]
 
