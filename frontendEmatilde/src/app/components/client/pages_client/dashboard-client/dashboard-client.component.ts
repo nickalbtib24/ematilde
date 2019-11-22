@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
+import { PrincipalService } from 'src/app/services/principal.service';
+import { TokenService } from 'src/app/services/token.service';
 @Component({
   selector: 'app-dashboard-client',
   templateUrl: './dashboard-client.component.html'
@@ -11,10 +12,21 @@ export class DashboardClientComponent implements OnInit {
 
   radioModel: string = 'Month';
 
+  private kpis = [];
+  private dates = [];
+  private dataActionsOnPage = [];
+  private dataPageViews = [];
+  private dataPageFollowers = [];
+  private dataPageLikes = [];
+  constructor (
+    private Principal:PrincipalService,
+    private Token:TokenService
+  ) {}
+
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
+      data: this.dataPageViews,
       label: 'Series A'
     }
   ];
@@ -41,8 +53,8 @@ export class DashboardClientComponent implements OnInit {
         display: false,
         ticks: {
           display: false,
-          min: 40 - 5,
-          max: 84 + 5,
+          min: 0,
+          max: 100,
         }
       }],
     },
@@ -72,7 +84,7 @@ export class DashboardClientComponent implements OnInit {
   // lineChart2
   public lineChart2Data: Array<any> = [
     {
-      data: [1, 18, 9, 17, 34, 22, 11],
+      data: this.dataActionsOnPage,
       label: 'Series A'
     }
   ];
@@ -99,8 +111,8 @@ export class DashboardClientComponent implements OnInit {
         display: false,
         ticks: {
           display: false,
-          min: 1 - 5,
-          max: 34 + 5,
+          min: 0,
+          max: 100,
         }
       }],
     },
@@ -132,7 +144,7 @@ export class DashboardClientComponent implements OnInit {
   // lineChart3
   public lineChart3Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40],
+      data: this.dataPageFollowers,
       label: 'Series A'
     }
   ];
@@ -178,7 +190,7 @@ export class DashboardClientComponent implements OnInit {
   // barChart1
   public barChart1Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, 40],
+      data: this.dataPageLikes,
       label: 'Series A',
       barPercentage: 0.6,
     }
@@ -386,5 +398,24 @@ export class DashboardClientComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+    let user = this.Token.getUser();
+    this.Principal.getKpi(user).subscribe((data: any[])=>{
+      this.kpis = data;
+      this.prepareData(this.kpis)
+    })
+  }
+
+  prepareData(kpis){
+    for (var kpi of kpis){
+      this.dates.unshift(kpi.fecha)
+      this.dataActionsOnPage.unshift(kpi.actions_on_page)
+      this.dataPageViews.unshift(kpi.page_views)
+      this.dataPageFollowers.unshift(kpi.page_followers)
+      this.dataPageLikes.unshift(kpi.page_likes)
+
+    }
+    console.log(this.dates)
+    console.log(this.dataActionsOnPage)
+    console.log(this.dataPageViews)
   }
 }

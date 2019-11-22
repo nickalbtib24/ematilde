@@ -17,6 +17,9 @@
                 <div class="signup-content">
                     <form #logInForm=ngForm (ngSubmit)="onSubmit()">
                         <h2 class="form-title">Login</h2>
+                        <div class="alert alert-danger" [hidden] = "!error.error">
+                            {{error.error }}
+                        </div>
                         <div class="form-group">
                           <label class="form-control-label">Email address</label>
                           <input type="email" class="form-input" name="email" [(ngModel)]="form.email" id="email" placeholder="Your Email"/>

@@ -6,7 +6,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\informeCliente;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -81,6 +81,10 @@ class User extends Authenticatable implements JWTSubject
     public function verifyUser()
     {
         return $this->hasOne('App\VerifyUser');
+    }
+
+    public function informeClientes(){
+        return $this->hasMany(InformeCliente::class,'id_usuario','id');
     }
 
 }

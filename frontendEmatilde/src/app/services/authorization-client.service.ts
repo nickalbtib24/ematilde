@@ -5,12 +5,16 @@ import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AfterLoginService implements CanActivate {
-
+export class AuthorizationClientService implements CanActivate {
+  
   canActivate(route: import("@angular/router").ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot): boolean | import("rxjs").Observable<boolean> | Promise<boolean> {
-    return this.Token.loggedIn();
+    let prof = this.Token.getProfile();
+    if(prof == '2'){
+      return true;
+    }
+    return false;
+    
   }
 
-  constructor(
-    private Token : TokenService) { }
+  constructor(private Token : TokenService) { }
 }

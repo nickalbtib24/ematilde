@@ -14,6 +14,7 @@ Route::group([
     Route::get('tipo_clientes','TipoClienteController@getTipoClientes');
 
     //--------Routes for Users
-
+    //--------Routes for informeClientes
+    Route::get('informe_clientes/{id}','InformeClienteController@getKpi');
 });
 

@@ -23,4 +23,7 @@ export class PrincipalService {
     return this.http.get(`${this.baseUrl}/tipo_clientes`)
   }
 
+  getKpi(id){
+    return this.http.get(`${this.baseUrl}/informe_clientes/`+id)
+  }
 }

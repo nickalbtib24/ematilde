@@ -13,14 +13,15 @@ export class TokenService {
   }
   constructor() { }
 
-  handle(token){
-    this.set(token)
-    console.log(this.isValid())
+  handle(token, user, profile){
+    this.set(token, user, profile)
 
   }
 
-  set(token){
+  set(token, user, profile){
     localStorage.setItem('token',token)
+    localStorage.setItem('user', user)
+    localStorage.setItem('profile',profile)
   }
 
 
@@ -28,8 +29,18 @@ export class TokenService {
     return localStorage.getItem('token')
   }
 
+  getUser(){
+    return localStorage.getItem('user')
+  }
+
+  getProfile(){
+    return localStorage.getItem('profile')
+  }
+
   remove(){
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    localStorage.removeItem('profile')
   }
 
   isValid(){

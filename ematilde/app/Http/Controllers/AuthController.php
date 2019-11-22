@@ -60,7 +60,7 @@ class AuthController extends Controller
                 'direccion_usuario' => $input['direccion_usuario'],
                 'intentos_usuario' => 0,
             ]);
-            $perfil = Perfil::find(1);
+            $perfil = Perfil::find(2);
             $tipoCliente = TipoCliente::find($input['tipo_cliente']);
             $user->perfil()->associate($perfil);
             $user->tipoCliente()->associate($tipoCliente);
@@ -152,7 +152,8 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->nombre_usuario
+            'user' => auth()->user()->id,
+            'role' => auth()->user()->perfil->id
         ]);
     }
 }

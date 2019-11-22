@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  public error = null
+  public error = []
 
   constructor(
     private Principal:PrincipalService,
@@ -36,13 +36,15 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data){
 
-    this.Token.handle(data.access_token)
+    console.log(data)
+    this.Token.handle(data.access_token, data.user, data.role)
     this.Auth.changeAuthStatus(true)
     this.Router.navigateByUrl('/dashboard-client')
   }
 
   handleError(error){
-    this.error = error.error.error;
+    console.log(error.error)
+    this.error = error.error;
   }
 
   ngOnInit() {
