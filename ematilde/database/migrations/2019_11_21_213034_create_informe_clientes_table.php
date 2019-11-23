@@ -26,6 +26,9 @@ class CreateInformeClientesTable extends Migration
             $table->integer('post_engagement');
             $table->integer('videos');
             $table->integer('page_previews');
+            $table->integer('likes');
+            $table->integer('views');
+            $table->integer('new_users');
             $table->date('created_at_date');
             $table->date('updated_at_date');
 

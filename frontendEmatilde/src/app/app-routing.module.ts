@@ -15,7 +15,7 @@ import { CampaignsClientComponent} from './components/client/pages_client/campai
 import { ProfileClientComponent} from './components/client/pages_client/profile-client/profile-client.component';
 import { AddCampaignComponent} from './components/client/pages_client/add-campaign/add-campaign.component';
 import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
-
+import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component'
 const appRoutes: Routes = [
 
   { path: '',
@@ -80,11 +80,15 @@ const appRoutes: Routes = [
 
   },
   {
-    path: 'dashboard-campaign',
+    path: 'dashboard-campaign/:id',
     component: DashboardCampaignComponent,
     canActivate: [AfterLoginService]
 
   },
+  {
+    path: 'clients',
+    component: ClientsComponent
+  }
 ]
 
 @NgModule({

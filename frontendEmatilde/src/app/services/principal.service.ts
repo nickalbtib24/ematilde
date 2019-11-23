@@ -26,4 +26,12 @@ export class PrincipalService {
   getKpi(id){
     return this.http.get(`${this.baseUrl}/informe_clientes/`+id)
   }
+
+  getCampaignsByUser(id){
+    return this.http.get(`${this.baseUrl}/campanas_user/`+id)
+  }
+
+  getCampaignInform(id){
+    return this.http.get(`${this.baseUrl}/campana_inform/`+id)
+  }
 }

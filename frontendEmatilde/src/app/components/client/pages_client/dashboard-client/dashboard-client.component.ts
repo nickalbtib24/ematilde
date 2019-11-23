@@ -18,107 +18,69 @@ export class DashboardClientComponent implements OnInit {
   private dataPageViews = [];
   private dataPageFollowers = [];
   private dataPageLikes = [];
+  private dataPostReach = [];
+  private dataPostEngagement = [];
+  private dataVideos = [];
+  private dataPagePreviews = [];
+  private dataGeneralInfo = [];
   constructor (
     private Principal:PrincipalService,
     private Token:TokenService
   ) {}
 
-  // lineChart1
-  public lineChart1Data: Array<any> = [
-    {
-      data: this.dataPageViews,
-      label: 'Series A'
-    }
-  ];
-  public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 0,
-          max: 100,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart1Colours: Array<any> = [
-    {
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart1Legend = false;
-  public lineChart1Type = 'line';
-
-  // lineChart2
-  public lineChart2Data: Array<any> = [
+  // ActionsOnPage
+  public ActionsOnPageData: Array<any> = [
     {
       data: this.dataActionsOnPage,
-      label: 'Series A'
+      label: 'Actions on page'
     }
   ];
-  public lineChart2Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart2Options: any = {
+  public ActionsOnPageLabels: Array<any> = this.dates;
+  public ActionsOnPageOptions: any = {
+    labels : this.dates ,
     tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },  
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
+        display: true,
         gridLines: {
           color: 'transparent',
           zeroLineColor: 'transparent'
         },
         ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
+          fontSize: 8,
+          fontColor: 'white',
         }
 
       }],
       yAxes: [{
         display: false,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
         ticks: {
-          display: false,
+          fontSize: 8,
+          fontColor: 'white',
+          display: true,
           min: 0,
           max: 100,
-        }
+        },
       }],
     },
     elements: {
       line: {
-        tension: 0.00001,
         borderWidth: 1
       },
       point: {
@@ -129,35 +91,117 @@ export class DashboardClientComponent implements OnInit {
     },
     legend: {
       display: false
-    }
+    },
+    
   };
-  public lineChart2Colours: Array<any> = [
-    { // grey
+  public ActionsOnPageColours: Array<any> = [
+    {
       backgroundColor: getStyle('--info'),
       borderColor: 'rgba(255,255,255,.55)'
     }
   ];
-  public lineChart2Legend = false;
-  public lineChart2Type = 'line';
+  public ActionsOnPageLegend = false;
+  public ActionsOnPageType = 'line';
 
-
-  // lineChart3
-  public lineChart3Data: Array<any> = [
+  // PageViews
+  public PageViewsData: Array<any> = [
     {
-      data: this.dataPageFollowers,
-      label: 'Series A'
+      data: this.dataPageViews,
+      label: 'Page Views'
     }
   ];
-  public lineChart3Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart3Options: any = {
+  public PageViewsLabels: Array<any> = this.dates;
+  public PageViewsOptions: any = {
     tooltips: {
-      enabled: false,
-      custom: CustomTooltips
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
     },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
-        display: false
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: 0,
+          max: 100,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public PageViewsColours: Array<any> = [
+    { // grey
+      backgroundColor: getStyle('--primary'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public PageViewsLegend = false;
+  public PageViewsType = 'line';
+
+
+  // Page Followers
+  public PageFollowersData: Array<any> = [
+    {
+      data: this.dataPageFollowers,
+      label: 'Page Followers'
+    }
+  ];
+  public PageFollowersLabels: Array<any> = this.dates;
+  public PageFollowersOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
       }],
       yAxes: [{
         display: false
@@ -177,34 +221,49 @@ export class DashboardClientComponent implements OnInit {
       display: false
     }
   };
-  public lineChart3Colours: Array<any> = [
+  public PageFollowersColours: Array<any> = [
     {
       backgroundColor: 'rgba(255,255,255,.2)',
       borderColor: 'rgba(255,255,255,.55)',
     }
   ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
+  public PageFollowersLegend = false;
+  public PageFollowersType = 'line';
 
 
-  // barChart1
-  public barChart1Data: Array<any> = [
+  // Page Likes
+  public PageLikesData: Array<any> = [
     {
       data: this.dataPageLikes,
-      label: 'Series A',
+      label: 'Page Likes',
       barPercentage: 0.6,
     }
   ];
-  public barChart1Labels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'];
-  public barChart1Options: any = {
+  public PageLikesLabels: Array<any> = this.dates;
+  public PageLikesOptions: any = {
     tooltips: {
-      enabled: false,
-      custom: CustomTooltips
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
     },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
-        display: false,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
       }],
       yAxes: [{
         display: false
@@ -214,19 +273,19 @@ export class DashboardClientComponent implements OnInit {
       display: false
     }
   };
-  public barChart1Colours: Array<any> = [
+  public PageLikesColours: Array<any> = [
     {
       backgroundColor: 'rgba(255,255,255,.3)',
       borderWidth: 0
     }
   ];
-  public barChart1Legend = false;
-  public barChart1Type = 'bar';
+  public PageLikesLegend = false;
+  public PageLikesType = 'bar';
 
   // mainChart
 
-  public mainChartElements = 27;
-  public mainChartData1: Array<number> = [];
+  public mainChartElements = 7;
+  public mainChartData1: Array<number> = this.dataGeneralInfo;
   public mainChartData2: Array<number> = [];
   public mainChartData3: Array<number> = [];
 
@@ -236,20 +295,16 @@ export class DashboardClientComponent implements OnInit {
       label: 'Current'
     },
     {
-      data: this.mainChartData2,
-      label: 'Previous'
-    },
-    {
       data: this.mainChartData3,
-      label: 'BEP'
+      label: 'Expected'
     }
   ];
   /* tslint:disable:max-line-length */
-  public mainChartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  public mainChartLabels: Array<any> = this.dates;
   /* tslint:enable:max-line-length */
   public mainChartOptions: any = {
     tooltips: {
-      enabled: false,
+      enabled: true,
       custom: CustomTooltips,
       intersect: true,
       mode: 'index',
@@ -269,7 +324,7 @@ export class DashboardClientComponent implements OnInit {
         },
         ticks: {
           callback: function(value: any) {
-            return value.charAt(0);
+            return value;
           }
         }
       }],
@@ -346,20 +401,183 @@ export class DashboardClientComponent implements OnInit {
     }
   ];
 
-  public brandBoxChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public brandBoxChartOptions: any = {
+   // ActionsOnPage
+   public PostReachData: Array<any> = [
+    {
+      data: this.dataPostReach,
+      label: 'Post Reach'
+    }
+  ];
+  public PostReachLabels: Array<any> = this.dates;
+  public PostReachOptions: any = {
+    labels : this.dates ,
     tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    responsive: true,
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },  
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
-        display: false,
+        display: true,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
       }],
       yAxes: [{
         display: false,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+          display: true,
+          min: 0,
+          max: 100,
+        },
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    },
+    
+  };
+  public PostReachColours: Array<any> = [
+    {
+      backgroundColor: getStyle('--info'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public PostReachLegend = false;
+  public PostReachType = 'line';
+
+  // PostEngagement
+  public PostEngagementData: Array<any> = [
+    {
+      data: this.dataPostEngagement,
+      label: 'Page Views'
+    }
+  ];
+  public PostEngagementLabels: Array<any> = this.dates;
+  public PostEngagementOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: 0,
+          max: 100,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public PostEngagementColours: Array<any> = [
+    { // grey
+      backgroundColor: getStyle('--primary'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public PostEngagementLegend = false;
+  public PostEngagementType = 'line';
+
+
+  // Videos
+  public VideosData: Array<any> = [
+    {
+      data: this.dataVideos,
+      label: 'Page Followers'
+    }
+  ];
+  public VideosLabels: Array<any> = this.dates;
+  public VideosOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+      }],
+      yAxes: [{
+        display: false
       }]
     },
     elements: {
@@ -370,23 +588,74 @@ export class DashboardClientComponent implements OnInit {
         radius: 0,
         hitRadius: 10,
         hoverRadius: 4,
-        hoverBorderWidth: 3,
-      }
+      },
     },
     legend: {
       display: false
     }
   };
-  public brandBoxChartColours: Array<any> = [
+  public VideosColours: Array<any> = [
     {
-      backgroundColor: 'rgba(255,255,255,.1)',
+      backgroundColor: 'rgba(255,255,255,.2)',
       borderColor: 'rgba(255,255,255,.55)',
-      pointHoverBackgroundColor: '#fff'
     }
   ];
-  public brandBoxChartLegend = false;
-  public brandBoxChartType = 'line';
+  public VideosLegend = false;
+  public VideosType = 'line';
 
+
+  // Page Viewers
+  public PageViewersData: Array<any> = [
+    {
+      data: this.dataPagePreviews,
+      label: 'Page Likes',
+      barPercentage: 0.6,
+    }
+  ];
+  public PageViewersLabels: Array<any> = this.dates;
+  public PageViewersOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+      }],
+      yAxes: [{
+        display: false
+      }]
+    },
+    legend: {
+      display: false
+    }
+  };
+  public PageViewersColours: Array<any> = [
+    {
+      backgroundColor: 'rgba(255,255,255,.3)',
+      borderWidth: 0
+    }
+  ];
+  public PageViewersLegend = false;
+  public PageViewersType = 'bar';
+
+ 
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -394,8 +663,7 @@ export class DashboardClientComponent implements OnInit {
   ngOnInit(): void {
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
+      
       this.mainChartData3.push(65);
     }
     let user = this.Token.getUser();
@@ -407,12 +675,16 @@ export class DashboardClientComponent implements OnInit {
 
   prepareData(kpis){
     for (var kpi of kpis){
-      this.dates.unshift(kpi.fecha)
-      this.dataActionsOnPage.unshift(kpi.actions_on_page)
-      this.dataPageViews.unshift(kpi.page_views)
-      this.dataPageFollowers.unshift(kpi.page_followers)
-      this.dataPageLikes.unshift(kpi.page_likes)
-
+      this.dates.push(kpi.fecha)
+      this.dataActionsOnPage.push(kpi.actions_on_page)
+      this.dataPageViews.push(kpi.page_views)
+      this.dataPageFollowers.push(kpi.page_followers)
+      this.dataPageLikes.push(kpi.page_likes)
+      this.dataGeneralInfo.push(kpi.general_info)
+      this.dataPostReach.push(kpi.post_reach)
+      this.dataPostEngagement.push(kpi.post_engagement)
+      this.dataVideos.push(kpi.videos)
+      this.dataPagePreviews.push(kpi.page_previews)
     }
     console.log(this.dates)
     console.log(this.dataActionsOnPage)

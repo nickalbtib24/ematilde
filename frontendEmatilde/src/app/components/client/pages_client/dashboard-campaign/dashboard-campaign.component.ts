@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
+import { ActivatedRoute } from '@angular/router';
+import { PrincipalService } from 'src/app/services/principal.service';
 @Component({
   templateUrl: './dashboard-campaign.component.html'
 })
@@ -10,233 +11,47 @@ export class DashboardCampaignComponent implements OnInit {
 
   radioModel: string = 'Month';
 
-  // lineChart1
-  public lineChart1Data: Array<any> = [
+  private informs = [];
+  private kpis = [];
+  private dates = [];
+  private dataReach = [];
+  private dataBudget = [];
+  private dataResult = [];
+  private dataImpressions = [];
+  private dataEstimatedAddRecall = [];
+  private dataAmountSpent = [];
+  private dataFrequency = [];
+  private dataVideoClicks = [];
+  private dataPostreaction = [];
+  private dataCarrouselClicks = [];
+  private dataLinkClicks = [];
+  constructor (
+    private Route:ActivatedRoute,
+    private Principal:PrincipalService
+    ){}
+
+  // Reach
+
+  public ReachElements = 7;
+  public ReachData2: Array<number> = [];
+  public ReachData3: Array<number> = [];
+
+  public ReachData: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart1Labels: Array<any> = [ 'June', 'July', 'August', 'September', 'October', 'November'];
-  public lineChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 40 - 5,
-          max: 84 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart1Colours: Array<any> = [
-    {
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart1Legend = false;
-  public lineChart1Type = 'line';
-
-  // lineChart2
-  public lineChart2Data: Array<any> = [
-    {
-      data: [1, 18, 9, 17, 34, 22, 11],
-      label: 'Series A'
-    }
-  ];
-  public lineChart2Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart2Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 1 - 5,
-          max: 34 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        tension: 0.00001,
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart2Colours: Array<any> = [
-    { // grey
-      backgroundColor: getStyle('--info'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart2Legend = false;
-  public lineChart2Type = 'line';
-
-
-  // lineChart3
-  public lineChart3Data: Array<any> = [
-    {
-      data: [78, 81, 80, 45, 34, 12, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart3Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart3Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart3Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-    }
-  ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
-
-
-  // barChart1
-  public barChart1Data: Array<any> = [
-    {
-      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, 40],
-      label: 'Series A',
-      barPercentage: 0.6,
-    }
-  ];
-  public barChart1Labels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'];
-  public barChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false,
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    legend: {
-      display: false
-    }
-  };
-  public barChart1Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderWidth: 0
-    }
-  ];
-  public barChart1Legend = false;
-  public barChart1Type = 'bar';
-
-  // mainChart
-
-  public mainChartElements = 27;
-  public mainChartData1: Array<number> = [];
-  public mainChartData2: Array<number> = [];
-  public mainChartData3: Array<number> = [];
-
-  public mainChartData: Array<any> = [
-    {
-      data: this.mainChartData1,
-      label: 'Current'
+      data: this.dataReach,
+      label: 'Reach'
     },
     {
-      data: this.mainChartData2,
-      label: 'Previous'
-    },
-    {
-      data: this.mainChartData3,
-      label: 'BEP'
+      data: this.ReachData3,
+      label: 'Expected'
     }
   ];
   /* tslint:disable:max-line-length */
-  public mainChartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  public ReachLabels: Array<any> = this.dates;
   /* tslint:enable:max-line-length */
-  public mainChartOptions: any = {
+  public ReachOptions: any = {
     tooltips: {
-      enabled: false,
+      enabled: true,
       custom: CustomTooltips,
       intersect: true,
       mode: 'index',
@@ -256,7 +71,7 @@ export class DashboardCampaignComponent implements OnInit {
         },
         ticks: {
           callback: function(value: any) {
-            return value.charAt(0);
+            return value;
           }
         }
       }],
@@ -284,7 +99,7 @@ export class DashboardCampaignComponent implements OnInit {
       display: false
     }
   };
-  public mainChartColours: Array<any> = [
+  public ReachColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
       borderColor: getStyle('--info'),
@@ -303,50 +118,314 @@ export class DashboardCampaignComponent implements OnInit {
       borderDash: [8, 5]
     }
   ];
-  public mainChartLegend = false;
-  public mainChartType = 'line';
+  public ReachLegend = false;
+  public ReachType = 'line';
 
-  // social box charts
 
-  public brandBoxChartData1: Array<any> = [
+  // Budget
+  public BudgetData: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
-      label: 'Facebook'
+      data: this.dataBudget,
+      label: 'Budget'
     }
   ];
-  public brandBoxChartData2: Array<any> = [
-    {
-      data: [1, 13, 9, 17, 34, 41, 38],
-      label: 'Twitter'
-    }
-  ];
-  public brandBoxChartData3: Array<any> = [
-    {
-      data: [78, 81, 80, 45, 34, 12, 40],
-      label: 'LinkedIn'
-    }
-  ];
-  public brandBoxChartData4: Array<any> = [
-    {
-      data: [35, 23, 56, 22, 97, 23, 64],
-      label: 'Google+'
-    }
-  ];
-
-  public brandBoxChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public brandBoxChartOptions: any = {
+  public BudgetLabels: Array<any> = this.dates;
+  public BudgetOptions: any = {
+    labels : this.dates ,
     tooltips: {
-      enabled: false,
-      custom: CustomTooltips
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },  
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: true,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+          display: true,
+          min: 0,
+          max: 100,
+        },
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    },
+    
+  };
+  public BudgetColours: Array<any> = [
+    {
+      backgroundColor: getStyle('--info'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public BudgetLegend = false;
+  public BudgetType = 'line';
+
+  // Result
+  public ResultData: Array<any> = [
+    {
+      data: this.dataResult,
+      label: 'Result'
+    }
+  ];
+  public ResultLabels: Array<any> = this.dates;
+  public ResultOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: 0,
+          max: 100,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public ResultColours: Array<any> = [
+    { // grey
+      backgroundColor: getStyle('--primary'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public ResultLegend = false;
+  public ResultType = 'line';
+
+  // Impressions
+  public ImpressionsData: Array<any> = [
+    {
+      data: this.dataImpressions,
+      label: 'Impressions'
+    }
+  ];
+  public ImpressionsLabels: Array<any> = this.dates;
+  public ImpressionsOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+      }],
+      yAxes: [{
+        display: false
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public ImpressionsColours: Array<any> = [
+    {
+      backgroundColor: 'rgba(255,255,255,.2)',
+      borderColor: 'rgba(255,255,255,.55)',
+    }
+  ];
+  public ImpressionsLegend = false;
+  public ImpressionsType = 'line';
+// EstimatedAddRecall
+
+public EstimatedAddRecallData: Array<any> = [
+  {
+    data: this.dataEstimatedAddRecall,
+    label: 'Estimated Add Recall',
+    barPercentage: 0.6,
+  }
+];
+public EstimatedAddRecallLabels: Array<any> = this.dates;
+public EstimatedAddRecallOptions: any = {
+  tooltips: {
+    enabled: true,
+    custom: CustomTooltips,
+    intersect: true,
+    mode: 'index',
+    position: 'nearest',
+    callbacks: {
+      labelColor: function(tooltipItem, chart) {
+        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+      }
+    }
+  },
+  maintainAspectRatio: false,
+  scales: {
+    xAxes: [{
+      gridLines: {
+        color: 'transparent',
+        zeroLineColor: 'transparent'
+      },
+      ticks: {
+        fontSize: 8,
+        fontColor: 'white',
+      }
+    }],
+    yAxes: [{
+      display: false
+    }]
+  },
+  legend: {
+    display: false
+  }
+};
+public EstimatedAddRecallColours: Array<any> = [
+  {
+    backgroundColor: 'rgba(255,255,255,.3)',
+    borderWidth: 0
+  }
+];
+public EstimatedAddRecallLegend = false;
+public EstimatedAddRecallType = 'bar';
+  // AmmountSpent
+
+  public AmmountSpentElements = 7;
+  public AmmountSpentData1: Array<number> = this.dataAmountSpent;
+  public AmmountSpentData2: Array<number> = [];
+  public AmmountSpentData3: Array<number> = [];
+
+  public AmmountSpentData: Array<any> = [
+    {
+      data: this.AmmountSpentData1,
+      label: 'Current'
+    },
+    {
+      data: this.AmmountSpentData3,
+      label: 'Expected'
+    }
+  ];
+  /* tslint:disable:max-line-length */
+  public AmmountSpentLabels: Array<any> = this.dates;
+  /* tslint:enable:max-line-length */
+  public AmmountSpentOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
     },
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
-        display: false,
+        gridLines: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          callback: function(value: any) {
+            return value;
+          }
+        }
       }],
       yAxes: [{
-        display: false,
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(250 / 5),
+          max: 250
+        }
       }]
     },
     elements: {
@@ -364,26 +443,412 @@ export class DashboardCampaignComponent implements OnInit {
       display: false
     }
   };
-  public brandBoxChartColours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.1)',
-      borderColor: 'rgba(255,255,255,.55)',
+  public AmmountSpentColours: Array<any> = [
+    { // brandInfo
+      backgroundColor: hexToRgba(getStyle('--info'), 10),
+      borderColor: getStyle('--info'),
       pointHoverBackgroundColor: '#fff'
+    },
+    { // brandSuccess
+      backgroundColor: 'transparent',
+      borderColor: getStyle('--success'),
+      pointHoverBackgroundColor: '#fff'
+    },
+    { // brandDanger
+      backgroundColor: 'transparent',
+      borderColor: getStyle('--danger'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5]
     }
   ];
-  public brandBoxChartLegend = false;
-  public brandBoxChartType = 'line';
+  public AmmountSpentLegend = false;
+  public AmmountSpentType = 'line';
+   // Frequency
+   public FrequencyData: Array<any> = [
+    {
+      data: this.dataFrequency,
+      label: 'Frequency'
+    }
+  ];
+  public FrequencyLabels: Array<any> = this.dates;
+  public FrequencyOptions: any = {
+    labels : this.dates ,
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },  
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: true,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+          display: true,
+          min: 0,
+          max: 100,
+        },
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    },
+    
+  };
+  public FrequencyColours: Array<any> = [
+    {
+      backgroundColor: getStyle('--info'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public FrequencyLegend = false;
+  public FrequencyType = 'line';
+
+  // VideoClicks
+  public VideoClicksData: Array<any> = [
+    {
+      data: this.dataVideoClicks,
+      label: 'Video Clicks'
+    }
+  ];
+  public VideoClicksLabels: Array<any> = this.dates;
+  public VideoClicksOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: 0,
+          max: 100,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public VideoClicksColours: Array<any> = [
+    { // grey
+      backgroundColor: getStyle('--primary'),
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public VideoClicksLegend = false;
+  public VideoClicksType = 'line';
+
+  // PostReaction
+  public PostReactionData: Array<any> = [
+    {
+      data: this.dataPostreaction,
+      label: 'Post Reaction'
+    }
+  ];
+  public PostReactionLabels: Array<any> = this.dates;
+  public PostReactionOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 8,
+          fontColor: 'white',
+        }
+      }],
+      yAxes: [{
+        display: false
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public PostReactionColours: Array<any> = [
+    {
+      backgroundColor: 'rgba(255,255,255,.2)',
+      borderColor: 'rgba(255,255,255,.55)',
+    }
+  ];
+  public PostReactionLegend = false;
+  public PostReactionType = 'line';
+// CarrouselClicks
+
+public CarrouselClicksData: Array<any> = [
+  {
+    data: this.dataCarrouselClicks,
+    label: 'Estimated Add Recall',
+    barPercentage: 0.6,
+  }
+];
+public CarrouselClicksLabels: Array<any> = this.dates;
+public CarrouselClicksOptions: any = {
+  tooltips: {
+    enabled: true,
+    custom: CustomTooltips,
+    intersect: true,
+    mode: 'index',
+    position: 'nearest',
+    callbacks: {
+      labelColor: function(tooltipItem, chart) {
+        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+      }
+    }
+  },
+  maintainAspectRatio: false,
+  scales: {
+    xAxes: [{
+      gridLines: {
+        color: 'transparent',
+        zeroLineColor: 'transparent'
+      },
+      ticks: {
+        fontSize: 8,
+        fontColor: 'white',
+      }
+    }],
+    yAxes: [{
+      display: false
+    }]
+  },
+  legend: {
+    display: false
+  }
+};
+public CarrouselClicksColours: Array<any> = [
+  {
+    backgroundColor: 'rgba(255,255,255,.3)',
+    borderWidth: 0
+  }
+];
+public CarrouselClicksLegend = false;
+public CarrouselClicksType = 'bar';
+
+//Link Clicks
+
+public LinkClicksElements = 7;
+  public LinkClicksData1: Array<number> = this.dataLinkClicks;
+  public LinkClicksData2: Array<number> = [];
+  public LinkClicksData3: Array<number> = [];
+
+  public LinkClicksData: Array<any> = [
+    {
+      data: this.AmmountSpentData1,
+      label: 'Current'
+    },
+    {
+      data: this.AmmountSpentData3,
+      label: 'Expected'
+    }
+  ];
+  /* tslint:disable:max-line-length */
+  public LinkClicksLabels: Array<any> = this.dates;
+  /* tslint:enable:max-line-length */
+  public LinkClicksOptions: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          callback: function(value: any) {
+            return value;
+          }
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(250 / 5),
+          max: 250
+        }
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+        hoverBorderWidth: 3,
+      }
+    },
+    legend: {
+      display: false
+    }
+  };
+  public LinkClicksColours: Array<any> = [
+    { // brandInfo
+      backgroundColor: hexToRgba(getStyle('--info'), 10),
+      borderColor: getStyle('--info'),
+      pointHoverBackgroundColor: '#fff'
+    },
+    { // brandSuccess
+      backgroundColor: 'transparent',
+      borderColor: getStyle('--success'),
+      pointHoverBackgroundColor: '#fff'
+    },
+    { // brandDanger
+      backgroundColor: 'transparent',
+      borderColor: getStyle('--danger'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5]
+    }
+  ];
+  public LinkClicksLegend = false;
+  public LinkClicksType = 'line';
 
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   ngOnInit(): void {
+    
+    this.getCampaignsByUser();
+
     // generate random values for mainChart
-    for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData3.push(65);
+    for (let i = 0; i <= this.AmmountSpentElements; i++) {
+      
+      this.AmmountSpentData3.push(65);
     }
+  }
+
+  getCampaignsByUser(){
+    let campaign = this.Route.snapshot.paramMap.get("id")
+    this.Principal.getCampaignInform(campaign).subscribe((data: any[])=>{
+      this.kpis = data;
+      this.prepareData(this.kpis)
+
+    })
+  }
+
+  prepareData(kpis){
+    for (var kpi of kpis){
+      this.dates.push(kpi.date)
+      this.dataReach.push(kpi.reach)
+      this.dataBudget.push(kpi.budget)
+      this.dataResult.push(kpi.result)
+      this.dataImpressions.push(kpi.impressions)
+      this.dataEstimatedAddRecall.push(kpi.estimated_add_recall)
+      this.dataAmountSpent.push(kpi.ammount_spent)
+      this.dataFrequency.push(kpi.frequency)
+      this.dataVideoClicks.push(kpi.video_clicks)
+      this.dataPostreaction.push(kpi.post_reaction)
+      this.dataCarrouselClicks.push(kpi.carrousel_clicks)
+      this.dataLinkClicks.push(kpi.link_clicks)
+      console.log(kpi.estimated_add_recall)
+
+    }
+    
   }
 }

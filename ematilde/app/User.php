@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\informeCliente;
+use App\Campana;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -85,6 +86,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function informeClientes(){
         return $this->hasMany(InformeCliente::class,'id_usuario','id');
+    }
+
+    public function campanas(){
+        return $this->hasMany(Campana::class,'id_usuario','id');
     }
 
 }

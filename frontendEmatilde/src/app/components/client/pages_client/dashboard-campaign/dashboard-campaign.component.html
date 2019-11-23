@@ -4,17 +4,16 @@
       <div class="row">
         <div class="col-sm-5">
           <h4 class="card-title mb-0">Reach</h4>
-          <div class="small text-muted">November 2019</div>
         </div><!--/.col-->
       </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
         <canvas baseChart class="chart"
-        [datasets]="mainChartData"
-        [labels]="mainChartLabels"
-        [options]="mainChartOptions"
-        [colors]="mainChartColours"
-        [legend]="mainChartLegend"
-        [chartType]="mainChartType"></canvas>
+        [datasets]="ReachData"
+        [labels]="ReachLabels"
+        [options]="ReachOptions"
+        [colors]="ReachColours"
+        [legend]="ReachLegend"
+        [chartType]="ReachType"></canvas>
       </div>
     </div>
     </div>
@@ -22,68 +21,64 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
-          <div class="text-value">$10</div>
           <div>Budget</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="lineChart2Data"
-          [labels]="lineChart2Labels"
-          [options]="lineChart2Options"
-          [colors]="lineChart2Colours"
-          [legend]="lineChart2Legend"
-          [chartType]="lineChart2Type"></canvas>
+          [datasets]="BudgetData"
+          [labels]="BudgetLabels"
+          [options]="BudgetOptions"
+          [colors]="BudgetColours"
+          [legend]="BudgetLegend"
+          [chartType]="BudgetType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-primary">
         <div class="card-body pb-0">
-          <div class="text-value">340</div>
           <div>Result</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="lineChart1Data"
-                  [labels]="lineChart1Labels"
-                  [options]="lineChart1Options"
-                  [colors]="lineChart1Colours"
-                  [legend]="lineChart1Legend"
-                  [chartType]="lineChart1Type"></canvas>
+                  [datasets]="ResultData"
+                  [labels]="ResultLabels"
+                  [options]="ResultOptions"
+                  [colors]="ResultColours"
+                  [legend]="ResultLegend"
+                  [chartType]="ResultType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-warning">
         <div class="card-body pb-0">
-          <div class="text-value">118</div>
           <div>Impressions</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="lineChart1Data"
-                  [labels]="lineChart1Labels"
-                  [options]="lineChart1Options"
-                  [colors]="lineChart1Colours"
-                  [legend]="lineChart1Legend"
-                  [chartType]="lineChart1Type"></canvas>
+                  [datasets]="ImpressionsData"
+                  [labels]="ImpressionsLabels"
+                  [options]="ImpressionsOptions"
+                  [colors]="ImpressionsColours"
+                  [legend]="ImpressionsLegend"
+                  [chartType]="ImpressionsType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-danger">
         <div class="card-body pb-0">
-          <div class="text-value">120</div>
           <div>Estimated Add Recall</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="barChart1Data"
-          [labels]="barChart1Labels"
-          [options]="barChart1Options"
-          [colors]="barChart1Colours"
-          [legend]="barChart1Legend"
-          [chartType]="barChart1Type"></canvas>
+          [datasets]="EstimatedAddRecallData"
+          [labels]="EstimatedAddRecallLabels"
+          [options]="EstimatedAddRecallOptions"
+          [colors]="EstimatedAddRecallColours"
+          [legend]="EstimatedAddRecallLegend"
+          [chartType]="EstimatedAddRecallType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
@@ -99,12 +94,12 @@
       </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
         <canvas baseChart class="chart"
-        [datasets]="mainChartData"
-        [labels]="mainChartLabels"
-        [options]="mainChartOptions"
-        [colors]="mainChartColours"
-        [legend]="mainChartLegend"
-        [chartType]="mainChartType"></canvas>
+        [datasets]="AmmountSpentData"
+        [labels]="AmmountSpentLabels"
+        [options]="AmmountSpentOptions"
+        [colors]="AmmountSpentColours"
+        [legend]="AmmountSpentLegend"
+        [chartType]="AmmountSpentType"></canvas>
       </div>
     </div>
   </div>
@@ -114,68 +109,64 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
-          <div class="text-value">5391</div>
           <div>Frequency</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="lineChart2Data"
-          [labels]="lineChart2Labels"
-          [options]="lineChart2Options"
-          [colors]="lineChart2Colours"
-          [legend]="lineChart2Legend"
-          [chartType]="lineChart2Type"></canvas>
+          [datasets]="FrequencyData"
+          [labels]="FrequencyLabels"
+          [options]="FrequencyOptions"
+          [colors]="FrequencyColours"
+          [legend]="FrequencyLegend"
+          [chartType]="FrequencyType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-primary">
         <div class="card-body pb-0">
-          <div class="text-value">340</div>
           <div>Video Clicks</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="lineChart1Data"
-                  [labels]="lineChart1Labels"
-                  [options]="lineChart1Options"
-                  [colors]="lineChart1Colours"
-                  [legend]="lineChart1Legend"
-                  [chartType]="lineChart1Type"></canvas>
+                  [datasets]="VideoClicksData"
+                  [labels]="VideoClicksLabels"
+                  [options]="VideoClicksOptions"
+                  [colors]="VideoClicksColours"
+                  [legend]="VideoClicksLegend"
+                  [chartType]="VideoClicksType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-warning">
         <div class="card-body pb-0">
-          <div class="text-value">139</div>
           <div>Post Reaction</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="lineChart1Data"
-                  [labels]="lineChart1Labels"
-                  [options]="lineChart1Options"
-                  [colors]="lineChart1Colours"
-                  [legend]="lineChart1Legend"
-                  [chartType]="lineChart1Type"></canvas>
+                  [datasets]="PostReactionData"
+                  [labels]="PostReactionLabels"
+                  [options]="PostReactionOptions"
+                  [colors]="PostReactionColours"
+                  [legend]="PostReactionLegend"
+                  [chartType]="PostReactionType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-danger">
         <div class="card-body pb-0">
-          <div class="text-value">120</div>
           <div>Carrousel Clicks</div>
         </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="barChart1Data"
-          [labels]="barChart1Labels"
-          [options]="barChart1Options"
-          [colors]="barChart1Colours"
-          [legend]="barChart1Legend"
-          [chartType]="barChart1Type"></canvas>
+          [datasets]="CarrouselClicksData"
+          [labels]="CarrouselClicksLabels"
+          [options]="CarrouselClicksOptions"
+          [colors]="CarrouselClicks1Colours"
+          [legend]="CarrouselClicksLegend"
+          [chartType]="CarrouselClicksType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
@@ -191,12 +182,12 @@
         </div><!--/.row-->
         <div class="chart-wrapper" style="height:300px;margin-top:40px;">
           <canvas baseChart class="chart"
-          [datasets]="mainChartData"
-          [labels]="mainChartLabels"
-          [options]="mainChartOptions"
-          [colors]="mainChartColours"
-          [legend]="mainChartLegend"
-          [chartType]="mainChartType"></canvas>
+          [datasets]="LinkClicksData"
+          [labels]="LinkClicksLabels"
+          [options]="LinkClicksOptions"
+          [colors]="LinkClicksColours"
+          [legend]="LinkClicksLegend"
+          [chartType]="LinkClicksType"></canvas>
         </div>
       </div>
       <div class="card-footer">

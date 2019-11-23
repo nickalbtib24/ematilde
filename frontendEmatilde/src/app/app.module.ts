@@ -25,6 +25,8 @@ import { DashboardClientComponent } from './components/client/pages_client/dashb
 import { ProfileClientComponent } from './components/client/pages_client/profile-client/profile-client.component';
 import { ClientContainerComponent } from './components/client/client-container/client-container.component';
 import { AdminContainerComponent } from './components/admin/admin-container/admin-container.component';
+import {MatTableModule} from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -55,8 +57,8 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
     FormsModule,
     HttpClientModule,
     ChartsModule,
-    
-
+    MatTableModule,
+    BrowserAnimationsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
