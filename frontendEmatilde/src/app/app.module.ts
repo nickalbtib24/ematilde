@@ -27,6 +27,7 @@ import { ClientContainerComponent } from './components/client/client-container/c
 import { AdminContainerComponent } from './components/admin/admin-container/admin-container.component';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClientContainerComponent,
     AdminContainerComponent,
     ProfileClientComponent,
-    
+    CampaignsComponent
   ],
   imports: [
     BrowserModule,

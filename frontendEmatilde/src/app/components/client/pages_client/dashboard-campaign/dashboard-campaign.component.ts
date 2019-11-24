@@ -725,7 +725,7 @@ public LinkClicksElements = 7;
 
   public LinkClicksData: Array<any> = [
     {
-      data: this.AmmountSpentData1,
+      data: this.LinkClicksData1,
       label: 'Current'
     },
     {

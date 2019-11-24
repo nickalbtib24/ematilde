@@ -39,7 +39,12 @@ export class LoginComponent implements OnInit {
     console.log(data)
     this.Token.handle(data.access_token, data.user, data.role)
     this.Auth.changeAuthStatus(true)
-    this.Router.navigateByUrl('/dashboard-client')
+    if(data.role == 2){
+      this.Router.navigateByUrl('/dashboard-client')
+    }else{
+      this.Router.navigateByUrl('/dashboard-client')
+
+    }
   }
 
   handleError(error){

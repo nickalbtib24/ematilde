@@ -16,6 +16,7 @@ import { ProfileClientComponent} from './components/client/pages_client/profile-
 import { AddCampaignComponent} from './components/client/pages_client/add-campaign/add-campaign.component';
 import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component'
+import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component'
 const appRoutes: Routes = [
 
   { path: '',
@@ -82,12 +83,17 @@ const appRoutes: Routes = [
   {
     path: 'dashboard-campaign/:id',
     component: DashboardCampaignComponent,
-    canActivate: [AfterLoginService]
+    canActivate: [AfterLoginService, AuthorizationClientService]
 
   },
   {
     path: 'clients',
     component: ClientsComponent
+  }
+  ,{
+    path: 'campaigns-admin',
+    component: CampaignsComponent,
+    canActivate: [AfterLoginService]
   }
 ]
 
