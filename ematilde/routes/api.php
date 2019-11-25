@@ -13,13 +13,16 @@ Route::group([
     //--------Routes for TipoClientes
     Route::get('tipo_clientes','TipoClienteController@getTipoClientes');
 
-    //--------Routes for Users
+    //--------Routes for Profile
+    Route::get('clients','PerfilController@getClients');
     //--------Routes for informeClientes
     Route::get('informe_clientes/{id}','InformeClienteController@getKpi');
     //--------Routes for campanas
     Route::get('campanas_user/{id}','CampanaController@getCampanasByUser');
     //--------Routes for informe campanas
     Route::get('campana_inform/{id}','CampanaController@getInformeCampana');
+    Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
+
 
 });
 

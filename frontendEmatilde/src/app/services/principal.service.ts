@@ -19,6 +19,10 @@ export class PrincipalService {
     return this.http.post(`${this.baseUrl}/signup`,data)
   }
 
+  createInform(data){
+    return this.http.post(`${this.baseUrl}/new_inform`,data)
+  }
+
   getTipoClientes(){
     return this.http.get(`${this.baseUrl}/tipo_clientes`)
   }
@@ -33,5 +37,9 @@ export class PrincipalService {
 
   getCampaignInform(id){
     return this.http.get(`${this.baseUrl}/campana_inform/`+id)
+  }
+
+  getClients(){
+    return this.http.get(`${this.baseUrl}/clients`)
   }
 }

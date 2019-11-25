@@ -27,8 +27,8 @@ import { ClientContainerComponent } from './components/client/client-container/c
 import { AdminContainerComponent } from './components/admin/admin-container/admin-container.component';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component'
-
+import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component';
+import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,8 @@ import { CampaignsComponent } from './components/admin/admin-pages/campaigns/cam
     ClientContainerComponent,
     AdminContainerComponent,
     ProfileClientComponent,
-    CampaignsComponent
+    CampaignsComponent,
+    AddInformCampaignComponent
   ],
   imports: [
     BrowserModule,

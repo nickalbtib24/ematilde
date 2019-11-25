@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PrincipalService } from 'src/app/services/principal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaigns',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignsComponent implements OnInit {
 
-  constructor() { }
+  private client = null
+  public campaigns = []
+
+  constructor(
+    private Route:ActivatedRoute,
+    private Principal:PrincipalService,
+    private Router:Router) { }
+
+  getCampaignsByClient(){
+    this.client = this.Route.snapshot.paramMap.get("id")
+    this.Principal.getCampaignsByUser(this.client).subscribe((data: any[])=>{
+      this.campaigns = data;
+    })
+  }
 
   ngOnInit() {
+    this.getCampaignsByClient()
+  }
+
+  getSelectedCampaign(campaign){
+    this.Router.navigate(['add-inform-campaign/',campaign])
+
   }
 
 }

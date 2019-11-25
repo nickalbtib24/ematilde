@@ -16,4 +16,6 @@ class CampanaController extends Controller
         $campana = Campana::find($id_campana);
         return $campana->informeCampanas;
     }
+
+    
 }
