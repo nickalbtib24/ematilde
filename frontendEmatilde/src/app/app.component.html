@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<app-navbar></app-navbar>
-
+<app-navbar (sendChange)="console.log($event)"></app-navbar>
+<app-login hidden></app-login>
 
 <router-outlet></router-outlet>

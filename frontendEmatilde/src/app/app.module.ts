@@ -50,7 +50,8 @@ import { AddInformCampaignComponent } from './components/admin/admin-pages/campa
     AdminContainerComponent,
     ProfileClientComponent,
     CampaignsComponent,
-    AddInformCampaignComponent
+    AddInformCampaignComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

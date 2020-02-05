@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
@@ -9,23 +9,49 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public loggedIn : boolean
+  public loggedIn: boolean;
+  public admin = false;
+  public client = false;
   constructor(
-    private Auth : AuthService,
-    private Router : Router,
-    private Token : TokenService
+    private Auth: AuthService,
+    private Router: Router,
+    private Token: TokenService
     ) { }
 
+
+  activateClient(){
+    this.client = true;
+  }
+  activateAdmin(){
+    this.admin = true;
+  }
   ngOnInit() {
-    this.Auth.authStatus.subscribe(value => this.loggedIn = value)
-    console.log(this.loggedIn)
+    this.Auth.authStatus.subscribe(value => this.loggedIn = value);
+    this.changeStatus();
   }
 
-  logout(event : MouseEvent){
-    event.preventDefault()
-    this.Token.remove()
-    this.Auth.changeAuthStatus(false)
-    this.Router.navigateByUrl('/login')
+  public changeStatus(){
+    if (this.loggedIn) {
+      if (this.Token.getProfile() === '1' ) {
+        this.admin = true;
+      } else {
+        console.log('hallo');
+        this.client = true;
+      }
+    }
+  }
+
+  public logThis(param): void {
+    console.log("in"+param);
+  }
+
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    this.client = false;
+    this.admin = false;
+    this.Token.remove();
+    this.Auth.changeAuthStatus(false);
+    this.Router.navigateByUrl('/login');
   }
 
 }
