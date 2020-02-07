@@ -5,14 +5,14 @@ import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
-import { EventEmitter } from 'events';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() sendChange = new EventEmitter();
+  @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();
 
   public user: User;
   public form  = {
@@ -41,13 +41,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    /*
+    
      this.Principal.login(this.form).subscribe(
      data => this.handleResponse(data),
      error => this.handleError(error)
-   );*/
-   console.log('login');
-   this.sendChange.emit('change');
+   );
+   //this.sendChange.emit('change');
   }
 
   handleResponse(data) {

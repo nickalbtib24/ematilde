@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
@@ -9,6 +9,7 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();
   public loggedIn: boolean;
   public admin = false;
   public client = false;
