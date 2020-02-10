@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PrincipalService {
 
-  private baseUrl = 'http://localhost:80/proyectoGrad1/ematilde/public/index.php/api'
+  private baseUrl = 'http://localhost:80/ProyectoDeGrad/ematilde/ematilde/public/api';
 
   constructor(private http: HttpClient) { }
 

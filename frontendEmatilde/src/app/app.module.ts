@@ -28,7 +28,8 @@ import { AdminContainerComponent } from './components/admin/admin-container/admi
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component';
-import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component'
+import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component';
+import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { AddInformCampaignComponent } from './components/admin/admin-pages/campa
     AdminContainerComponent,
     ProfileClientComponent,
     CampaignsComponent,
-    AddInformCampaignComponent
+    AddInformCampaignComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +62,9 @@ import { AddInformCampaignComponent } from './components/admin/admin-pages/campa
     HttpClientModule,
     ChartsModule,
     MatTableModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule, 
   ],
-  providers: [],
+  providers: [ExecuteFunctionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
-  private baseUrl = 'http://localhost/proyectoGrad1/ematilde/public/index.php/api'
+  private baseUrl = 'http://localhost/ProyectoDeGrad/ematilde/ematilde/public/api';
 
   private iss = {
     login : `${this.baseUrl}/login`,
@@ -26,44 +26,44 @@ export class TokenService {
 
 
   get(){
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
   getUser(){
-    return localStorage.getItem('user')
+    return localStorage.getItem('user');
   }
 
   getProfile(){
-    return localStorage.getItem('profile')
+    return localStorage.getItem('profile');
   }
 
   remove(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    localStorage.removeItem('profile')
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('profile');
   }
 
   isValid(){
-    const token = this.get()
-    if(token){
-      const payload = this.payload(token)
-      if(payload){
+    const token = this.get();
+    if ( token ) {
+      const payload = this.payload(token);
+      if ( payload ) {
        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
       }
     }
     return false;
   }
 
-  payload(token){
-    const payload = token.split('.')[1]
-    return this.decode(payload)
+  public payload(token){
+    const payload = token.split('.')[1];
+    return this.decode(payload);
   }
 
   decode(payload){
-    return JSON.parse(atob(payload))
+    return JSON.parse(atob(payload));
   }
 
   loggedIn(){
-    return this.isValid()
+    return this.isValid();
   }
 }

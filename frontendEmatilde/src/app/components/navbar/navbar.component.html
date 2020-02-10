@@ -20,10 +20,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" routerLink="campaigns-client">My Campaigns</a>
+            <a class="nav-link active" *ngIf="loggedIn && client" routerLink="campaigns-client">My Campaigns</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" *ngIf="loggedIn && admin" routerLink="clients">Clients</a>
         </li>
         <li>
-            <a class="nav-link active" routerLink="dashboard-client" *ngIf="loggedIn" >Profile</a>
+            <a class="nav-link active" routerLink="dashboard-client" *ngIf="loggedIn && client" >Profile</a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="http://www.matilde.agency" >

@@ -7,8 +7,17 @@ use App\User;
 use App\InformeCampana;
 class Campana extends Model
 {
+    protected $fillable = [
+        'nombre_campana',
+        'negocio_campana'
+    ];
+
     public function User(){
         return $this->belongsTo(User::class,'id_usuario');
+    }
+
+    public function TipoCampana(){
+        return $this->belongsTo(TipoCampana::class,'id');
     }
 
     public function InformeCampanas(){

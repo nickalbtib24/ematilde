@@ -1,54 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PrincipalService } from 'src/app/services/principal.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { User } from 'src/app/models/user.model';
+import { EventEmitter } from '@angular/core';
+import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  
 })
 export class LoginComponent implements OnInit {
+  @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();
 
-  public form={
-    email:null,
-    password:null
-  }
+  public user: User;
+  public form  = {
+    email: null,
+    password: null
+  };
 
 
-  public error = []
+  public error = [];
 
   constructor(
-    private Principal:PrincipalService,
-    private Token:TokenService,
-    private Router : Router,
-    private Auth : AuthService,
-  ) { }
+    private Principal: PrincipalService,
+    private Token: TokenService,
+    private Router: Router,
+    private Auth: AuthService,
+    private ExecuteFunction: ExecuteFunctionService
+  ) {
+    this.user = {
+      id: 0,
+      name: '',
+      lastName: '',
+      enterprise: '',
+      email: '',
+      client: 0,
+      profile: 0
+    };
+  }
 
-  onSubmit(){
+  onSubmit() {
      this.Principal.login(this.form).subscribe(
      data => this.handleResponse(data),
      error => this.handleError(error)
    );
   }
 
-  handleResponse(data){
-
-    console.log(data)
-    this.Token.handle(data.access_token, data.user, data.role)
-    this.Auth.changeAuthStatus(true)
-    if(data.role == 2){
-      this.Router.navigateByUrl('/dashboard-client')
-    }else{
-      this.Router.navigateByUrl('/dashboard-client')
-
+  handleResponse(data) {
+    this.user.id = data.id;
+    this.Token.handle(data.access_token, data.user, data.role);
+    this.Auth.changeAuthStatus(true);
+    if (data.role === 2) {
+      this.Router.navigateByUrl('/dashboard-client');
+    } else {
+      this.Router.navigateByUrl('/clients');
     }
+    this.ExecuteFunction.onFirstComponentButtonClick();
+
   }
 
-  handleError(error){
-    console.log(error.error)
+  handleError(error) {
+    console.log(error.error);
     this.error = error.error;
   }
 
