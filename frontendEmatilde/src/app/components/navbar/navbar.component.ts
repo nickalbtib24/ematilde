@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
+import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +10,14 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();
   public loggedIn: boolean;
   public admin = false;
   public client = false;
   constructor(
     private Auth: AuthService,
     private Router: Router,
-    private Token: TokenService
+    private Token: TokenService,
+    private ExecuteFunction: ExecuteFunctionService
     ) { }
 
 
@@ -27,8 +28,18 @@ export class NavbarComponent implements OnInit {
     this.admin = true;
   }
   ngOnInit() {
+    if (this.ExecuteFunction.subsVar === undefined) {
+      this.ExecuteFunction.subsVar = this.ExecuteFunction.
+      invokeNavbarComponentFunction.subscribe((name: string) => {
+        this.changeStatus();
+      });
+    }
     this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     this.changeStatus();
+  }
+
+  public llegue(){
+    alert('Llegue');
   }
 
   public changeStatus(){
@@ -40,10 +51,6 @@ export class NavbarComponent implements OnInit {
         this.client = true;
       }
     }
-  }
-
-  public logThis(param): void {
-    console.log("in"+param);
   }
 
   logout(event: MouseEvent) {

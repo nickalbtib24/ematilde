@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Output } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -26,22 +26,22 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent,
     canActivate: [BeforeLoginService]
   },
   {
-    path:'signup',
+    path: 'signup',
     component: SignupComponent,
     canActivate: [BeforeLoginService]
   },
   {
-    path:'profile',
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [AfterLoginService]
   },
   {
-    path:'request-password-reset',
+    path: 'request-password-reset',
     component: RequestResetComponent,
     canActivate: [AfterLoginService]
 
@@ -111,4 +111,5 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+ }

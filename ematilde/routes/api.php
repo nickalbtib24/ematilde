@@ -22,6 +22,7 @@ Route::group([
     //--------Routes for informe campanas
     Route::get('campana_inform/{id}','CampanaController@getInformeCampana');
     Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
+    Route::post('campana_new', 'CampanaController@addNewCampaign');
 
 
 });

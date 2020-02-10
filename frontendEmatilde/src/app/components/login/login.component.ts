@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { EventEmitter } from '@angular/core';
+import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  
 })
 export class LoginComponent implements OnInit {
   @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
     private Token: TokenService,
     private Router: Router,
     private Auth: AuthService,
+    private ExecuteFunction: ExecuteFunctionService
   ) {
     this.user = {
       id: 0,
@@ -41,12 +44,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    
      this.Principal.login(this.form).subscribe(
      data => this.handleResponse(data),
      error => this.handleError(error)
    );
-   //this.sendChange.emit('change');
   }
 
   handleResponse(data) {
@@ -58,6 +59,8 @@ export class LoginComponent implements OnInit {
     } else {
       this.Router.navigateByUrl('/clients');
     }
+    this.ExecuteFunction.onFirstComponentButtonClick();
+
   }
 
   handleError(error) {
