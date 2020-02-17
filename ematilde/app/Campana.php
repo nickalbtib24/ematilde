@@ -7,9 +7,13 @@ use App\User;
 use App\InformeCampana;
 class Campana extends Model
 {
+    protected $primaryKey = 'id';
+    public $incrementing = true;
     protected $fillable = [
         'nombre_campana',
-        'negocio_campana'
+        'negocio_campana',
+        'fecha_inicio_campana',
+        'fecha_terminacion_campana',
     ];
 
     public function User(){

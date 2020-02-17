@@ -11,7 +11,6 @@ import { ExecuteFunctionService } from 'src/app/services/execute-function.servic
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  
 })
 export class LoginComponent implements OnInit {
   @Output() public sendChange: EventEmitter<any> = new EventEmitter<any>();

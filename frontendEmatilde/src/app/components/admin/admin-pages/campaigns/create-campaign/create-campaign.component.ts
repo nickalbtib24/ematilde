@@ -11,13 +11,11 @@ export class CreateCampaignComponent implements OnInit {
   public form = {
     nombre_campana: null,
     tipo_campana: null,
-    usuario: null,
+    user_id: null,
     negocio_campana: null,
-    fecha_inicio: null,
-    fecha_finalizacion: null,
-
-
-  }
+    fecha_inicio_campana: null,
+    fecha_terminacion_campana: null,
+  };
   public tipoUsuarios = null;
 
   public response = [];
@@ -30,18 +28,21 @@ export class CreateCampaignComponent implements OnInit {
 
   constructor(
     private Router: Router,
-    private service: PrincipalService
-    ) { 
+    private service: PrincipalService,
+    private Principal: PrincipalService,
+    ) {
       this.getTipoCampanas();
       this.getClients();
     }
 
   ngOnInit() {
-
   }
 
-  onSubmit(){
-
+  public onSubmit() {
+    console.log(this.form);
+    this.Principal.postCreateCampaign(this.form).subscribe(
+      (data) => console.log(data)
+    );
   }
 
   public getTipoCampanas(): void {

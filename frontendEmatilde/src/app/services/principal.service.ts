@@ -8,42 +8,47 @@ export class PrincipalService {
 
   private baseUrl = 'http://localhost:80/ProyectoDeGrad/ematilde/ematilde/public/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient) { }
 
 
-  login(data){
-    return this.http.post(`${this.baseUrl}/login`,data)
+  public login(data) {
+    return this.http.post(this.baseUrl + '/login', data);
   }
 
-  signup(data){
-    return this.http.post(`${this.baseUrl}/signup`,data)
+  public signup(data) {
+    return this.http.post(this.baseUrl + '/signup', data);
   }
 
-  createInform(data){
-    return this.http.post(`${this.baseUrl}/new_inform`,data)
+  public createInform(data) {
+    return this.http.post(this.baseUrl + '/new_inform', data);
   }
 
-  getTipoClientes(){
-    return this.http.get(`${this.baseUrl}/tipo_clientes`)
+  public getTipoClientes() {
+    return this.http.get(this.baseUrl + '/tipo_clientes');
   }
 
-  getKpi(id){
-    return this.http.get(`${this.baseUrl}/informe_clientes/`+ id);
+  public getKpi(id) {
+    return this.http.get(this.baseUrl + '/informe_clientes/' + id);
   }
 
-  getCampaignsByUser(id){
-    return this.http.get(`${this.baseUrl}/campanas_user/`+ id);
+  public getCampaignsByUser(id) {
+    return this.http.get(this.baseUrl + '/campanas_user/' + id);
   }
 
-  getCampaignInform(id){
-    return this.http.get(`${this.baseUrl}/campana_inform/`+ id);
+  public getCampaignInform(id) {
+    return this.http.get(this.baseUrl + '/campana_inform/' + id);
   }
 
   public getClients() {
-    return this.http.get(`${this.baseUrl}/clients`);
+    return this.http.get(this.baseUrl + '/clients');
   }
 
   public getTipoCampanas() {
     return this.http.get(this.baseUrl + '/campaigns_type');
+  }
+
+  public postCreateCampaign(campaign) {
+    return this.http.post(this.baseUrl + '/campana_new', campaign);
   }
 }

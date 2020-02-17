@@ -22,20 +22,22 @@ class CampanaController extends Controller
         $input = $request->all();
         $campana = Campana::create([
             'nombre_campana' => $input['nombre_campana'],
-            'negocio_campana' => $input['negocio_campana']
+            'negocio_campana' => $input['negocio_campana'],
+            'fecha_inicio_campana' => $input['fecha_inicio_campana'],
+            'fecha_terminacion_campana' => $input['fecha_terminacion_campana']
         ]);
         $user = User::find($input['user_id']);
-        $tipo_campana = TipoCampana::find(1);
+        $tipo_campana = TipoCampana::find($input['tipo_campana']);
 
         $campana->TipoCampana()->associate($tipo_campana);
         $tipo_campana->Campanas()->save($campana);
 
-        $campana->User()->associate($user);
+        //$campana->User()->associate($user);
         $user->campanas()->save($campana);
 
         $campana->save();
-        $user->save();
-        $tipo_campana->save();
+        //$user->save();
+       // $tipo_campana->save();
 
     }
 
