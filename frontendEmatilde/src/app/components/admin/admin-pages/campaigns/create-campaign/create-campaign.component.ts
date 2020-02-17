@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { PrincipalService } from 'src/app/services/principal.service';
 @Component({
   selector: 'app-create-campaign',
   templateUrl: './create-campaign.component.html',
@@ -26,9 +26,15 @@ export class CreateCampaignComponent implements OnInit {
 
   public tipoCampanas;
 
+  public clients;
+
   constructor(
     private Router: Router,
-    ) { }
+    private service: PrincipalService
+    ) { 
+      this.getTipoCampanas();
+      this.getClients();
+    }
 
   ngOnInit() {
 
@@ -38,5 +44,15 @@ export class CreateCampaignComponent implements OnInit {
 
   }
 
+  public getTipoCampanas(): void {
+    this.service.getTipoCampanas().subscribe(
+      (data) => this.tipoCampanas = data
+      );
+  }
 
+  public getClients(): void {
+    this.service.getClients().subscribe(
+      (data) => this.clients = data
+    );
+  }
 }

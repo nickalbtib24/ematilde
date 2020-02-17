@@ -39,11 +39,11 @@ export class PrincipalService {
     return this.http.get(`${this.baseUrl}/campana_inform/`+ id);
   }
 
-  getClients(){
+  public getClients() {
     return this.http.get(`${this.baseUrl}/clients`);
   }
 
-  public getTipoCampanas(){
-    return this.http.get(this.baseUrl + 'campaigns_type');
+  public getTipoCampanas() {
+    return this.http.get(this.baseUrl + '/campaigns_type');
   }
 }
