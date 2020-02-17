@@ -11,10 +11,9 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
-
 
 import { VerifyUserComponent } from './components/verify/verify-user/verify-user.component';
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component';
@@ -30,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component';
 import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component';
 import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
+import { FileComponent } from './components/admin/admin-pages/campaigns/upload-campaign-report/file.component';
+import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,9 @@ import { ExecuteFunctionService } from 'src/app/services/execute-function.servic
     ProfileClientComponent,
     CampaignsComponent,
     AddInformCampaignComponent,
-    NavbarComponent
+    NavbarComponent,
+    FileComponent,
+    CreateCampaignComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ExecuteFunctionService } from 'src/app/services/execute-function.servic
     HttpClientModule,
     ChartsModule,
     MatTableModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [ExecuteFunctionService],
   bootstrap: [AppComponent]

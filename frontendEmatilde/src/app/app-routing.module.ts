@@ -18,6 +18,8 @@ import { DashboardCampaignComponent } from './components/client/pages_client/das
 import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component'
 import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component'
 import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component'
+import { FileComponent } from './components/admin/admin-pages/campaigns/upload-campaign-report/file.component';
+import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
 
 const appRoutes: Routes = [
 
@@ -92,18 +94,23 @@ const appRoutes: Routes = [
     path: 'clients',
     component: ClientsComponent,
     canActivate: [AfterLoginService ]
-  }
-  ,{
+  },
+  {
     path: 'campaigns-client/:id',
     component: CampaignsComponent,
     canActivate: [AfterLoginService]
   },
   {
     path: 'add-inform-campaign/:id',
-    component: AddInformCampaignComponent,
-    canActivate: [AfterLoginService]
-  }
-]
+    component: FileComponent,
+    canActivate: [AfterLoginService, AuthorizationAdminService]
+  },
+  {
+    path: 'create-campaign',
+    component: CreateCampaignComponent,
+    canActivate: [AfterLoginService, AuthorizationAdminService]
+  },
+];
 
 @NgModule({
   declarations: [],

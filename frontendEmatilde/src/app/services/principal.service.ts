@@ -28,18 +28,22 @@ export class PrincipalService {
   }
 
   getKpi(id){
-    return this.http.get(`${this.baseUrl}/informe_clientes/`+id)
+    return this.http.get(`${this.baseUrl}/informe_clientes/`+ id);
   }
 
   getCampaignsByUser(id){
-    return this.http.get(`${this.baseUrl}/campanas_user/`+id)
+    return this.http.get(`${this.baseUrl}/campanas_user/`+ id);
   }
 
   getCampaignInform(id){
-    return this.http.get(`${this.baseUrl}/campana_inform/`+id)
+    return this.http.get(`${this.baseUrl}/campana_inform/`+ id);
   }
 
   getClients(){
-    return this.http.get(`${this.baseUrl}/clients`)
+    return this.http.get(`${this.baseUrl}/clients`);
+  }
+
+  public getTipoCampanas(){
+    return this.http.get(this.baseUrl + 'campaigns_type');
   }
 }

@@ -1,0 +1,17 @@
+.center-form-box{
+    text-align: center;
+  
+  }
+  
+  .testeeed{
+    width: 500px; margin: 0 auto; background: #000; color: #fff;
+  }
+  
+  .container-center-line{
+  
+    position:absolute;
+    left: 33%;
+    right: 33%;
+    top: 5%;
+    width: 600px;
+  }
