@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrincipalService } from 'src/app/services/principal.service';
+
 @Component({
   selector: 'app-create-campaign',
   templateUrl: './create-campaign.component.html',
@@ -41,7 +42,7 @@ export class CreateCampaignComponent implements OnInit {
   public onSubmit() {
     console.log(this.form);
     this.Principal.postCreateCampaign(this.form).subscribe(
-      (data) => console.log(data)
+      (data) => this.Router.navigateByUrl('/clients')
     );
   }
 

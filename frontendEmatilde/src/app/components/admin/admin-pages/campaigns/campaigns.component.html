@@ -6,6 +6,7 @@
             <i class="fa fa-align-justify"></i> Campaigns of Client
           </div>
           <div class="card-body">
+            <a class="btn btn-primary" routerLink="/create-campaign" role="button" style="bottom: 100px;">Add new campaign</a>
             <table class="table table-bordered table-striped table-sm">
               <thead>
                 <tr>
@@ -17,6 +18,7 @@
                 </tr>
               </thead>
               <tbody>
+
                 <tr *ngFor="let campaign of campaigns">
                   <td>{{ campaign.id }}</td>
                   <td>{{ campaign.nombre_campana }} </td>
