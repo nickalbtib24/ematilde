@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { ChartsModule} from 'ng2-charts';
 
 import { AppComponent } from './app.component';
@@ -24,13 +25,20 @@ import { DashboardClientComponent } from './components/client/pages_client/dashb
 import { ProfileClientComponent } from './components/client/pages_client/profile-client/profile-client.component';
 import { ClientContainerComponent } from './components/client/client-container/client-container.component';
 import { AdminContainerComponent } from './components/admin/admin-container/admin-container.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component';
 import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component';
 import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 import { FileComponent } from './components/admin/admin-pages/campaigns/upload-campaign-report/file.component';
 import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
+import { ProgressSpinnerDialogComponent } from './components/progress-spinner-dialog/progress-spinner-dialog.component';
+import { MatDialogModule } from '@angular/material';
+
+const MaterialComponents = [
+  MatProgressSpinnerModule
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +63,8 @@ import { CreateCampaignComponent } from './components/admin/admin-pages/campaign
     AddInformCampaignComponent,
     NavbarComponent,
     FileComponent,
-    CreateCampaignComponent
+    CreateCampaignComponent,
+    ProgressSpinnerDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,9 +75,12 @@ import { CreateCampaignComponent } from './components/admin/admin-pages/campaign
     ChartsModule,
     MatTableModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialComponents,
+    MatDialogModule
   ],
   providers: [ExecuteFunctionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ProgressSpinnerDialogComponent],
 })
 export class AppModule { }
