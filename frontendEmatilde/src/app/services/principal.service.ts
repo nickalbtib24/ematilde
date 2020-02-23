@@ -51,4 +51,8 @@ export class PrincipalService {
   public postCreateCampaign(campaign) {
     return this.http.post(this.baseUrl + '/campana_new', campaign);
   }
+
+  public postCreateReportCampaignFile(file) {
+    return this.http.post(this.baseUrl + '/new_report_file', file);
+  }
 }

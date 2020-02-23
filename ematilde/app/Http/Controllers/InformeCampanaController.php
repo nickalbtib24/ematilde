@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\InformeCampana;
 use App\Campana;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\HeadingRowImport;
+
 
 class InformeCampanaController extends Controller
 {
@@ -44,6 +48,16 @@ class InformeCampanaController extends Controller
         }
 
         
+    }
+ 
+    public function createInformeCampanaFile(Request $request){
+
+        $path = $request->file('file')->getRealPath();
+        //$data = array_map('str_getcsv', file($path));
+        $data = Excel::import(new InformeCampana ,$path);
+
+        
+        return $data;
     }
 
     public function validator(array $data){

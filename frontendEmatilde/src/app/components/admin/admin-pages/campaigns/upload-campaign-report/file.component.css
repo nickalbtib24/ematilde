@@ -15,3 +15,83 @@
     top: 5%;
     width: 600px;
   }
+
+  .extra{
+    justify-content: center; 
+    margin-top: 20px;
+ }
+ 
+ .extra input{
+    background-color:transparent; 
+    font: 800; 
+    color: #606060; 
+    text-align: center; 
+    border-style: none;
+ }
+
+ #clip {
+  background-color: rgb(30, 102, 42); /* Blue background */
+  border: none; /* Remove borders */
+  color: rgb(255, 255, 255); /* White text */
+  padding: 15px 20px; /* Some padding */
+  font-size: 20px; /* Set a font size */
+  cursor: hand; /* Mouse pointer on hover */
+  border-radius: 50%;
+  border-color: #777777;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.fileContainer {
+  overflow: hidden;
+  position: absolute;
+  cursor: hand;
+  justify-content: center;
+}
+
+.fileContainer [type=file] {
+  overflow: auto;
+  cursor: inherit;
+  display: block;
+  font-size: 999px;
+  filter: alpha(opacity=0);
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+
+.input100 {
+  display: block;
+  background: transparent;
+  font-family: Poppins-Medium;
+  font-size: 18px;
+  color: #333333;
+  width: auto;
+  padding: 25px 5px;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom-color: #d1cece;
+}
+input.input100 {
+  height: 40px;
+  width: auto;
+  overflow: auto;
+  resize: horizontal;
+}
+
+.extra{
+  justify-content: center; 
+  margin-top: 20px;
+}
+
+.extra input{
+  background-color:transparent; 
+  font: 800; 
+  color: #606060; 
+  text-align: center; 
+  border-style: none;
+}

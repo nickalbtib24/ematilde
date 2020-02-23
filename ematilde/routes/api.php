@@ -21,10 +21,12 @@ Route::group([
     Route::get('campanas_user/{id}','CampanaController@getCampanasByUser');
     //--------Routes for informe campanas
     Route::get('campana_inform/{id}','CampanaController@getInformeCampana');
-    Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
     Route::post('campana_new', 'CampanaController@addNewCampaign');        
     //--------Routes for informe campanas
     Route::get('campaigns_type', 'TipoCampanaController@getTipoCampanas');
+
+    Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
+    Route::post('new_report_file','InformeCampanaController@createInformeCampanaFile');
 
 
 });

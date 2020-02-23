@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Campana;
-class InformeCampana extends Model
+use Maatwebsite\Excel\Concerns\ToModel;
+
+class InformeCampana extends Model implements ToModel
 {
 
     protected $fillable = [
@@ -29,5 +31,13 @@ class InformeCampana extends Model
 
     public function campana(){
         return $this->belongsTo(Campana::class,'id_campana');
+    }
+
+    public function model(array $row)
+    {
+        return new InformeCampana([
+            'reach'     => $row[11],
+            'ammount_spent' => $row[14], 
+        ]);
     }
 }

@@ -72,6 +72,8 @@ export class LoginComponent implements OnInit {
   public handleError(error) {
     console.log(error.error);
     this.error = error.error;
+    this.dialogRef.close();
+
   }
 
   public myObservable(observer) {
