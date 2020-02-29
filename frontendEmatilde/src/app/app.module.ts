@@ -35,6 +35,8 @@ import { CreateCampaignComponent } from './components/admin/admin-pages/campaign
 import { ProgressSpinnerDialogComponent } from './components/progress-spinner-dialog/progress-spinner-dialog.component';
 import { MatDialogModule } from '@angular/material';
 import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
+import { LandingPageComponent } from './components/client/pages_client/landing-page/landing-page.component';
+import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
 
 
 const MaterialComponents = [
@@ -68,6 +70,8 @@ const MaterialComponents = [
     CreateCampaignComponent,
     ProgressSpinnerDialogComponent,
     DashboardAssetComponent,
+    LandingPageComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
