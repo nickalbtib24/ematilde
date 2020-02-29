@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\HeadingRowImport;
+use Illuminate\Http\Response;
 
 
 class InformeCampanaController extends Controller
@@ -51,54 +52,70 @@ class InformeCampanaController extends Controller
     }
  
     public function createInformeCampanaFile(Request $request){
-
-        $path = $request->file('file')->getRealPath();
-        $customerArr = $this->csvToArray($path);
-        $campana = Campana::find($request['campaign']);
-        if(count($customerArr) !== 0) {
-            for ($i = 0; $i < count($customerArr); $i ++)
-            {
-                $customer = $customerArr[$i];
-                if($customer['Results'] === '') {
-                    $customer['Results'] = 0;
-                }
-                if ($customer['Cost per Results'] === '') {
-                    $customer['Cost per Results'] = 0;
-                }
-                if ($customer['Impressions'] === '') {
-                    $customer['Impressions'] = 0;
-                }
-                if($customer['Link Clicks'] === '') {
-                    $customer['Link Clicks'] = 0;
-                }
-                $date = strtotime($customer['Reporting Starts']);
-                $newFormat = date('Y-m-d',$date);
-    
-                $fecha_cracion = strtotime($customer['Reporting Starts']);
-                $newFormat2 = date('Y-m-d',$fecha_cracion);
-    
-                $informe_campana = InformeCampana::create([
-                    'reach' => $customer['Reach'],
-                    'result' => $customer['Results'],
-                    'impressions' => $customer['Impressions'],
-                    'ammount_spent' => $customer['Amount Spent (USD)'],
-                    'cost_per_result' => $customer['Cost per Results'],
-                    'link_clicks' => $customer['Link Clicks'],
-                    'date' => $newFormat,
-                    //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
-                    'fecha_cracion' => $newFormat2,
-                ]);
-                $informe_campana->campana()->associate($campana);
-                $informe_campana->save();
-                $campana->informeCampanas()->save($informe_campana);
-    
-            } 
+        try{
+            $path = $request->file('file')->getRealPath();
+            $customerArr = $this->csvToArray($path);
+            $campana = Campana::find($request['campaign']);
+            if(!array_key_exists('Results', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Results column'], 401);
+            }
+            if(!array_key_exists('Cost per Results', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Cost per Results column'], 401);
+            }
+            if(!array_key_exists('Impressions', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Impressions column'], 401);
+            }
+            if(!array_key_exists('Link Clicks', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Link Clicks column'], 401);
+            }
+            if(count($customerArr) !== 0) {
+                for ($i = 0; $i < count($customerArr); $i ++)
+                {
+                    $customer = $customerArr[$i];
+                    if($customer['Results'] === '') {
+                        $customer['Results'] = 0;
+                    }
+                    if ($customer['Cost per Results'] === '') {
+                        $customer['Cost per Results'] = 0;
+                    }
+                    if ($customer['Impressions'] === '') {
+                        $customer['Impressions'] = 0;
+                    }
+                    if($customer['Link Clicks'] === '') {
+                        $customer['Link Clicks'] = 0;
+                    }
+                    $date = strtotime($customer['Reporting Starts']);
+                    $newFormat = date('Y-m-d',$date);
+        
+                    $fecha_cracion = strtotime($customer['Reporting Starts']);
+                    $newFormat2 = date('Y-m-d',$fecha_cracion);
+        
+                    $informe_campana = InformeCampana::create([
+                        'reach' => $customer['Reach'],
+                        'result' => $customer['Results'],
+                        'impressions' => $customer['Impressions'],
+                        'ammount_spent' => $customer['Amount Spent (USD)'],
+                        'cost_per_result' => $customer['Cost per Results'],
+                        'link_clicks' => $customer['Link Clicks'],
+                        'date' => $newFormat,
+                        //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
+                        'fecha_cracion' => $newFormat2,
+                    ]);
+                    $informe_campana->campana()->associate($campana);
+                    $informe_campana->save();
+                    $campana->informeCampanas()->save($informe_campana);
+                    
+                } 
+            }
+            return response()->json([
+                'message' => 'A new report has been uploaded successfully'], 200);
+        } catch(Exception $e){
+            return Response::json(array(
+                'code' => 401,
+                'message' => 'The file is not well formed'
+            ));
         }
-        
-        
-
-        
-        return $informe_campana;
+    
     }
 
     public function validator(array $data){
