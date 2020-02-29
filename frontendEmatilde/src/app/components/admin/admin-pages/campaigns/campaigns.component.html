@@ -6,7 +6,9 @@
             <i class="fa fa-align-justify"></i> Campaigns of Client
           </div>
           <div class="card-body">
+          <div style="padding-bottom: 2%;">
             <a class="btn btn-primary" routerLink="/create-campaign" role="button" style="bottom: 100px;">Add new campaign</a>
+          </div>
             <table class="table table-bordered table-striped table-sm">
               <thead>
                 <tr>
@@ -15,6 +17,7 @@
                   <th>Start Date</th>
                   <th>State</th>
                   <th>Edit Dashboard</th>
+                  <th>Add Asset</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,6 +29,9 @@
                   <td>Active</td>
                   <td>
                     <button (click)="getSelectedCampaign(campaign.id)" class="btn btn-pill btn-block btn-info">Edit Dashboard</button>
+                  </td>
+                  <td>
+                    <button  class="btn btn-pill btn-block btn-info">Add Asset</button>
                   </td>
                 </tr>
               </tbody>
