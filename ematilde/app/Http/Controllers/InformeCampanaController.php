@@ -55,35 +55,50 @@ class InformeCampanaController extends Controller
         $path = $request->file('file')->getRealPath();
         $customerArr = $this->csvToArray($path);
         $campana = Campana::find($request['campaign']);
-
-        for ($i = 0; $i < count($customerArr); $i ++)
-        {
-            $customer = $customerArr[$i];
-            if($customer['Results'] === '') {
-                $customer['Results'] = 0;
-            }
-            
-
-            $informe_campana = InformeCampana::create([
-                'reach' => $customer['Reach'],
-                'result' => $customer['Results'],
-                'impressions' => $customer['Impressions'],
-                'ammount_spent' => $customer['Amount Spent (USD)'],
-                //'cost_per_result' => $customer['Cost Per Result'],
-                //'date' => $customer['Reporting Starts'],
-                //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
-                //'fecha_cracion' => $customer['Starts'],
-            ]);
-            $informe_campana->campana()->associate($campana);
-            $informe_campana->save();
-            $campana->informeCampanas()->save($informe_campana);
-
+        if(count($customerArr) !== 0) {
+            for ($i = 0; $i < count($customerArr); $i ++)
+            {
+                $customer = $customerArr[$i];
+                if($customer['Results'] === '') {
+                    $customer['Results'] = 0;
+                }
+                if ($customer['Cost per Results'] === '') {
+                    $customer['Cost per Results'] = 0;
+                }
+                if ($customer['Impressions'] === '') {
+                    $customer['Impressions'] = 0;
+                }
+                if($customer['Link Clicks'] === '') {
+                    $customer['Link Clicks'] = 0;
+                }
+                $date = strtotime($customer['Reporting Starts']);
+                $newFormat = date('Y-m-d',$date);
+    
+                $fecha_cracion = strtotime($customer['Reporting Starts']);
+                $newFormat2 = date('Y-m-d',$fecha_cracion);
+    
+                $informe_campana = InformeCampana::create([
+                    'reach' => $customer['Reach'],
+                    'result' => $customer['Results'],
+                    'impressions' => $customer['Impressions'],
+                    'ammount_spent' => $customer['Amount Spent (USD)'],
+                    'cost_per_result' => $customer['Cost per Results'],
+                    'link_clicks' => $customer['Link Clicks'],
+                    'date' => $newFormat,
+                    //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
+                    'fecha_cracion' => $newFormat2,
+                ]);
+                $informe_campana->campana()->associate($campana);
+                $informe_campana->save();
+                $campana->informeCampanas()->save($informe_campana);
+    
+            } 
         }
         
         
 
         
-        return $campana;
+        return $informe_campana;
     }
 
     public function validator(array $data){
