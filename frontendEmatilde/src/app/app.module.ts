@@ -34,6 +34,8 @@ import { FileComponent } from './components/admin/admin-pages/campaigns/upload-c
 import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
 import { ProgressSpinnerDialogComponent } from './components/progress-spinner-dialog/progress-spinner-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
+
 
 const MaterialComponents = [
   MatProgressSpinnerModule
@@ -65,6 +67,7 @@ const MaterialComponents = [
     FileComponent,
     CreateCampaignComponent,
     ProgressSpinnerDialogComponent,
+    DashboardAssetComponent,
   ],
   imports: [
     BrowserModule,
