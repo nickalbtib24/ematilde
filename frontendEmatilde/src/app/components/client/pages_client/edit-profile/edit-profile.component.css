@@ -14,7 +14,7 @@ list-type-ulli {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 300;
-  src: url("../../../../../assets/fonts/montserrat/Montserrat-Light.ttf");
+  src: url("src/assets/fonts/montserrat/Montserrat-Light.ttf");
   /* IE9 Compat Modes */ }
 @font-face {
   font-family: 'Montserrat';
@@ -44,13 +44,13 @@ list-type-ulli {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  src: url(../../../../../assets/fonts/montserrat/Montserrat-Bold.ttf");
+  src: url("src/assets/fonts/montserrat/Montserrat-Bold.ttf");
   /* IE9 Compat Modes */ }
 @font-face {
   font-family: 'Montserrat';
   font-style: italic;
   font-weight: 700;
-  src: url("../../../../../assets/fonts/montserrat/Montserrat-BoldItalic.ttf");
+  src: url("src/assets/fonts/montserrat/Montserrat-BoldItalic.ttf");
   /* IE9 Compat Modes */ }
 
 a:focus, a:active {
