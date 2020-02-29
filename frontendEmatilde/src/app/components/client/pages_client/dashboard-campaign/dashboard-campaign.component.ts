@@ -4,8 +4,10 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { ActivatedRoute } from '@angular/router';
 import { PrincipalService } from 'src/app/services/principal.service';
+
 @Component({
-  templateUrl: './dashboard-campaign.component.html'
+  templateUrl: './dashboard-campaign.component.html',
+  styleUrls: ['./dashboard-campaign.component.css']
 })
 export class DashboardCampaignComponent implements OnInit {
 
@@ -143,7 +145,7 @@ export class DashboardCampaignComponent implements OnInit {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
-    },  
+    },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
@@ -186,7 +188,7 @@ export class DashboardCampaignComponent implements OnInit {
     legend: {
       display: false
     },
-    
+
   };
   public BudgetColours: Array<any> = [
     {
@@ -485,7 +487,7 @@ public EstimatedAddRecallType = 'bar';
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
-    },  
+    },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
@@ -528,7 +530,7 @@ public EstimatedAddRecallType = 'bar';
     legend: {
       display: false
     },
-    
+
   };
   public FrequencyColours: Array<any> = [
     {
@@ -813,12 +815,12 @@ public LinkClicksElements = 7;
   }
 
   ngOnInit(): void {
-    
+
     this.getCampaignsByUser();
 
     // generate random values for mainChart
     for (let i = 0; i <= this.AmmountSpentElements; i++) {
-      
+
       this.AmmountSpentData3.push(65);
     }
   }
@@ -849,6 +851,6 @@ public LinkClicksElements = 7;
       console.log(kpi.estimated_add_recall)
 
     }
-    
+
   }
 }

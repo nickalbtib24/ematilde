@@ -84,7 +84,7 @@ const MaterialComponents = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialComponents,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [ExecuteFunctionService],
   bootstrap: [AppComponent],
