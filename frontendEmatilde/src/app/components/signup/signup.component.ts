@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ProgressSpinnerDialogComponent } from 'src/app/components/progress-spinner-dialog/progress-spinner-dialog.component';
+import { ExecuteFunctionService } from 'src/app/services/execute-function.service';
 
 @Component({
   selector: 'app-signup',
@@ -37,7 +38,9 @@ export class SignupComponent implements OnInit {
   constructor(
     private Principal: PrincipalService,
     private Routers: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private ExecuteFunction: ExecuteFunctionService,
+
     ) { }
 
   ngOnInit() {
@@ -51,8 +54,16 @@ export class SignupComponent implements OnInit {
     const observable = new Observable(this.myObservable);
     this.showProgressSpinnerUntilExecuted(observable);
     this.Principal.signup(this.form).subscribe(
-     error => this.handleError(error),
+     (data) => this.handleError(data),
    );
+  }
+
+  public handleResponse(data) {
+    this.ExecuteFunction.sendSuccessMessageToLogIn();
+    if (!data.success) {
+      this.handleError(data);
+    }
+    this.Routers.navigateByUrl('/login');
   }
 
   public handleError(error) {

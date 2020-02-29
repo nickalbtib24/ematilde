@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { PrincipalService } from 'src/app/services/principal.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-file',
@@ -9,18 +11,23 @@ import { PrincipalService } from 'src/app/services/principal.service';
   styleUrls: ['./file.component.css']
 })
 export class FileComponent implements OnInit {
-  @ViewChild('path', null) path: ElementRef;
-  @ViewChild('message', null) message: ElementRef;
 
-  public uploadFileForm: FormGroup;
-  public progress: number = 0;
+  @ViewChild('path', null) path: ElementRef;
+  @ViewChild('fileInput', null) fileInput: ElementRef;
+
+
+  progress: number;
+  public message = '';
+  isVisible: boolean;
+  reportForm: FormGroup;
+  public formData: FormData;
 
   constructor(
     private formBuilder: FormBuilder,
-    private rest: PrincipalService
-  ) { 
-    this.uploadFileForm = this.formBuilder.group({
-    });
+    private rest: PrincipalService,
+    private Route: ActivatedRoute,
+  ) {
+    this.reportForm = this.formBuilder.group({});
   }
 
   ngOnInit() { }
@@ -31,29 +38,32 @@ export class FileComponent implements OnInit {
     if (this.isCSVfile(file.name)) {
       const headers = new Headers();
       const options = { headers }; // Create header
-      const formData = new FormData();
-      formData.append('file', file);
-      console.log(file);
-      this.rest.postCreateReportCampaignFile(formData).subscribe(
-        (data) => console.log(data)
-        );
+      this.formData = new FormData();
+      this.formData.append('file', file); // Append file to formdata
+      this.isVisible = true;
     }
+  }
+  public onSubmit() {
+    const id = this.Route.snapshot.paramMap.get('id');
+    this.formData.append('campaign', id);
+    this.rest.postCreateReportCampaignFile(this.formData).subscribe(
+      data => console.log(data)
+    );
+  }
+  public isCSVfile(csv: string): boolean {
+    let isCSV = false;
+    if (csv.endsWith('.csv')) {
+      isCSV = true;
+      this.message = '';
+    } else {
+      console.log('kk');
+      this.message = 'Please upload a file of type csv.';
+    }
+    return isCSV;
   }
 
   submitUser() {
 
-  }
-
-  public isCSVfile(csv: string): boolean {
-    let isCSV = false;
-    if (csv.endsWith('.csv')) {
-      this.message.nativeElement.value = 'Sending file';
-      isCSV = true;
-    } else {
-      this.message.nativeElement.value = 'Please upload a file of type csv.';
-      console.log('Error:', this.message.nativeElement.value);
-    }
-    return isCSV;
   }
 
 }

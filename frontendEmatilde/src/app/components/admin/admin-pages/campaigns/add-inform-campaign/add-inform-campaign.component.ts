@@ -40,8 +40,8 @@ export class AddInformCampaignComponent implements OnInit {
     private Principal:PrincipalService) { }
 
   ngOnInit() {
-    this.campaign = this.Route.snapshot.paramMap.get("id")
-    this.inform.id_campana = this.campaign
+    this.campaign = this.Route.snapshot.paramMap.get('id');
+    this.inform.id_campana = this.campaign;
   }
 
   onSubmit(){
