@@ -26,8 +26,8 @@ export class DashboardCampaignComponent implements OnInit {
   private dataCarrouselClicks = [];
   private dataLinkClicks = [];
   constructor (
-    private Route:ActivatedRoute,
-    private Principal:PrincipalService
+    private Route: ActivatedRoute,
+    private Principal: PrincipalService
     ){}
 
   // Reach
@@ -824,7 +824,7 @@ public LinkClicksElements = 7;
   }
 
   getCampaignsByUser(){
-    let campaign = this.Route.snapshot.paramMap.get("id")
+    let campaign = this.Route.snapshot.paramMap.get('id');
     this.Principal.getCampaignInform(campaign).subscribe((data: any[])=>{
       this.kpis = data;
       this.prepareData(this.kpis)

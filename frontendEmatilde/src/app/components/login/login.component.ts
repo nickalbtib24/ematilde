@@ -10,6 +10,8 @@ import { ExecuteFunctionService } from 'src/app/services/execute-function.servic
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ProgressSpinnerDialogComponent } from 'src/app/components/progress-spinner-dialog/progress-spinner-dialog.component';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   public dialogRef: MatDialogRef<ProgressSpinnerDialogComponent>;
   public error = [];
+  public success = '';
 
   constructor(
     private Principal: PrincipalService,
@@ -45,6 +48,7 @@ export class LoginComponent implements OnInit {
       client: 0,
       profile: 0
     };
+    
   }
 
   public onSubmit() {
@@ -95,6 +99,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+      this.ExecuteFunction.subsVar = this.ExecuteFunction.
+      invokeLogInComponentMessage.subscribe((name: string) => {
+        console.log('hol');
+      });
   }
 
 }

@@ -53,11 +53,37 @@ class InformeCampanaController extends Controller
     public function createInformeCampanaFile(Request $request){
 
         $path = $request->file('file')->getRealPath();
-        //$data = array_map('str_getcsv', file($path));
-        $data = Excel::import(new InformeCampana ,$path);
+        $customerArr = $this->csvToArray($path);
+        $campana = Campana::find($request['campaign']);
+
+        for ($i = 0; $i < count($customerArr); $i ++)
+        {
+            $customer = $customerArr[$i];
+            if($customer['Results'] === '') {
+                $customer['Results'] = 0;
+            }
+            
+
+            $informe_campana = InformeCampana::create([
+                'reach' => $customer['Reach'],
+                'result' => $customer['Results'],
+                'impressions' => $customer['Impressions'],
+                'ammount_spent' => $customer['Amount Spent (USD)'],
+                //'cost_per_result' => $customer['Cost Per Result'],
+                //'date' => $customer['Reporting Starts'],
+                //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
+                //'fecha_cracion' => $customer['Starts'],
+            ]);
+            $informe_campana->campana()->associate($campana);
+            $informe_campana->save();
+            $campana->informeCampanas()->save($informe_campana);
+
+        }
+        
+        
 
         
-        return $data;
+        return $campana;
     }
 
     public function validator(array $data){
@@ -79,5 +105,24 @@ class InformeCampanaController extends Controller
             'fecha_ultima_actualizacion' => 'required',
         ]);
 
+    }
+
+    public function csvToArray($filename) {
+        $delimiter = ';';
+        $header = null;
+        $data = array();
+        if (($handle = fopen($filename, 'r')) !== false)
+        {
+            while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
+            {
+                if (!$header)
+                    $header = $row;
+                else
+                    $data[] = array_combine($header, $row);
+            }
+            fclose($handle);
+        }
+
+        return $data;
     }
 }
