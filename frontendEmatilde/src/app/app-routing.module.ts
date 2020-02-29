@@ -21,6 +21,7 @@ import { AddInformCampaignComponent } from './components/admin/admin-pages/campa
 import { FileComponent } from './components/admin/admin-pages/campaigns/upload-campaign-report/file.component';
 import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
 import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
+import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
 const appRoutes: Routes = [
 
   { path: '',
@@ -115,6 +116,11 @@ const appRoutes: Routes = [
     path: 'create-campaign',
     component: CreateCampaignComponent,
     canActivate: [AfterLoginService, AuthorizationAdminService]
+  },
+  {
+    path: 'profile',
+    component: EditProfileComponent,
+    canActivate: [AfterLoginService, AuthorizationClientService]
   },
 ];
 

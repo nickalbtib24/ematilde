@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { PrincipalService } from 'src/app/services/principal.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-file',
@@ -21,11 +21,13 @@ export class FileComponent implements OnInit {
   isVisible: boolean;
   reportForm: FormGroup;
   public formData: FormData;
-
+  public error: Text;
   constructor(
     private formBuilder: FormBuilder,
     private rest: PrincipalService,
     private Route: ActivatedRoute,
+    private Routes: Router,
+    private Loc: Location
   ) {
     this.reportForm = this.formBuilder.group({});
   }
@@ -47,16 +49,29 @@ export class FileComponent implements OnInit {
     const id = this.Route.snapshot.paramMap.get('id');
     this.formData.append('campaign', id);
     this.rest.postCreateReportCampaignFile(this.formData).subscribe(
-      data => console.log(data)
+      data => this.handleResponse(data),
+      error => this.handleError(error)
     );
   }
+
+  public handleError(error) {
+    console.log(error.error);
+    this.error = error.error.error;
+  }
+
+  public handleResponse(response) {
+    if ( response.message ) {
+      console.log(response.message);
+      this.Loc.back();
+    }
+  }
+
   public isCSVfile(csv: string): boolean {
     let isCSV = false;
     if (csv.endsWith('.csv')) {
       isCSV = true;
       this.message = '';
     } else {
-      console.log('kk');
       this.message = 'Please upload a file of type csv.';
     }
     return isCSV;
