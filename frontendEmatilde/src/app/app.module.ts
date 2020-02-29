@@ -37,6 +37,7 @@ import { MatDialogModule } from '@angular/material';
 import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
 import { LandingPageComponent } from './components/client/pages_client/landing-page/landing-page.component';
 import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
+import { WatchAssetsComponent } from './components/client/pages_client/watch-assets/watch-assets.component';
 
 
 const MaterialComponents = [
@@ -72,6 +73,7 @@ const MaterialComponents = [
     DashboardAssetComponent,
     LandingPageComponent,
     EditProfileComponent,
+    WatchAssetsComponent,
   ],
   imports: [
     BrowserModule,
