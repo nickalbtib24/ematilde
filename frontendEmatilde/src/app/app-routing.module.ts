@@ -15,12 +15,12 @@ import { CampaignsClientComponent} from './components/client/pages_client/campai
 import { ProfileClientComponent} from './components/client/pages_client/profile-client/profile-client.component';
 import { AddCampaignComponent} from './components/client/pages_client/add-campaign/add-campaign.component';
 import { DashboardCampaignComponent } from './components/client/pages_client/dashboard-campaign/dashboard-campaign.component';
-import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component'
-import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component'
+import { ClientsComponent } from './components/admin/admin-pages/clients/clients.component';
+import { CampaignsComponent } from './components/admin/admin-pages/campaigns/campaigns.component';
 import { AddInformCampaignComponent } from './components/admin/admin-pages/campaigns/add-inform-campaign/add-inform-campaign.component'
 import { FileComponent } from './components/admin/admin-pages/campaigns/upload-campaign-report/file.component';
 import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
-
+import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
 const appRoutes: Routes = [
 
   { path: '',
@@ -63,6 +63,12 @@ const appRoutes: Routes = [
   {
     path: 'dashboard-client',
     component: DashboardClientComponent,
+    canActivate: [AfterLoginService, AuthorizationClientService]
+
+  },
+  {
+    path: 'dashboard-asset',
+    component: DashboardAssetComponent,
     canActivate: [AfterLoginService, AuthorizationClientService]
 
   },

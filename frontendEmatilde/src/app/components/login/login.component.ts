@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       client: 0,
       profile: 0
     };
-    
+
   }
 
   public onSubmit() {
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token, data.user, data.role);
     this.Auth.changeAuthStatus(true);
     if (data.role === 2) {
-      this.Routers.navigateByUrl('/dashboard-client');
+      this.Routers.navigateByUrl('/dashboard-asset');
     } else {
       this.Routers.navigateByUrl('/clients');
     }

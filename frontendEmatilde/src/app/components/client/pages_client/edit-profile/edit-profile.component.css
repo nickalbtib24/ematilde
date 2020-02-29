@@ -45,7 +45,7 @@ list-type-ulli {
   font-style: normal;
   font-weight: 700;
   src: url("src/assets/fonts/montserrat/Montserrat-Bold.ttf");
-  /* IE9 Compat Modes */ }
+
 @font-face {
   font-family: 'Montserrat';
   font-style: italic;
