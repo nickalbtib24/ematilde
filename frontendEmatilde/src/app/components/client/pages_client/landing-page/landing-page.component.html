@@ -23,25 +23,17 @@
                   <th class="column3">Campaign type</th>
                   <th class="column4">Start Date</th>
                   <th class="column5">Finish Date</th>
-                  <th class="column6">Total</th>
+                  <th class="column6">Budget</th>
                 </tr>
               </thead>
               <tbody>
-                  <tr>
-                    <td class="column1">1</td>
-                    <td class="column2">campaign1</td>
-                    <td class="column3">clothes</td>
-                    <td class="column4">November1</td>
-                    <td class="column5">January3</td>
-                    <td class="column6">$999.00</td>
-                  </tr>
-                  <tr>
-                    <td class="column1">1</td>
-                    <td class="column2">campaign1</td>
-                    <td class="column3">clothes</td>
-                    <td class="column4">November1</td>
-                    <td class="column5">January3</td>
-                    <td class="column6">$999.00</td>
+                  <tr (click)= "clickEvent(campaign.id)" *ngFor="let campaign of campaigns">
+                    <td class="column1">{{campaign.id}}</td>
+                    <td class="column2">{{campaign.nombre_campana}}</td>
+                    <td class="column3">{{campaign.tipo_campana.nombre_tipo_campana}}</td>
+                    <td class="column4">{{campaign.fecha_inicio_campana}}</td>
+                    <td class="column5">{{campaign.fecha_terminacion_campana}}</td>
+                    <td class="column6">{{campaign.budget}}</td>
                   </tr>
               </tbody>
             </table>

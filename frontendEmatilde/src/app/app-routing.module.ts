@@ -22,6 +22,7 @@ import { FileComponent } from './components/admin/admin-pages/campaigns/upload-c
 import { CreateCampaignComponent } from './components/admin/admin-pages/campaigns/create-campaign/create-campaign.component';
 import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
 import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
+import { LandingPageComponent } from './components/client/pages_client/landing-page/landing-page.component';
 const appRoutes: Routes = [
 
   { path: '',
@@ -37,11 +38,6 @@ const appRoutes: Routes = [
     path: 'signup',
     component: SignupComponent,
     canActivate: [BeforeLoginService]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AfterLoginService]
   },
   {
     path: 'request-password-reset',
@@ -118,10 +114,15 @@ const appRoutes: Routes = [
     canActivate: [AfterLoginService, AuthorizationAdminService]
   },
   {
-    path: 'profile',
-    component: EditProfileComponent,
+    path: 'client-home',
+    component: LandingPageComponent,
     canActivate: [AfterLoginService, AuthorizationClientService]
   },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent,
+    canActivate: [AfterLoginService, AuthorizationClientService]
+  }
 ];
 
 @NgModule({

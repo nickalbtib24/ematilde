@@ -28,6 +28,7 @@ Route::group([
     Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
     Route::post('new_report_file','InformeCampanaController@createInformeCampanaFile');
 
-
+    Route::get('user/{id}','UserController@getUserById');
+    Route::post('modifyUser','UserController@modifyUser');
 });
 

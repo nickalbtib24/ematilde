@@ -10,7 +10,7 @@ class CampanaController extends Controller
 {
     public function getCampanasByUser($id_user){
         $user = User::find($id_user);
-        return $user->campanas;
+        return $user->campanas->toArray();
     }
 
     public function getInformecampana($id_campana){

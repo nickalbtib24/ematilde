@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CampaignsClientComponent implements OnInit {
 
-  private campaigns = []
+  private campaigns = [];
 
 
   constructor(

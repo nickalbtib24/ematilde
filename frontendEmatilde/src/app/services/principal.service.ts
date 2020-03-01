@@ -20,6 +20,10 @@ export class PrincipalService {
     return this.http.post(this.baseUrl + '/signup', data);
   }
 
+  public editProfile(data) {
+    return this.http.post(this.baseUrl + '/modifyUser', data);
+  }
+
   public createInform(data) {
     return this.http.post(this.baseUrl + '/new_inform', data);
   }
@@ -55,4 +59,9 @@ export class PrincipalService {
   public postCreateReportCampaignFile(file) {
     return this.http.post(this.baseUrl + '/new_report_file', file);
   }
+
+  public postGetUser(userId) {
+    return this.http.get(this.baseUrl + '/user/' + userId);
+  }
+
 }

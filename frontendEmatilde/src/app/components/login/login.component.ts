@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token, data.user, data.role);
     this.Auth.changeAuthStatus(true);
     if (data.role === 2) {
-      this.Routers.navigateByUrl('/dashboard-asset');
+      this.Routers.navigateByUrl('/client-home');
     } else {
       this.Routers.navigateByUrl('/clients');
     }

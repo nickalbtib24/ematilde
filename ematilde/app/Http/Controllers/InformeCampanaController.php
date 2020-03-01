@@ -68,6 +68,9 @@ class InformeCampanaController extends Controller
             if(!array_key_exists('Link Clicks', $customerArr[0])){
                 return response()->json(['error' => 'The file does not have Link Clicks column'], 401);
             }
+            if(!array_key_exists('Ad Set Budget', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Ad Set Budget column'], 401);
+            }
             if(count($customerArr) !== 0) {
                 for ($i = 0; $i < count($customerArr); $i ++)
                 {
@@ -84,12 +87,18 @@ class InformeCampanaController extends Controller
                     if($customer['Link Clicks'] === '') {
                         $customer['Link Clicks'] = 0;
                     }
+                    if($customer['Ad Set Budget'] === '') {
+                        $customer['Ad Set Budget'] = 0;
+                    }
                     $date = strtotime($customer['Reporting Starts']);
                     $newFormat = date('Y-m-d',$date);
         
                     $fecha_cracion = strtotime($customer['Reporting Starts']);
                     $newFormat2 = date('Y-m-d',$fecha_cracion);
-        
+
+                    $fecha_terminacion = strtotime($customer['Reporting Ends']);
+                    $newFormat3 = date('Y-m-d',$fecha_cracion);
+
                     $informe_campana = InformeCampana::create([
                         'reach' => $customer['Reach'],
                         'result' => $customer['Results'],
@@ -97,14 +106,17 @@ class InformeCampanaController extends Controller
                         'ammount_spent' => $customer['Amount Spent (USD)'],
                         'cost_per_result' => $customer['Cost per Results'],
                         'link_clicks' => $customer['Link Clicks'],
+                        'budget' => $customer['Ad Set Budget'], 
                         'date' => $newFormat,
-                        //'fecha_ultima_actualizacion' => $customer['fecha_ultima_actualizacion'],
+                        'fecha_ultima_actualizacion' => $newFormat3,
                         'fecha_cracion' => $newFormat2,
                     ]);
+
                     $informe_campana->campana()->associate($campana);
                     $informe_campana->save();
                     $campana->informeCampanas()->save($informe_campana);
-                    
+                    $campana->budget = $customer['Ad Set Budget'];
+                    $campana->save();
                 } 
             }
             return response()->json([
