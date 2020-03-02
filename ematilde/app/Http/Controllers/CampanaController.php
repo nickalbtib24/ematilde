@@ -39,7 +39,7 @@ class CampanaController extends Controller
             'user_id.required' => 'The Client is required',
             'tipo_campana.required' => 'The Campaign Type is required'
         ];
-        $validator = $request->validate($validation_rules, $messages);
+        $validator = Validator::make($request->all(),$validation_rules, $messages);
         if($validator->passes()){
             $input = $request->all();
             $campana = Campana::create([
@@ -71,6 +71,15 @@ class CampanaController extends Controller
         $campana = Campana::find($id_campana);
         $assets = $campana->Assets;
         return $assets;
+    }
+
+    public function deleteCampaign($id_campaign){
+        $campana = Campana::find($id_campaign);
+        $campana->InformeCampanas()->delete();
+        $campana->Assets()->delete();
+        $campana->TipoCampana()->delete();
+        $campana->User()->delete();
+        $campana->delete();
     }
 
     

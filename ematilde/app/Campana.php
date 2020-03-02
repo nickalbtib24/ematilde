@@ -21,7 +21,7 @@ class Campana extends Model
     }
 
     public function TipoCampana(){
-        return $this->belongsTo(TipoCampana::class,'id');
+        return $this->belongsTo(TipoCampana::class,'id_tipo_campana');
     }
 
     public function InformeCampanas(){

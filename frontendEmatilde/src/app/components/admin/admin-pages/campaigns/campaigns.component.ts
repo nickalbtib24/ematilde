@@ -27,7 +27,7 @@ export class CampaignsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCampaignsByClient()
+    this.getCampaignsByClient();
   }
 
   public getSelectedCampaign(campaign){
@@ -41,6 +41,10 @@ export class CampaignsComponent implements OnInit {
 
   public redirectViewAssets(campaign) {
     this.Router.navigate(['assets-campaign-admin', campaign]);
+  }
+
+  public deleteCampaign(campaign) {
+    this.Principal.deleteCampaign(campaign).subscribe();
   }
 
 }

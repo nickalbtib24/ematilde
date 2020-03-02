@@ -38,5 +38,7 @@ Route::group([
 
     Route::post('add_asset_report','InformeAssetController@addReportAsset');
     Route::get('get_report_asset/{id}', 'AssetController@getAssetReport');
+
+    Route::delete('delete_campaign/{id}', 'CampanaController@deleteCampaign');
 });
 
