@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,10 @@ export class PrincipalService {
     return this.http.get(this.baseUrl + '/campana_inform/' + id);
   }
 
+  public getAssetReport(id) {
+    return this.http.get(this.baseUrl + '/get_report_asset/' + id);
+  }
+
   public getClients() {
     return this.http.get(this.baseUrl + '/clients');
   }
@@ -64,4 +68,19 @@ export class PrincipalService {
     return this.http.get(this.baseUrl + '/user/' + userId);
   }
 
+  public postAddAsset(asset){
+    return this.http.post(this.baseUrl + '/new_asset', asset);
+  }
+
+  public getAssetsByCampaign(campaign){
+    return this.http.get(this.baseUrl + '/assets_campaign/' + campaign);
+  }
+
+  public getImageAsset(asset){
+    return this.http.get(this.baseUrl + '/asset_image/' + asset);
+  }
+
+  public postCreateReportAsset(file) {
+    return this.http.post(this.baseUrl + '/add_asset_report', file);
+  }
 }

@@ -20,7 +20,7 @@ export class DashboardAssetComponent implements OnInit {
   private dates = [];
   private dataReach = [];
   private dataBudget = [];
-  private dataResult = [];
+  private dataCostPerResult = [];
   private dataImpressions = [];
   private dataEstimatedAddRecall = [];
   private dataAmountSpent = [];
@@ -129,7 +129,7 @@ export class DashboardAssetComponent implements OnInit {
   // Budget
   public BudgetData: Array<any> = [
     {
-      data: this.dataBudget,
+      data: this.dataImpressions,
       label: 'Budget'
     }
   ];
@@ -204,7 +204,7 @@ export class DashboardAssetComponent implements OnInit {
   // Result
   public ResultData: Array<any> = [
     {
-      data: this.dataResult,
+      data: this.dataCostPerResult,
       label: 'Result'
     }
   ];
@@ -330,7 +330,7 @@ export class DashboardAssetComponent implements OnInit {
 
 public EstimatedAddRecallData: Array<any> = [
   {
-    data: this.dataEstimatedAddRecall,
+    data: this.dataLinkClicks,
     label: 'Estimated Add Recall',
     barPercentage: 0.6,
   }
@@ -468,261 +468,9 @@ public EstimatedAddRecallType = 'bar';
   ];
   public AmmountSpentLegend = false;
   public AmmountSpentType = 'line';
-   // Frequency
-   public FrequencyData: Array<any> = [
-    {
-      data: this.dataFrequency,
-      label: 'Frequency'
-    }
-  ];
-  public FrequencyLabels: Array<any> = this.dates;
-  public FrequencyOptions: any = {
-    labels : this.dates ,
-    tooltips: {
-      enabled: true,
-      custom: CustomTooltips,
-      intersect: true,
-      mode: 'index',
-      position: 'nearest',
-      callbacks: {
-        labelColor: function(tooltipItem, chart) {
-          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-        }
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: true,
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 8,
-          fontColor: 'white',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 8,
-          fontColor: 'white',
-          display: true,
-          min: 0,
-          max: 100,
-        },
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    },
-
-  };
-  public FrequencyColours: Array<any> = [
-    {
-      backgroundColor: getStyle('--info'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public FrequencyLegend = false;
-  public FrequencyType = 'line';
-
-  // VideoClicks
-  public VideoClicksData: Array<any> = [
-    {
-      data: this.dataVideoClicks,
-      label: 'Video Clicks'
-    }
-  ];
-  public VideoClicksLabels: Array<any> = this.dates;
-  public VideoClicksOptions: any = {
-    tooltips: {
-      enabled: true,
-      custom: CustomTooltips,
-      intersect: true,
-      mode: 'index',
-      position: 'nearest',
-      callbacks: {
-        labelColor: function(tooltipItem, chart) {
-          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-        }
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 8,
-          fontColor: 'white',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 0,
-          max: 100,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public VideoClicksColours: Array<any> = [
-    { // grey
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public VideoClicksLegend = false;
-  public VideoClicksType = 'line';
-
-  // PostReaction
-  public PostReactionData: Array<any> = [
-    {
-      data: this.dataPostreaction,
-      label: 'Post Reaction'
-    }
-  ];
-  public PostReactionLabels: Array<any> = this.dates;
-  public PostReactionOptions: any = {
-    tooltips: {
-      enabled: true,
-      custom: CustomTooltips,
-      intersect: true,
-      mode: 'index',
-      position: 'nearest',
-      callbacks: {
-        labelColor: function(tooltipItem, chart) {
-          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-        }
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 8,
-          fontColor: 'white',
-        }
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public PostReactionColours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-    }
-  ];
-  public PostReactionLegend = false;
-  public PostReactionType = 'line';
-// CarrouselClicks
-
-public CarrouselClicksData: Array<any> = [
-  {
-    data: this.dataCarrouselClicks,
-    label: 'Estimated Add Recall',
-    barPercentage: 0.6,
-  }
-];
-public CarrouselClicksLabels: Array<any> = this.dates;
-public CarrouselClicksOptions: any = {
-  tooltips: {
-    enabled: true,
-    custom: CustomTooltips,
-    intersect: true,
-    mode: 'index',
-    position: 'nearest',
-    callbacks: {
-      labelColor: function(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-      }
-    }
-  },
-  maintainAspectRatio: false,
-  scales: {
-    xAxes: [{
-      gridLines: {
-        color: 'transparent',
-        zeroLineColor: 'transparent'
-      },
-      ticks: {
-        fontSize: 8,
-        fontColor: 'white',
-      }
-    }],
-    yAxes: [{
-      display: false
-    }]
-  },
-  legend: {
-    display: false
-  }
-};
-public CarrouselClicksColours: Array<any> = [
-  {
-    backgroundColor: 'rgba(255,255,255,.3)',
-    borderWidth: 0
-  }
-];
-public CarrouselClicksLegend = false;
-public CarrouselClicksType = 'bar';
-
 //Link Clicks
 
-public LinkClicksElements = 7;
+  public LinkClicksElements = 7;
   public LinkClicksData1: Array<number> = this.dataLinkClicks;
   public LinkClicksData2: Array<number> = [];
   public LinkClicksData3: Array<number> = [];
@@ -828,29 +576,24 @@ public LinkClicksElements = 7;
   }
 
   getCampaignsByUser(){
-    let campaign = this.Route.snapshot.paramMap.get('id');
-    this.Principal.getCampaignInform(campaign).subscribe((data: any[])=>{
+    const asset = this.Route.snapshot.paramMap.get('id');
+    this.Principal.getAssetReport(asset).subscribe((data: any[]) => {
       this.kpis = data;
-      this.prepareData(this.kpis)
-
-    })
+      this.prepareData(this.kpis);
+    });
   }
 
-  prepareData(kpis){
-    for (var kpi of kpis){
-      this.dates.push(kpi.date)
-      this.dataReach.push(kpi.reach)
-      this.dataBudget.push(kpi.budget)
-      this.dataResult.push(kpi.result)
-      this.dataImpressions.push(kpi.impressions)
-      this.dataEstimatedAddRecall.push(kpi.estimated_add_recall)
-      this.dataAmountSpent.push(kpi.ammount_spent)
-      this.dataFrequency.push(kpi.frequency)
-      this.dataVideoClicks.push(kpi.video_clicks)
-      this.dataPostreaction.push(kpi.post_reaction)
-      this.dataCarrouselClicks.push(kpi.carrousel_clicks)
-      this.dataLinkClicks.push(kpi.link_clicks)
-      console.log(kpi.estimated_add_recall)
+  prepareData(kpis) {
+    for (const kpi of kpis) {
+      this.dates.push(kpi.fecha_cracion);
+      this.dataReach.push(kpi.reach);
+      this.dataBudget.push(kpi.budget);
+      this.dataCostPerResult.push(kpi.cost_per_result);
+      this.dataImpressions.push(kpi.impressions);
+      this.dataEstimatedAddRecall.push(kpi.estimated_add_recall);
+      this.dataAmountSpent.push(kpi.ammount_spent);
+      this.dataLinkClicks.push(kpi.link_clicks);
+      console.log(kpi.link_clicks);
 
     }
 

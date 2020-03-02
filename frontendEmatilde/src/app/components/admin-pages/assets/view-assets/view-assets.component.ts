@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PrincipalService } from 'src/app/services/principal.service';
-
 @Component({
-  selector: 'app-watch-assets',
-  templateUrl: './watch-assets.component.html',
-  styleUrls: ['./watch-assets.component.css']
+  selector: 'app-view-assets',
+  templateUrl: './view-assets.component.html',
+  styleUrls: ['./view-assets.component.css']
 })
-export class WatchAssetsComponent implements OnInit {
+export class ViewAssetsComponent implements OnInit {
 
   constructor(
     private Route: Router,
@@ -35,8 +34,7 @@ export class WatchAssetsComponent implements OnInit {
     );
   }
 
-  public getAssetDashboard(asset) {
-    this.Route.navigate(['dashboard-asset', asset]);
+  public addReportAsset(asset) {
+    this.Route.navigate(['add-report-asset', asset]);
   }
-
 }

@@ -30,5 +30,13 @@ Route::group([
 
     Route::get('user/{id}','UserController@getUserById');
     Route::post('modifyUser','UserController@modifyUser');
+
+    Route::post('new_asset','AssetController@addAsset');
+    Route::get('assets_campaign/{id}', 'CampanaController@getAssetsByCampaign');
+
+    Route::get('asset_image/{id}','AssetController@getAssetImage');
+
+    Route::post('add_asset_report','InformeAssetController@addReportAsset');
+    Route::get('get_report_asset/{id}', 'AssetController@getAssetReport');
 });
 

@@ -5,10 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\InformeCampana;
+use App\Asset;
 class Campana extends Model
 {
-    protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $fillable = [
         'nombre_campana',
         'negocio_campana',
@@ -28,4 +27,9 @@ class Campana extends Model
     public function InformeCampanas(){
         return $this->hasMany(InformeCampana::class,'id_campana','id');
     }
+
+    public function Assets(){
+        return $this->hasMany(Asset::class, 'id_campana', 'id');
+    }
+
 }

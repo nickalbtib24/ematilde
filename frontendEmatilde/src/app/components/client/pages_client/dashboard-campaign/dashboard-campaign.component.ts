@@ -82,7 +82,7 @@ export class DashboardCampaignComponent implements OnInit {
           beginAtZero: true,
           maxTicksLimit: 5,
           stepSize: Math.ceil(250 / 5),
-          max: 250
+          max: this.dataReach.length
         }
       }]
     },
@@ -299,7 +299,8 @@ export class DashboardCampaignComponent implements OnInit {
         }
       }],
       yAxes: [{
-        display: false
+        display: false,
+        max: 1000
       }]
     },
     elements: {
@@ -823,6 +824,9 @@ public LinkClicksElements = 7;
 
       this.AmmountSpentData3.push(65);
     }
+    this.ReachOptions.scales.yAxes[0].ticks.max = this.ReachData[0].reach;
+    this.BudgetOptions.scales.yAxes[0].ticks.max = this.BudgetData[0].budget;
+    this.ResultOptions.scales.yAxes[0].ticks.max = this.ResultData[0].result;
   }
 
   getCampaignsByUser(){
@@ -834,21 +838,17 @@ public LinkClicksElements = 7;
     })
   }
 
-  prepareData(kpis){
-    for (var kpi of kpis){
-      this.dates.push(kpi.date)
-      this.dataReach.push(kpi.reach)
-      this.dataBudget.push(kpi.budget)
-      this.dataResult.push(kpi.result)
-      this.dataImpressions.push(kpi.impressions)
-      this.dataEstimatedAddRecall.push(kpi.estimated_add_recall)
-      this.dataAmountSpent.push(kpi.ammount_spent)
-      this.dataFrequency.push(kpi.frequency)
-      this.dataVideoClicks.push(kpi.video_clicks)
-      this.dataPostreaction.push(kpi.post_reaction)
-      this.dataCarrouselClicks.push(kpi.carrousel_clicks)
-      this.dataLinkClicks.push(kpi.link_clicks)
-      console.log(kpi.estimated_add_recall)
+  prepareData(kpis) {
+    for (let kpi of kpis) {
+      this.dates.push(kpi.date);
+      this.dataReach.push(kpi.reach);
+      this.dataBudget.push(kpi.budget);
+      this.dataResult.push(kpi.result);
+      this.dataImpressions.push(kpi.impressions);
+      this.dataAmountSpent.push(kpi.ammount_spent);
+      this.dataCarrouselClicks.push(kpi.carrousel_clicks);
+      this.dataLinkClicks.push(kpi.link_clicks);
+      console.log(kpi.impressions);
 
     }
 

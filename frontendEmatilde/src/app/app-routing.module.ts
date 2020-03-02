@@ -23,6 +23,10 @@ import { CreateCampaignComponent } from './components/admin/admin-pages/campaign
 import { DashboardAssetComponent } from './components/client/pages_client/dashboard-asset/dashboard-asset.component';
 import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
 import { LandingPageComponent } from './components/client/pages_client/landing-page/landing-page.component';
+import { WatchAssetsComponent } from './components/client/pages_client/watch-assets/watch-assets.component';
+import { AddAssetComponent } from './components/admin/admin-pages/assets/add-asset/add-asset.component';
+import { ViewAssetsComponent } from './components/admin-pages/assets/view-assets/view-assets.component';
+import { AddReportAssetComponent } from './components/admin-pages/assets/add-report-asset/add-report-asset.component';
 const appRoutes: Routes = [
 
   { path: '',
@@ -53,7 +57,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'user',
-    component: UserComponent,
+    component: DashboardAssetComponent,
     canActivate: [AfterLoginService]
 
   },
@@ -64,7 +68,7 @@ const appRoutes: Routes = [
 
   },
   {
-    path: 'dashboard-asset',
+    path: 'dashboard-asset/:id',
     component: DashboardAssetComponent,
     canActivate: [AfterLoginService, AuthorizationClientService]
 
@@ -80,6 +84,11 @@ const appRoutes: Routes = [
     component: AddCampaignComponent,
     canActivate: [AfterLoginService, AuthorizationAdminService]
 
+  },
+  {
+    path: 'add-asset/:id',
+    component: AddAssetComponent,
+    canActivate: [AfterLoginService, AuthorizationAdminService]
   },
   {
     path: 'profile-client',
@@ -122,7 +131,22 @@ const appRoutes: Routes = [
     path: 'edit-profile',
     component: EditProfileComponent,
     canActivate: [AfterLoginService, AuthorizationClientService]
-  }
+  },
+  {
+    path: 'assets-campaign/:id',
+    component: WatchAssetsComponent,
+    canActivate: [AfterLoginService, AuthorizationClientService]
+  },
+  {
+    path: 'assets-campaign-admin/:id',
+    component: ViewAssetsComponent,
+    canActivate: [AfterLoginService, AuthorizationAdminService]
+  },
+  {
+    path: 'add-report-asset/:id',
+    component: AddReportAssetComponent,
+    canActivate: [AfterLoginService, AuthorizationAdminService]
+  },
 ];
 
 @NgModule({

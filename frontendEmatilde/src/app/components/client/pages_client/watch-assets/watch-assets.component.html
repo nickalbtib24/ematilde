@@ -22,14 +22,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td>1</td>
-                <td>Prueba.png</td>
-                <td>Image of campaign 2</td>
-                <td>23/2/2020</td>
-                <td>23/2/2020</td>
+              <tr *ngFor="let asset of assets">
+                <td>{{asset.id}}</td>
+                <td>{{asset.nombre_asset}}</td>
+                <td>{{asset.descripcion_asset}}</td>
+                <td>{{asset.fecha_inicio_asset}}</td>
+                <td>{{asset.fecha_finalizacion_asset}}</td>
                 <td>
-                    <button class="btn btn-pill btn-block btn-info" >Info</button>
+                    <button (click)="getAssetDashboard(asset.id)" class="btn btn-pill btn-block btn-info" >Info</button>
                 </td>
               </tr>
             </tbody>

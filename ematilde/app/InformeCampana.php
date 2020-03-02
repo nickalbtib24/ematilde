@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
 
-class InformeCampana extends Model implements ToModel, WithStartRow
+class InformeCampana extends Model 
 {
 
     protected $fillable = [
@@ -33,24 +33,5 @@ class InformeCampana extends Model implements ToModel, WithStartRow
 
     public function campana(){
         return $this->belongsTo(Campana::class,'id_campana');
-    }
-
-    public function model(array $row)
-    {
-        return new InformeCampana([
-            'reach'     => $row[11],
-            'ammount_spent'    => $row[14],
-            'cost_per_result' =>$row[13],
-            'impressions' => $row[12],
-            'result' => $row[9],            
-        ]);
-    }
-
-    /**
-     * @return int
-     */
-    public function startRow(): int
-    {
-        return 2;
     }
 }

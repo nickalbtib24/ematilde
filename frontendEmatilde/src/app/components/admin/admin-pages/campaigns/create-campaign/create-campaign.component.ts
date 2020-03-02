@@ -42,8 +42,13 @@ export class CreateCampaignComponent implements OnInit {
   public onSubmit() {
     console.log(this.form);
     this.Principal.postCreateCampaign(this.form).subscribe(
-      (data) => this.Router.navigateByUrl('/clients')
+      (data) => this.Router.navigateByUrl('/clients'),
+      (error) => this.handleError(error)
     );
+  }
+
+  public handleError(error){
+    this.error = error.error.errors;
   }
 
   public getTipoCampanas(): void {

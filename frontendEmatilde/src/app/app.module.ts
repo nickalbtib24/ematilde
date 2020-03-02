@@ -38,7 +38,9 @@ import { DashboardAssetComponent } from './components/client/pages_client/dashbo
 import { LandingPageComponent } from './components/client/pages_client/landing-page/landing-page.component';
 import { EditProfileComponent } from './components/client/pages_client/edit-profile/edit-profile.component';
 import { WatchAssetsComponent } from './components/client/pages_client/watch-assets/watch-assets.component';
-
+import { AddAssetComponent } from './components/admin/admin-pages/assets/add-asset/add-asset.component';
+import { ViewAssetsComponent } from './components/admin-pages/assets/view-assets/view-assets.component';
+import { AddReportAssetComponent } from './components/admin-pages/assets/add-report-asset/add-report-asset.component';
 
 const MaterialComponents = [
   MatProgressSpinnerModule
@@ -74,6 +76,9 @@ const MaterialComponents = [
     LandingPageComponent,
     EditProfileComponent,
     WatchAssetsComponent,
+    AddAssetComponent,
+    ViewAssetsComponent,
+    AddReportAssetComponent
   ],
   imports: [
     BrowserModule,

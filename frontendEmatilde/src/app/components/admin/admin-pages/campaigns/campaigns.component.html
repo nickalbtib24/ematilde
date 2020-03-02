@@ -18,6 +18,7 @@
                   <th>State</th>
                   <th>Edit Dashboard</th>
                   <th>Add Asset</th>
+                  <th>View Assets</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,7 +32,10 @@
                     <button (click)="getSelectedCampaign(campaign.id)" class="btn btn-pill btn-block btn-info">Edit Dashboard</button>
                   </td>
                   <td>
-                    <button  class="btn btn-pill btn-block btn-info">Add Asset</button>
+                    <button (click)="redirectAddAsset(campaign.id)" class="btn btn-pill btn-block btn-info">Add Asset</button>
+                  </td>
+                  <td>
+                    <button (click)="redirectViewAssets(campaign.id)" class="btn btn-pill btn-block btn-info">View Assets</button>
                   </td>
                 </tr>
               </tbody>

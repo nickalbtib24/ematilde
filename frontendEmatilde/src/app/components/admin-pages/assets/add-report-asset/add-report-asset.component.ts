@@ -6,11 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-file',
-  templateUrl: './file.component.html',
-  styleUrls: ['./file.component.css']
+  selector: 'app-add-report-asset',
+  templateUrl: './add-report-asset.component.html',
+  styleUrls: ['./add-report-asset.component.css']
 })
-export class FileComponent implements OnInit {
+export class AddReportAssetComponent implements OnInit {
 
   @ViewChild('path', null) path: ElementRef;
   @ViewChild('fileInput', null) fileInput: ElementRef;
@@ -47,8 +47,8 @@ export class FileComponent implements OnInit {
   }
   public onSubmit() {
     const id = this.Route.snapshot.paramMap.get('id');
-    this.formData.append('campaign', id);
-    this.rest.postCreateReportCampaignFile(this.formData).subscribe(
+    this.formData.append('asset', id);
+    this.rest.postCreateReportAsset(this.formData).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -80,5 +80,4 @@ export class FileComponent implements OnInit {
   submitUser() {
 
   }
-
 }
