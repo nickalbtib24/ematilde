@@ -127,7 +127,7 @@ export class DashboardCampaignComponent implements OnInit {
   // Budget
   public BudgetData: Array<any> = [
     {
-      data: this.dataBudget,
+      data: this.dataImpressions,
       label: 'Budget'
     }
   ];
