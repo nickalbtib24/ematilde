@@ -18,10 +18,11 @@ class CreateAssetsTable extends Migration
             $table->unsignedInteger('id_campana')->nullable();
             $table->string('nombre_asset');
             $table->string('archivo_asset');
-            $table->dateTime('fecha_subida_archivo');
-            $table->unsignedInteger('id_tipo_asset')->nullable();
+            $table->string('descripcion_asset');
+            $table->date('fecha_inicio_asset');
+            $table->date('fecha_finalizacion_asset');
+            $table->date('fecha_subida_archivo');
             $table->foreign('id_campana')->references('id')->on('campanas')->onDelete('cascade');
-            $table->foreign('id_tipo_asset')->references('id')->on('tipo_assets')->onDelete('cascade');
             $table->timestamps();
         });
     }

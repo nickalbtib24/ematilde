@@ -44,21 +44,36 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
+        $validation_rules = [
+            'nombre_usuario' => 'required|string|max:255',
+            'apellido_usuario' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|email|max:255|unique:users',
+            'empresa_usuario' => 'required',
+            'telefono_usuario' => 'required',
+            'tipo_cliente' => 'required',
+        ];
+
+        $messages = [
+            'nombre_usuario.required' => 'The name field is required!',
+            'apellido_usuario.required' => 'The last name field is required!',
+            'password.required' => 'The password field is required!',
+            'email.required' => 'The email field is required!',
+            'empresa_usuario.required' => 'The company name field is required!',
+            'telefono_usuario.required' => 'The phone field is required',
+            'tipo_cliente.required' => 'Plese select an option!',
+        ];
         $input = $request->all();
-        $validator = $this->validator($input);
+        $validator = Validator::make($input,$validation_rules, $messages);
         if($validator->passes())
         {
             $user = User::create([
                 'nombre_usuario' => $input['nombre_usuario'],
                 'apellido_usuario' => $input['apellido_usuario'],
-                'edad_usuario' => $input['edad_usuario'],
                 'email' => $input['email'],
                 'password' => bcrypt($input['password']),
-                'identificacion_usuario' => $input['identificacion_usuario'],
                 'empresa_usuario' => $input['empresa_usuario'],
                 'telefono_usuario' => $input['telefono_usuario'],
-                'direccion_usuario' => $input['direccion_usuario'],
-                'intentos_usuario' => 0,
             ]);
             $perfil = Perfil::find(2);
             $tipoCliente = TipoCliente::find($input['tipo_cliente']);
@@ -87,7 +102,7 @@ class AuthController extends Controller
     }
     public function verifyUser($token)
     {
-       return "Quihubo";
+       return "verified";
     }
     /**
      * Get the authenticated User.
@@ -105,8 +120,6 @@ class AuthController extends Controller
             'nombre_usuario' => 'required|string|max:255',
             'apellido_usuario' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
-            'direccion_usuario' => 'required',
-            'edad_usuario' => 'required|integer',
             'email' => 'required|string|email|max:255|unique:users',
             'empresa_usuario' => 'required',
             'identificacion_usuario' => 'required',

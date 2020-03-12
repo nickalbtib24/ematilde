@@ -15,7 +15,8 @@
         [options]="ReachOptions"
         [colors]="ReachColours"
         [legend]="ReachLegend"
-        [chartType]="ReachType"></canvas>
+        [chartType]="ReachType">
+      </canvas>
       </div>
     </div>
     </div>
@@ -23,7 +24,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
-          <div>Campaign State</div>
+          <div>Budget</div>
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
@@ -36,10 +37,11 @@
         </div>
       </div>
     </div><!--/.col-->
+    
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-primary">
+      <div class="card text-white bg-warning">
         <div class="card-body pb-0">
-          <div>Budget</div>
+          <div>Results</div>
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
@@ -53,34 +55,28 @@
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-warning">
-        <div class="card-body pb-0">
-          <div>Results</div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
-          <canvas baseChart class="chart"
-                  [datasets]="ImpressionsData"
-                  [labels]="ImpressionsLabels"
-                  [options]="ImpressionsOptions"
-                  [colors]="ImpressionsColours"
-                  [legend]="ImpressionsLegend"
-                  [chartType]="ImpressionsType"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-danger">
         <div class="card-body pb-0">
           <div>Impressions</div>
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="EstimatedAddRecallData"
-          [labels]="EstimatedAddRecallLabels"
-          [options]="EstimatedAddRecallOptions"
-          [colors]="EstimatedAddRecallColours"
-          [legend]="EstimatedAddRecallLegend"
-          [chartType]="EstimatedAddRecallType"></canvas>
+          [datasets]="ImpressionsData"
+          [labels]="ImpressionsLabels"
+          [options]="ImpressionsOptions"
+          [colors]="ImpressionsColours"
+          [legend]="ImpressionsLegend"
+          [chartType]="ImpressionsType"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-0">
+        <div class="card-body pb-0">
+          <div>Budget Spent</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+          <h1>86%</h1>
         </div>
       </div>
     </div><!--/.col-->
@@ -96,12 +92,13 @@
       </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
         <canvas baseChart class="chart"
-        [datasets]="AmmountSpentData"
-        [labels]="AmmountSpentLabels"
-        [options]="AmmountSpentOptions"
-        [colors]="AmmountSpentColours"
-        [legend]="AmmountSpentLegend"
-        [chartType]="AmmountSpentType"></canvas>
+        [datasets]="CostPerResultData"
+        [labels]="CostPerResultLabels"
+        [options]="CostPerResultOptions"
+        [colors]="CostPerResultColours"
+        [legend]="CostPerResultLegend"
+        [chartType]="CostPerResultType">
+      </canvas>
       </div>
     </div>
   </div>
@@ -115,12 +112,12 @@
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="FrequencyData"
-          [labels]="FrequencyLabels"
-          [options]="FrequencyOptions"
-          [colors]="FrequencyColours"
-          [legend]="FrequencyLegend"
-          [chartType]="FrequencyType"></canvas>
+          [datasets]="AmountSpentData"
+          [labels]="AmountSpentLabels"
+          [options]="AmountSpentOptions"
+          [colors]="AmountSpentColours"
+          [legend]="AmountSpentLegend"
+          [chartType]="AmountSpentType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
@@ -131,12 +128,12 @@
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="VideoClicksData"
-                  [labels]="VideoClicksLabels"
-                  [options]="VideoClicksOptions"
-                  [colors]="VideoClicksColours"
-                  [legend]="VideoClicksLegend"
-                  [chartType]="VideoClicksType"></canvas>
+                  [datasets]="LandingPageViewsData"
+                  [labels]="LandingPageViewsLabels"
+                  [options]="LandingPageViewsOptions"
+                  [colors]="LandingPageViewsColours"
+                  [legend]="LandingPageViewsLegend"
+                  [chartType]="LandingPageViewsType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
@@ -147,12 +144,12 @@
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="PostReactionData"
-                  [labels]="PostReactionLabels"
-                  [options]="PostReactionOptions"
-                  [colors]="PostReactionColours"
-                  [legend]="PostReactionLegend"
-                  [chartType]="PostReactionType"></canvas>
+                  [datasets]="CostPerLandingPageViewData"
+                  [labels]="CostPerLandingPageViewLabels"
+                  [options]="CostPerLandingPageViewOptions"
+                  [colors]="CostPerLandingPageViewColours"
+                  [legend]="CostPerLandingPageViewLegend"
+                  [chartType]="CostPerLandingPageViewType"></canvas>
         </div>
       </div>
     </div><!--/.col-->

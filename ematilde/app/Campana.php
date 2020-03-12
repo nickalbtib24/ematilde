@@ -13,7 +13,7 @@ class Campana extends Model
         'negocio_campana',
         'fecha_inicio_campana',
         'fecha_terminacion_campana',
-        'budget'
+        'expected_budget'
     ];
 
     public function User(){

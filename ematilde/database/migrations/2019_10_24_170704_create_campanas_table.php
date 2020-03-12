@@ -20,6 +20,7 @@ class CreateCampanasTable extends Migration
             $table->string('negocio_campana');
             $table->date('fecha_inicio_campana');
             $table->date('fecha_terminacion_campana');
+            $table->decimal('expected_budget');
             $table->unsignedInteger('id_tipo_campana')->nullable();
             $table->foreign('id_tipo_campana')->references('id')->on('tipo_campanas')->onDelete('cascade');
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');

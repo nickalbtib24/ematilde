@@ -16,14 +16,11 @@ export class SignupComponent implements OnInit {
   public form = {
     nombre_usuario: null,
     apellido_usuario: null,
-    edad_usuario: null,
     email: null,
     password: null,
     password_confirmation: null,
-    identificacion_usuario: '11323',
     empresa_usuario: null,
     telefono_usuario: null,
-    direccion_usuario: 'Calle 174',
     tipo_cliente: null,
 
   };
@@ -53,6 +50,7 @@ export class SignupComponent implements OnInit {
   public onSubmit() {
     const observable = new Observable(this.myObservable);
     this.showProgressSpinnerUntilExecuted(observable);
+    console.log(this.form.tipo_cliente);
     this.Principal.signup(this.form).subscribe(
      (data) => this.handleError(data),
    );

@@ -20,11 +20,9 @@ class CreateInformeCampanasTable extends Migration
             $table->decimal('budget');
             $table->decimal('results');
             $table->decimal('impressions');
-            $table->decimal('estimated_add_recall');
             $table->decimal('ammount_spent');
             $table->decimal('link_clicks');
             $table->decimal('cost_per_result');
-            $table->decimal('bid_strategy');
             $table->decimal('state');
             $table->date('date');
             $table->date('fecha_ultima_actualizacion');

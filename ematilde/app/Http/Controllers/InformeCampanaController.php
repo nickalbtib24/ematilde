@@ -71,6 +71,9 @@ class InformeCampanaController extends Controller
             if(!array_key_exists('Ad Set Budget', $customerArr[0])){
                 return response()->json(['error' => 'The file does not have Ad Set Budget column'], 401);
             }
+            if(!array_key_exists('Landing Page Views', $customerArr[0])){
+                return response()->json(['error' => 'The file does not have Landing Page Views column'], 401);
+            }
             if(count($customerArr) !== 0) {
                 for ($i = 0; $i < count($customerArr); $i ++)
                 {
@@ -90,6 +93,12 @@ class InformeCampanaController extends Controller
                     if($customer['Ad Set Budget'] === '') {
                         $customer['Ad Set Budget'] = 0;
                     }
+                    if($customer['Landing Page Views'] === '') {
+                        $customer['Landing Page Views'] = 0;
+                    }
+                    if($customer['Cost per Landing Page View (USD)'] === ''){
+                        $customer['Cost per Landing Page View (USD)'] = 0;
+                    }
                     $date = strtotime($customer['Reporting Starts']);
                     $newFormat = date('Y-m-d',$date);
         
@@ -99,24 +108,42 @@ class InformeCampanaController extends Controller
                     $fecha_terminacion = strtotime($customer['Reporting Ends']);
                     $newFormat3 = date('Y-m-d',$fecha_cracion);
 
-                    $informe_campana = InformeCampana::create([
-                        'reach' => $customer['Reach'],
-                        'result' => $customer['Results'],
-                        'impressions' => $customer['Impressions'],
-                        'ammount_spent' => $customer['Amount Spent (USD)'],
-                        'cost_per_result' => $customer['Cost per Results'],
-                        'link_clicks' => $customer['Link Clicks'],
-                        'budget' => $customer['Ad Set Budget'], 
-                        'date' => $newFormat,
-                        'fecha_ultima_actualizacion' => $newFormat3,
-                        'fecha_cracion' => $newFormat2,
-                    ]);
+                    $informe_campana = InformeCampana::where('fecha_cracion', $newFormat2)->where('id_campana',$request['campaign'])->first();
+                    if($informe_campana){
+                        $informe_campana->reach = $customer['Reach'];
+                        $informe_campana->result = $customer['Results'];
+                        $informe_campana->impressions = $customer['Impressions'];
+                        $informe_campana->ammount_spent = $customer['Amount Spent (USD)'];
+                        $informe_campana->cost_per_result = $customer['Cost per Results'];
+                        $informe_campana->link_clicks = $customer['Link Clicks'];
+                        $informe_campana->budget = $customer['Ad Set Budget'];
+                        $informe_campana->landing_page_views = $customer['Landing Page Views'];
+                        $informe_campana->cost_per_landing_page_view = $customer['Cost per Landing Page View (USD)'];
+                        $informe_campana->save();
+                    }
+                    else{
+                        $informe_campana = InformeCampana::create([
+                            'reach' => $customer['Reach'],
+                            'result' => $customer['Results'],
+                            'impressions' => $customer['Impressions'],
+                            'ammount_spent' => $customer['Amount Spent (USD)'],
+                            'cost_per_result' => $customer['Cost per Results'],
+                            'link_clicks' => $customer['Link Clicks'],
+                            'budget' => $customer['Ad Set Budget'], 
+                            'landing_page_views' => $customer['Landing Page Views'],
+                            'cost_per_landing_page_view' => $customer['Cost per Landing Page View (USD)'],
+                            'date' => $newFormat,
+                            'fecha_ultima_actualizacion' => $newFormat3,
+                            'fecha_cracion' => $newFormat2,
+                        ]);
+    
+                        $informe_campana->campana()->associate($campana);
+                        $informe_campana->save();
+                        $campana->informeCampanas()->save($informe_campana);
+                        $campana->budget = $customer['Ad Set Budget'];
+                        $campana->save();
+                    }
 
-                    $informe_campana->campana()->associate($campana);
-                    $informe_campana->save();
-                    $campana->informeCampanas()->save($informe_campana);
-                    $campana->budget = $customer['Ad Set Budget'];
-                    $campana->save();
                 } 
             }
             return response()->json([

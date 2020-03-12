@@ -16,16 +16,19 @@ export class CreateCampaignComponent implements OnInit {
     negocio_campana: null,
     fecha_inicio_campana: null,
     fecha_terminacion_campana: null,
+    expected_budget: null
   };
   public tipoUsuarios = null;
 
   public response = [];
 
-  public error = [];
+  public error = {lesser: ''};
 
   public tipoCampanas;
 
   public clients;
+
+  public buttonDisabled: boolean;
 
   constructor(
     private Router: Router,
@@ -47,8 +50,8 @@ export class CreateCampaignComponent implements OnInit {
     );
   }
 
-  public handleError(error){
-    this.error = error.error.errors;
+  public handleError(error) {
+    this.error = error.error;
   }
 
   public getTipoCampanas(): void {
@@ -61,5 +64,18 @@ export class CreateCampaignComponent implements OnInit {
     this.service.getClients().subscribe(
       (data) => this.clients = data
     );
+  }
+
+  public compareTwoDates() {
+    const date1 = new Date(this.form.fecha_inicio_campana);
+    const date2 = new Date(this.form.fecha_terminacion_campana);
+    if (date2 < date1) {
+      const lesser = 'The start date must be lesser than due date';
+      this.buttonDisabled = true;
+      this.error.lesser = lesser;
+    } else {
+        this.error.lesser = '';
+        this.buttonDisabled = false;
+    }
   }
 }
