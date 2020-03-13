@@ -40,6 +40,13 @@
                     <div class="alert alert-danger" [hidden] = "!error.expected_budget">
                       {{error.expected_budget}}
                     </div>
+                    <div class="form-group">
+                      <label for="negocio_campana">Expected Link Clicks </label>
+                      <input class="form-control" id="expected_link_clicks" [(ngModel)]="form.expected_link_clicks" name="expected_link_clicks">
+                    </div>
+                    <div class="alert alert-danger" [hidden] = "!error.expected_link_clicks">
+                      {{error.expected_link_clicks}}
+                    </div>
                       <div class="form-group">
                         <label for="tipo_campana">Campaing Type</label>
                         <select class="form-control" id="tipo_campana" [(ngModel)]="form.tipo_campana" name="tipo_campana">

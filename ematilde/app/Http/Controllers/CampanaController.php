@@ -29,7 +29,8 @@ class CampanaController extends Controller
             'fecha_terminacion_campana' => 'required',
             'user_id' => 'required',
             'tipo_campana' => 'required',
-            'expected_budget' => 'required'
+            'expected_budget' => 'required',
+            'expected_link_clicks' => 'required'
         ];
     
         $messages = [
@@ -39,7 +40,8 @@ class CampanaController extends Controller
             'fecha_terminacion_campana.required' => 'The Due Date is required',
             'user_id.required' => 'The Client is required',
             'tipo_campana.required' => 'The Campaign Type is required',
-            'expected_budget' => 'Expected Budget field is required'
+            'expected_budget' => 'Expected Budget field is required',
+            'expected_link_clicks' => 'Expected Link Clicks field is required'
         ];
         $validator = Validator::make($request->all(),$validation_rules, $messages);
         if($validator->passes()){
@@ -48,6 +50,7 @@ class CampanaController extends Controller
                 'nombre_campana' => $input['nombre_campana'],
                 'negocio_campana' => $input['negocio_campana'],
                 'expected_budget' => $input['expected_budget'],
+                'expected_link_clicks' => $input['expected_link_clicks'],
                 'fecha_inicio_campana' => $input['fecha_inicio_campana'],
                 'fecha_terminacion_campana' => $input['fecha_terminacion_campana']
             ]);

@@ -25,6 +25,9 @@ export class DashboardCampaignComponent implements OnInit {
   private dataCostPerResult = [];
   private dataLandingPageViews = [];
   private dataCostPerLandingPageView = [];
+  public budgetSpent = '0%';
+  public styleProgressBudgetSpent = {'width': '0%'};
+  public budgetReport = '$0 / $0';
   constructor(
     private Route: ActivatedRoute,
     private Principal: PrincipalService
@@ -763,6 +766,7 @@ public LinkClicksElements = 7;
     this.ResultOptions.scales.yAxes[0].ticks.max = this.ResultData[0].result;
     this.CostPerResultOptions.scales.yAxes[0].ticks.max = this.CostPerResultData[0].CostPerResult;
     this.AmountSpentOptions.scales.yAxes[0].ticks.max = this.AmountSpentData[0].ammount_spent;
+    this.LinkClicksOptions.scales.yAxes[0].ticks.max = this.LinkClicksData[0].link_clicks;
 
   }
 
@@ -788,7 +792,12 @@ public LinkClicksElements = 7;
       this.dataLandingPageViews.push(kpi.landing_page_views);
       this.dataCostPerLandingPageView.push(kpi.cost_per_landing_page_view);
     }
-    console.log(this.dataAmountSpent);
+    const percentageBudget = kpis[kpis.length - 1].budget_spent;
+    const budgetCamp = kpis[kpis.length - 1].campana.expected_budget;
+    const budgetRep = kpis[kpis.length - 1].ammount_spent;
+    this.styleProgressBudgetSpent = {'width' : percentageBudget + '%'};
+    this.budgetSpent = percentageBudget + '%';
+    this.budgetReport = '$' + budgetRep + ' / ' + budgetCamp + '$';
   }
 
   public findMaxOfArray(arr: any[]) {

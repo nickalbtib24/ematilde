@@ -16,7 +16,8 @@ export class CreateCampaignComponent implements OnInit {
     negocio_campana: null,
     fecha_inicio_campana: null,
     fecha_terminacion_campana: null,
-    expected_budget: null
+    expected_budget: null,
+    expected_link_clicks: null
   };
   public tipoUsuarios = null;
 

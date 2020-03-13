@@ -119,6 +119,14 @@ class InformeCampanaController extends Controller
                         $informe_campana->budget = $customer['Ad Set Budget'];
                         $informe_campana->landing_page_views = $customer['Landing Page Views'];
                         $informe_campana->cost_per_landing_page_view = $customer['Cost per Landing Page View (USD)'];
+                        
+                        $expected_budget = $campana->expected_budget;
+                        $amount_spent = $informe_campana->ammount_spent;
+                        $informe_campana->budget_spent = ($amount_spent / $expected_budget)*100;
+
+                        $expected_link_clicks = $campana->expected_link_clicks;
+                        $link_clicks = $informe_campana->link_clicks;
+                        $informe_campana->link_clicks_done = ($link_clicks / $expected_link_clicks)*100;
                         $informe_campana->save();
                     }
                     else{

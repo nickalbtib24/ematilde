@@ -13,7 +13,8 @@ class Campana extends Model
         'negocio_campana',
         'fecha_inicio_campana',
         'fecha_terminacion_campana',
-        'expected_budget'
+        'expected_budget',
+        'expected_link_clicks'
     ];
 
     public function User(){
@@ -25,7 +26,7 @@ class Campana extends Model
     }
 
     public function InformeCampanas(){
-        return $this->hasMany(InformeCampana::class,'id_campana','id');
+        return $this->hasMany(InformeCampana::class,'id_campana','id')->with('campana');
     }
 
     public function Assets(){
