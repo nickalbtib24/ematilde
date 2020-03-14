@@ -27,6 +27,10 @@ class TipoCampanaController extends Controller
         //
     }
 
+
+    public function getTipoCampanas(){
+        return TipoCampana::all();
+    }
     /**
      * Store a newly created resource in storage.
      *

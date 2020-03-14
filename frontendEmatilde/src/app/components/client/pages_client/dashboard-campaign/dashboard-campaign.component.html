@@ -1,9 +1,13 @@
-<div class="animated fadeIn">
-  <div class="card">
+<main>
+<div class="animated fadeIn" style="padding: 1%;">
+  <h3 style="text-align: center; padding-bottom: 1%;">Dashboard Campaign</h3>
+  <div class="card" style="padding: 2%;">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
-          <h4 class="card-title mb-0">Reach</h4>
+          <h4 class="card-title mb-0">
+            Reach<a><img [matTooltip] = "toolTipReach" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/black_info.svg"></a>
+          </h4>
         </div><!--/.col-->
       </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
@@ -13,7 +17,8 @@
         [options]="ReachOptions"
         [colors]="ReachColours"
         [legend]="ReachLegend"
-        [chartType]="ReachType"></canvas>
+        [chartType]="ReachType">
+      </canvas>
       </div>
     </div>
     </div>
@@ -21,7 +26,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
-          <div>Budget</div>
+          <div inline>Budget<a><img [matTooltip] = "toolTipReach" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
@@ -34,10 +39,11 @@
         </div>
       </div>
     </div><!--/.col-->
+    
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-primary">
+      <div class="card text-white bg-warning">
         <div class="card-body pb-0">
-          <div>Result</div>
+          <div inline>Results<a><img [matTooltip] = "toolTipResults" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
@@ -51,55 +57,54 @@
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-warning">
+      <div class="card text-white bg-danger">
         <div class="card-body pb-0">
-          <div>Impressions</div>
+          <div inline>Impressions<a><img [matTooltip] = "toolTipImpressions" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="ImpressionsData"
-                  [labels]="ImpressionsLabels"
-                  [options]="ImpressionsOptions"
-                  [colors]="ImpressionsColours"
-                  [legend]="ImpressionsLegend"
-                  [chartType]="ImpressionsType"></canvas>
+          [datasets]="ImpressionsData"
+          [labels]="ImpressionsLabels"
+          [options]="ImpressionsOptions"
+          [colors]="ImpressionsColours"
+          [legend]="ImpressionsLegend"
+          [chartType]="ImpressionsType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-danger">
+      <div class="card text-white bg-dark">
         <div class="card-body pb-0">
-          <div>Estimated Add Recall</div>
+          <div inline>Budget Spent<a><img [matTooltip] = "toolTipBudgetSpent" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
-          <canvas baseChart class="chart"
-          [datasets]="EstimatedAddRecallData"
-          [labels]="EstimatedAddRecallLabels"
-          [options]="EstimatedAddRecallOptions"
-          [colors]="EstimatedAddRecallColours"
-          [legend]="EstimatedAddRecallLegend"
-          [chartType]="EstimatedAddRecallType"></canvas>
+          <strong>{{budgetReport}}</strong>
+          <div class="progress progress-xs mt-2">
+            <div class="progress-bar bg-success" role="progressbar" [ngStyle]="styleProgressBudgetSpent" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">{{budgetSpent}}</div>
+          </div>
         </div>
       </div>
     </div><!--/.col-->
   </div><!--/.row-->
 <!--Larga-->
-  <div class="card">
+  <div class="card" style="padding: 2%;">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-5">
-          <h4 class="card-title mb-0">Amount Spent</h4>
-          <div class="small text-muted">November 2019</div>
+          <h4 class="card-title mb-0">
+            Cost Per Result<a><img [matTooltip] = "toolTipCostPerResult" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/black_info.svg"></a>
+          </h4>
         </div><!--/.col-->
       </div><!--/.row-->
       <div class="chart-wrapper" style="height:300px;margin-top:40px;">
         <canvas baseChart class="chart"
-        [datasets]="AmmountSpentData"
-        [labels]="AmmountSpentLabels"
-        [options]="AmmountSpentOptions"
-        [colors]="AmmountSpentColours"
-        [legend]="AmmountSpentLegend"
-        [chartType]="AmmountSpentType"></canvas>
+        [datasets]="CostPerResultData"
+        [labels]="CostPerResultLabels"
+        [options]="CostPerResultOptions"
+        [colors]="CostPerResultColours"
+        [legend]="CostPerResultLegend"
+        [chartType]="CostPerResultType">
+      </canvas>
       </div>
     </div>
   </div>
@@ -109,75 +114,61 @@
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-info">
         <div class="card-body pb-0">
-          <div>Frequency</div>
+          <div inline>Amount Spent<a><img [matTooltip] = "toolTipAmountSpent" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-          [datasets]="FrequencyData"
-          [labels]="FrequencyLabels"
-          [options]="FrequencyOptions"
-          [colors]="FrequencyColours"
-          [legend]="FrequencyLegend"
-          [chartType]="FrequencyType"></canvas>
+          [datasets]="AmountSpentData"
+          [labels]="AmountSpentLabels"
+          [options]="AmountSpentOptions"
+          [colors]="AmountSpentColours"
+          [legend]="AmountSpentLegend"
+          [chartType]="AmountSpentType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-primary">
         <div class="card-body pb-0">
-          <div>Video Clicks</div>
+          <div inline>Landing Page Views<a><img [matTooltip] = "toolTipLandingPageViews" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="VideoClicksData"
-                  [labels]="VideoClicksLabels"
-                  [options]="VideoClicksOptions"
-                  [colors]="VideoClicksColours"
-                  [legend]="VideoClicksLegend"
-                  [chartType]="VideoClicksType"></canvas>
+                  [datasets]="LandingPageViewsData"
+                  [labels]="LandingPageViewsLabels"
+                  [options]="LandingPageViewsOptions"
+                  [colors]="LandingPageViewsColours"
+                  [legend]="LandingPageViewsLegend"
+                  [chartType]="LandingPageViewsType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
     <div class="col-sm-6 col-lg-3">
       <div class="card text-white bg-warning">
         <div class="card-body pb-0">
-          <div>Post Reaction</div>
+          <div inline>Cost Per Landing Page View<a><img [matTooltip] = "toolTipCostPerLandingPageView" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/white_info.png"></a></div> 
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
           <canvas baseChart class="chart"
-                  [datasets]="PostReactionData"
-                  [labels]="PostReactionLabels"
-                  [options]="PostReactionOptions"
-                  [colors]="PostReactionColours"
-                  [legend]="PostReactionLegend"
-                  [chartType]="PostReactionType"></canvas>
+                  [datasets]="CostPerLandingPageViewData"
+                  [labels]="CostPerLandingPageViewLabels"
+                  [options]="CostPerLandingPageViewOptions"
+                  [colors]="CostPerLandingPageViewColours"
+                  [legend]="CostPerLandingPageViewLegend"
+                  [chartType]="CostPerLandingPageViewType"></canvas>
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-danger">
-        <div class="card-body pb-0">
-          <div>Carrousel Clicks</div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
-          <canvas baseChart class="chart"
-          [datasets]="CarrouselClicksData"
-          [labels]="CarrouselClicksLabels"
-          [options]="CarrouselClicksOptions"
-          [colors]="CarrouselClicks1Colours"
-          [legend]="CarrouselClicksLegend"
-          [chartType]="CarrouselClicksType"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
+    
   </div><!--/.row-->
   <!--Larga-->
-    <div class="card">
+    <div class="card" style="padding: 2%;">
       <div class="card-body">
         <div class="row">
           <div class="col-sm-5">
-            <h4 class="card-title mb-0"> Link Clicks</h4>
-            <div class="small text-muted">November 2019</div>
+            <h4 class="card-title mb-0">
+               Link Clicks<a><img [matTooltip] = "toolTipLinkClicks" matTooltipPosition="above" style="padding-bottom: 5px; padding-left: 5px;" src="/assets/img/svg/shapes/black_info.svg"></a>
+              </h4>
           </div><!--/.col-->
         </div><!--/.row-->
         <div class="chart-wrapper" style="height:300px;margin-top:40px;">
@@ -190,37 +181,6 @@
           [chartType]="LinkClicksType"></canvas>
         </div>
       </div>
-      <div class="card-footer">
-        <div class="row text-center">
-          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-            <div class="text-muted">State </div>
-            <strong>Active (100%)</strong>
-            <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-            <div class="text-muted">Bid Strategy</div>
-            <strong>Low Cost</strong>
-            <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-            <div class="text-muted">Last Edit</div>
-            <strong>Nov 20, 2019</strong>
-            <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-            <div class="text-muted">Cost Per Result</div>
-            <strong>$0,64 </strong>
-            <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 </div><!--/.col-->
+</main>

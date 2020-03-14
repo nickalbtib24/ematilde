@@ -32,12 +32,6 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <input type="datetime" class="form-input" name="age"  [(ngModel)]="form.edad_usuario" id="age" placeholder="Your Age"/>
-                        <div class="alert alert-danger" [hidden] = "!error.edad_usuario">
-                          {{error.edad_usuario  }}
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <input type="text" class="form-input" name="company_name"  [(ngModel)]="form.empresa_usuario" id="company_name" placeholder="Your Company"/>
                         <div class="alert alert-danger" [hidden] = "!error.empresa_usuario">
                           {{error.empresa_usuario  }}
@@ -57,9 +51,11 @@
                       </div>
                       <div class="form-group">
                           <select class="form-control" name="tipo_cliente"  [(ngModel)]="form.tipo_cliente">
-                              <option value="0"> -.- Type of user -.- </option>
                               <option *ngFor="let tu of tipoUsuarios" [value]="tu.id">{{ tu.nombre_tipo_cliente }}</option>
                           </select>
+                          <div class="alert alert-danger" [hidden] = "!error.tipo_cliente">
+                            {{error.tipo_cliente}}
+                          </div>
                     </div>
                       <div class="form-group">
                           <input type="password" class="form-input" name="password"  [(ngModel)]="form.password" id="password" placeholder="Password"/>

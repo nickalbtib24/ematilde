@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CampaignsClientComponent implements OnInit {
 
-  private campaigns = []
+  private campaigns = [];
 
 
   constructor(
@@ -33,11 +33,11 @@ export class CampaignsClientComponent implements OnInit {
   }
 
   getSelectedCampaign(id){
-    this.Router.navigate(['/dashboard-campaign',id])
+    this.Router.navigate(['/dashboard-campaign', id]);
     console.log(id)
   }
 
-  
-  
-
+  public getAssetsCampaign(id) {
+    this.Router.navigate(['/assets-campaign', id]);
+  }
 }

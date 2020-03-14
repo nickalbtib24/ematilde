@@ -21,9 +21,24 @@ Route::group([
     Route::get('campanas_user/{id}','CampanaController@getCampanasByUser');
     //--------Routes for informe campanas
     Route::get('campana_inform/{id}','CampanaController@getInformeCampana');
+    Route::post('campana_new', 'CampanaController@addNewCampaign');        
+    //--------Routes for informe campanas
+    Route::get('campaigns_type', 'TipoCampanaController@getTipoCampanas');
+
     Route::post('new_inform', 'InformeCampanaController@createInformeCampana');
-    Route::post('campana_new', 'CampanaController@addNewCampaign');
+    Route::post('new_report_file','InformeCampanaController@createInformeCampanaFile');
 
+    Route::get('user/{id}','UserController@getUserById');
+    Route::post('modifyUser','UserController@modifyUser');
 
+    Route::post('new_asset','AssetController@addAsset');
+    Route::get('assets_campaign/{id}', 'CampanaController@getAssetsByCampaign');
+
+    Route::get('asset_image/{id}','AssetController@getAssetImage');
+
+    Route::post('add_asset_report','InformeAssetController@addReportAsset');
+    Route::get('get_report_asset/{id}', 'AssetController@getAssetReport');
+
+    Route::delete('delete_campaign/{id}', 'CampanaController@deleteCampaign');
 });
 

@@ -18,17 +18,11 @@ class CreateInformeCampanasTable extends Migration
             $table->unsignedInteger('id_campana')->nullable();
             $table->decimal('reach');
             $table->decimal('budget');
-            $table->decimal('result');
+            $table->decimal('results');
             $table->decimal('impressions');
-            $table->decimal('estimated_add_recall');
             $table->decimal('ammount_spent');
-            $table->decimal('frequency');
-            $table->decimal('video_clicks');
-            $table->decimal('post_reaction');
-            $table->decimal('carrousel_clicks');
             $table->decimal('link_clicks');
             $table->decimal('cost_per_result');
-            $table->decimal('bid_strategy');
             $table->decimal('state');
             $table->date('date');
             $table->date('fecha_ultima_actualizacion');

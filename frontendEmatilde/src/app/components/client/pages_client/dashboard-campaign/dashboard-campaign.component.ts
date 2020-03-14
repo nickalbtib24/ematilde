@@ -4,8 +4,10 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { ActivatedRoute } from '@angular/router';
 import { PrincipalService } from 'src/app/services/principal.service';
+
 @Component({
-  templateUrl: './dashboard-campaign.component.html'
+  templateUrl: './dashboard-campaign.component.html',
+  styleUrls: ['./dashboard-campaign.component.css']
 })
 export class DashboardCampaignComponent implements OnInit {
 
@@ -14,21 +16,39 @@ export class DashboardCampaignComponent implements OnInit {
   private informs = [];
   private kpis = [];
   private dates = [];
-  private dataReach = [];
-  private dataBudget = [];
-  private dataResult = [];
-  private dataImpressions = [];
-  private dataEstimatedAddRecall = [];
-  private dataAmountSpent = [];
-  private dataFrequency = [];
-  private dataVideoClicks = [];
-  private dataPostreaction = [];
-  private dataCarrouselClicks = [];
-  private dataLinkClicks = [];
-  constructor (
-    private Route:ActivatedRoute,
-    private Principal:PrincipalService
-    ){}
+  private dataReach = []; //
+  private dataBudget = []; //
+  private dataResult = []; //
+  private dataImpressions = []; //
+  private dataAmountSpent = []; //
+  private dataLinkClicks = []; //
+  private dataLinkClicks2 = [];
+  private dataCostPerResult = [];
+  private dataLandingPageViews = [];
+  private dataCostPerLandingPageView = [];
+  public budgetSpent = '0%';
+  public styleProgressBudgetSpent = {'width': '0%'};
+  public budgetReport = '$0 / $0';
+
+  // tslint:disable-next-line: max-line-length
+  public toolTipReach = 'The reach indicates the number of people who saw your ads at least once, this can be affected by the current budget.';
+  public toolTipResults = 'Results indicates the number of purchases that were made as a result of your ad being seen.';
+  // tslint:disable-next-line: max-line-length
+  public toolTipImpressions = 'Impressions are considered the times the ad instance is shown on the screen for the first time. (Example: If a person sees an ad, scroll down, and then return to the same ad, it will count as one impression. If a person sees an ad twice in the same day, it will count as two impressions.) ';
+  public toolTipBudgetSpent = 'Indicates the amount spent of the original budget';
+  // tslint:disable-next-line: max-line-length
+  public toolTipCostPerResult = 'The cost per result indicates how profitable it was to achieve the goals you established in your advertising campaign, it is calculated by dividing the total amount spent by the number of results.';
+  public toolTipAmountSpent = 'Total estimated amount of money you spent on your campaign';
+  // tslint:disable-next-line: max-line-length
+  public toolTipLandingPageViews = 'Landing page views let you know how many times people loaded your website or instant experience after clicking your ad.';
+  public toolTipCostPerLandingPageView = 'This metric is calculated by dividing the total amount spent by landing page views.';
+  // tslint:disable-next-line: max-line-length
+  public toolTipLinkClicks = 'The link clicks metric indicates the number of clicks on ad links that direct you to specific destinations or experiences.';
+  constructor(
+    private Route: ActivatedRoute,
+    private Principal: PrincipalService
+    ){
+    }
 
   // Reach
 
@@ -80,7 +100,7 @@ export class DashboardCampaignComponent implements OnInit {
           beginAtZero: true,
           maxTicksLimit: 5,
           stepSize: Math.ceil(250 / 5),
-          max: 250
+          max: 0
         }
       }]
     },
@@ -96,7 +116,7 @@ export class DashboardCampaignComponent implements OnInit {
       }
     },
     legend: {
-      display: false
+      display: true
     }
   };
   public ReachColours: Array<any> = [
@@ -143,7 +163,7 @@ export class DashboardCampaignComponent implements OnInit {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
-    },  
+    },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
@@ -169,7 +189,7 @@ export class DashboardCampaignComponent implements OnInit {
           fontColor: 'white',
           display: true,
           min: 0,
-          max: 100,
+          max: this.dataReach.length,
         },
       }],
     },
@@ -186,7 +206,7 @@ export class DashboardCampaignComponent implements OnInit {
     legend: {
       display: false
     },
-    
+
   };
   public BudgetColours: Array<any> = [
     {
@@ -236,7 +256,7 @@ export class DashboardCampaignComponent implements OnInit {
         ticks: {
           display: false,
           min: 0,
-          max: 100,
+          max: 0,
         }
       }],
     },
@@ -297,7 +317,8 @@ export class DashboardCampaignComponent implements OnInit {
         }
       }],
       yAxes: [{
-        display: false
+        display: false,
+        max: 0
       }]
     },
     elements: {
@@ -322,78 +343,23 @@ export class DashboardCampaignComponent implements OnInit {
   ];
   public ImpressionsLegend = false;
   public ImpressionsType = 'line';
-// EstimatedAddRecall
 
-public EstimatedAddRecallData: Array<any> = [
-  {
-    data: this.dataEstimatedAddRecall,
-    label: 'Estimated Add Recall',
-    barPercentage: 0.6,
-  }
-];
-public EstimatedAddRecallLabels: Array<any> = this.dates;
-public EstimatedAddRecallOptions: any = {
-  tooltips: {
-    enabled: true,
-    custom: CustomTooltips,
-    intersect: true,
-    mode: 'index',
-    position: 'nearest',
-    callbacks: {
-      labelColor: function(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-      }
-    }
-  },
-  maintainAspectRatio: false,
-  scales: {
-    xAxes: [{
-      gridLines: {
-        color: 'transparent',
-        zeroLineColor: 'transparent'
-      },
-      ticks: {
-        fontSize: 8,
-        fontColor: 'white',
-      }
-    }],
-    yAxes: [{
-      display: false
-    }]
-  },
-  legend: {
-    display: false
-  }
-};
-public EstimatedAddRecallColours: Array<any> = [
-  {
-    backgroundColor: 'rgba(255,255,255,.3)',
-    borderWidth: 0
-  }
-];
-public EstimatedAddRecallLegend = false;
-public EstimatedAddRecallType = 'bar';
   // AmmountSpent
 
-  public AmmountSpentElements = 7;
-  public AmmountSpentData1: Array<number> = this.dataAmountSpent;
-  public AmmountSpentData2: Array<number> = [];
-  public AmmountSpentData3: Array<number> = [];
+  public CostPerResultElements = 7;
+  public CostPerResultData1: Array<number> = this.dataCostPerResult;
 
-  public AmmountSpentData: Array<any> = [
+
+  public CostPerResultData: Array<any> = [
     {
-      data: this.AmmountSpentData1,
+      data: this.dataCostPerResult,
       label: 'Current'
-    },
-    {
-      data: this.AmmountSpentData3,
-      label: 'Expected'
     }
   ];
   /* tslint:disable:max-line-length */
-  public AmmountSpentLabels: Array<any> = this.dates;
+  public CostPerResultLabels: Array<any> = this.dates;
   /* tslint:enable:max-line-length */
-  public AmmountSpentOptions: any = {
+  public CostPerResultOptions: any = {
     tooltips: {
       enabled: true,
       custom: CustomTooltips,
@@ -424,7 +390,7 @@ public EstimatedAddRecallType = 'bar';
           beginAtZero: true,
           maxTicksLimit: 5,
           stepSize: Math.ceil(250 / 5),
-          max: 250
+          max: 0
         }
       }]
     },
@@ -443,7 +409,7 @@ public EstimatedAddRecallType = 'bar';
       display: false
     }
   };
-  public AmmountSpentColours: Array<any> = [
+  public CostPerResultColours: Array<any> = [
     { // brandInfo
       backgroundColor: hexToRgba(getStyle('--info'), 10),
       borderColor: getStyle('--info'),
@@ -462,17 +428,17 @@ public EstimatedAddRecallType = 'bar';
       borderDash: [8, 5]
     }
   ];
-  public AmmountSpentLegend = false;
-  public AmmountSpentType = 'line';
+  public CostPerResultLegend = false;
+  public CostPerResultType = 'line';
    // Frequency
-   public FrequencyData: Array<any> = [
+   public AmountSpentData: Array<any> = [
     {
-      data: this.dataFrequency,
-      label: 'Frequency'
+      data: this.dataAmountSpent,
+      label: 'AmmountSpent'
     }
   ];
-  public FrequencyLabels: Array<any> = this.dates;
-  public FrequencyOptions: any = {
+  public AmountSpentLabels: Array<any> = this.dates;
+  public AmountSpentOptions: any = {
     labels : this.dates ,
     tooltips: {
       enabled: true,
@@ -485,7 +451,7 @@ public EstimatedAddRecallType = 'bar';
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
-    },  
+    },
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
@@ -511,7 +477,7 @@ public EstimatedAddRecallType = 'bar';
           fontColor: 'white',
           display: true,
           min: 0,
-          max: 100,
+          max: 0,
         },
       }],
     },
@@ -528,26 +494,26 @@ public EstimatedAddRecallType = 'bar';
     legend: {
       display: false
     },
-    
+
   };
-  public FrequencyColours: Array<any> = [
+  public AmountSpentColours: Array<any> = [
     {
       backgroundColor: getStyle('--info'),
       borderColor: 'rgba(255,255,255,.55)'
     }
   ];
-  public FrequencyLegend = false;
-  public FrequencyType = 'line';
+  public AmountSpentLegend = false;
+  public AmountSpentType = 'line';
 
   // VideoClicks
-  public VideoClicksData: Array<any> = [
+  public LandingPageViewsData: Array<any> = [
     {
-      data: this.dataVideoClicks,
+      data: this.dataLandingPageViews,
       label: 'Video Clicks'
     }
   ];
-  public VideoClicksLabels: Array<any> = this.dates;
-  public VideoClicksOptions: any = {
+  public LandingPageViewsLabels: Array<any> = this.dates;
+  public LandingPageViewsOptions: any = {
     tooltips: {
       enabled: true,
       custom: CustomTooltips,
@@ -596,24 +562,24 @@ public EstimatedAddRecallType = 'bar';
       display: false
     }
   };
-  public VideoClicksColours: Array<any> = [
+  public LandingPageViewsColours: Array<any> = [
     { // grey
       backgroundColor: getStyle('--primary'),
       borderColor: 'rgba(255,255,255,.55)'
     }
   ];
-  public VideoClicksLegend = false;
-  public VideoClicksType = 'line';
+  public LandingPageViewsLegend = false;
+  public LandingPageViewsType = 'line';
 
   // PostReaction
-  public PostReactionData: Array<any> = [
+  public CostPerLandingPageViewData: Array<any> = [
     {
-      data: this.dataPostreaction,
+      data: this.dataCostPerLandingPageView,
       label: 'Post Reaction'
     }
   ];
-  public PostReactionLabels: Array<any> = this.dates;
-  public PostReactionOptions: any = {
+  public CostPerLandingPageViewLabels: Array<any> = this.dates;
+  public CostPerLandingPageViewOptions: any = {
     tooltips: {
       enabled: true,
       custom: CustomTooltips,
@@ -656,71 +622,19 @@ public EstimatedAddRecallType = 'bar';
       display: false
     }
   };
-  public PostReactionColours: Array<any> = [
+  public CostPerLandingPageViewColours: Array<any> = [
     {
       backgroundColor: 'rgba(255,255,255,.2)',
       borderColor: 'rgba(255,255,255,.55)',
     }
   ];
-  public PostReactionLegend = false;
-  public PostReactionType = 'line';
-// CarrouselClicks
-
-public CarrouselClicksData: Array<any> = [
-  {
-    data: this.dataCarrouselClicks,
-    label: 'Estimated Add Recall',
-    barPercentage: 0.6,
-  }
-];
-public CarrouselClicksLabels: Array<any> = this.dates;
-public CarrouselClicksOptions: any = {
-  tooltips: {
-    enabled: true,
-    custom: CustomTooltips,
-    intersect: true,
-    mode: 'index',
-    position: 'nearest',
-    callbacks: {
-      labelColor: function(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-      }
-    }
-  },
-  maintainAspectRatio: false,
-  scales: {
-    xAxes: [{
-      gridLines: {
-        color: 'transparent',
-        zeroLineColor: 'transparent'
-      },
-      ticks: {
-        fontSize: 8,
-        fontColor: 'white',
-      }
-    }],
-    yAxes: [{
-      display: false
-    }]
-  },
-  legend: {
-    display: false
-  }
-};
-public CarrouselClicksColours: Array<any> = [
-  {
-    backgroundColor: 'rgba(255,255,255,.3)',
-    borderWidth: 0
-  }
-];
-public CarrouselClicksLegend = false;
-public CarrouselClicksType = 'bar';
-
+  public CostPerLandingPageViewLegend = false;
+  public CostPerLandingPageViewType = 'line';
 //Link Clicks
 
 public LinkClicksElements = 7;
   public LinkClicksData1: Array<number> = this.dataLinkClicks;
-  public LinkClicksData2: Array<number> = [];
+  public LinkClicksData2: Array<number> = this.dataLinkClicks2;
   public LinkClicksData3: Array<number> = [];
 
   public LinkClicksData: Array<any> = [
@@ -729,7 +643,7 @@ public LinkClicksElements = 7;
       label: 'Current'
     },
     {
-      data: this.AmmountSpentData3,
+      data: this.LinkClicksData2,
       label: 'Expected'
     }
   ];
@@ -812,43 +726,111 @@ public LinkClicksElements = 7;
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  public ExpectedBudget: any = {
+    tooltips: {
+      enabled: true,
+      custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+        }
+      }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          callback: function(value: any) {
+            return value;
+          }
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(250 / 5),
+          max: 250
+        }
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+        hoverBorderWidth: 3,
+      }
+    },
+    legend: {
+      display: false
+    }
+  };
+
   ngOnInit(): void {
-    
+
     this.getCampaignsByUser();
 
-    // generate random values for mainChart
-    for (let i = 0; i <= this.AmmountSpentElements; i++) {
-      
-      this.AmmountSpentData3.push(65);
-    }
+    this.ReachOptions.scales.yAxes[0].ticks.max = this.ReachData[0].reach;
+    this.BudgetOptions.scales.yAxes[0].ticks.max = this.BudgetData[0].budget;
+    this.ResultOptions.scales.yAxes[0].ticks.max = this.ResultData[0].result;
+    this.CostPerResultOptions.scales.yAxes[0].ticks.max = this.CostPerResultData[0].CostPerResult;
+    this.AmountSpentOptions.scales.yAxes[0].ticks.max = this.AmountSpentData[0].ammount_spent;
+    this.LinkClicksOptions.scales.yAxes[0].ticks.max = this.LinkClicksData[0].link_clicks;
+
   }
 
-  getCampaignsByUser(){
-    let campaign = this.Route.snapshot.paramMap.get("id")
-    this.Principal.getCampaignInform(campaign).subscribe((data: any[])=>{
+  getCampaignsByUser() {
+    let campaign = this.Route.snapshot.paramMap.get('id');
+    this.Principal.getCampaignInform(campaign).subscribe((data: any[]) => {
       this.kpis = data;
-      this.prepareData(this.kpis)
-
-    })
+      console.log(data);
+      this.prepareData(this.kpis);
+    });
   }
 
-  prepareData(kpis){
-    for (var kpi of kpis){
-      this.dates.push(kpi.date)
-      this.dataReach.push(kpi.reach)
-      this.dataBudget.push(kpi.budget)
-      this.dataResult.push(kpi.result)
-      this.dataImpressions.push(kpi.impressions)
-      this.dataEstimatedAddRecall.push(kpi.estimated_add_recall)
-      this.dataAmountSpent.push(kpi.ammount_spent)
-      this.dataFrequency.push(kpi.frequency)
-      this.dataVideoClicks.push(kpi.video_clicks)
-      this.dataPostreaction.push(kpi.post_reaction)
-      this.dataCarrouselClicks.push(kpi.carrousel_clicks)
-      this.dataLinkClicks.push(kpi.link_clicks)
-      console.log(kpi.estimated_add_recall)
-
+  prepareData(kpis) {
+    for (let kpi of kpis) {
+      this.dates.push(kpi.date);
+      this.dataReach.push(kpi.reach);
+      this.dataBudget.push(kpi.budget);
+      this.dataResult.push(kpi.result);
+      this.dataImpressions.push(kpi.impressions);
+      this.dataAmountSpent.push(kpi.ammount_spent);
+      this.dataLinkClicks.push(kpi.link_clicks);
+      this.dataCostPerResult.push(kpi.cost_per_result);
+      this.dataLandingPageViews.push(kpi.landing_page_views);
+      this.dataCostPerLandingPageView.push(kpi.cost_per_landing_page_view);
+      this.dataLinkClicks2.push(kpi.campana.expected_link_clicks);
     }
-    
+    const percentageBudget = kpis[kpis.length - 1].budget_spent;
+    const budgetCamp = kpis[kpis.length - 1].campana.expected_budget;
+    const budgetRep = kpis[kpis.length - 1].ammount_spent;
+    this.styleProgressBudgetSpent = {'width' : percentageBudget + '%'};
+    this.budgetSpent = percentageBudget + '%';
+    this.budgetReport = '$' + budgetRep + ' / ' + budgetCamp + '$';
+
+    const percentageLinkClicks = kpis[kpis.length - 1].link_clicks;
+  }
+
+  public findMaxOfArray(arr: any[]) {
+    var max = 0;
+    for (const el of arr) {
+      if(max < el) {
+        max = el;
+      }
+    }
+    console.log(max);
+    return max;
   }
 }

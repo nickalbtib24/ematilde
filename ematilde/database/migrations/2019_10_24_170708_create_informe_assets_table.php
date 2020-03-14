@@ -16,11 +16,13 @@ class CreateInformeAssetsTable extends Migration
         Schema::create('informe_assets', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_asset')->nullable();
-            $table->decimal('kpi_1');
-            $table->decimal('kpi_2');
-            $table->decimal('kpi_3');
-            $table->dateTime('fecha_ultima_actualizacion');
-            $table->dateTime('fecha_cracion');
+            $table->decimal('impressions');
+            $table->decimal('cost_per_result');
+            $table->decimal('ammount_spent');
+            $table->decimal('link_clicks');
+            $table->decimal('reach');
+            $table->date('fecha_ultima_actualizacion');
+            $fecha->date('fecha_cracion');
             $table->foreign('id_asset')->references('id')->on('assets')->onDelete('cascade');
             $table->timestamps();
         });

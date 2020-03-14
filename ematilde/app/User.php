@@ -89,7 +89,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function campanas(){
-        return $this->hasMany(Campana::class,'id_usuario','id');
+        return $this->hasMany(Campana::class,'id_usuario','id')->with('TipoCampana');
     }
 
 }

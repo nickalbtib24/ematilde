@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,38 +8,83 @@ export class PrincipalService {
 
   private baseUrl = 'http://localhost:80/ProyectoDeGrad/ematilde/ematilde/public/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient) { }
 
 
-  login(data){
-    return this.http.post(`${this.baseUrl}/login`,data)
+  public login(data) {
+    return this.http.post(this.baseUrl + '/login', data);
   }
 
-  signup(data){
-    return this.http.post(`${this.baseUrl}/signup`,data)
+  public signup(data) {
+    return this.http.post(this.baseUrl + '/signup', data);
   }
 
-  createInform(data){
-    return this.http.post(`${this.baseUrl}/new_inform`,data)
+  public editProfile(data) {
+    return this.http.post(this.baseUrl + '/modifyUser', data);
   }
 
-  getTipoClientes(){
-    return this.http.get(`${this.baseUrl}/tipo_clientes`)
+  public createInform(data) {
+    return this.http.post(this.baseUrl + '/new_inform', data);
   }
 
-  getKpi(id){
-    return this.http.get(`${this.baseUrl}/informe_clientes/`+id)
+  public getTipoClientes() {
+    return this.http.get(this.baseUrl + '/tipo_clientes');
   }
 
-  getCampaignsByUser(id){
-    return this.http.get(`${this.baseUrl}/campanas_user/`+id)
+  public getKpi(id) {
+    return this.http.get(this.baseUrl + '/informe_clientes/' + id);
   }
 
-  getCampaignInform(id){
-    return this.http.get(`${this.baseUrl}/campana_inform/`+id)
+  public getCampaignsByUser(id) {
+    return this.http.get(this.baseUrl + '/campanas_user/' + id);
   }
 
-  getClients(){
-    return this.http.get(`${this.baseUrl}/clients`)
+  public getCampaignInform(id) {
+    return this.http.get(this.baseUrl + '/campana_inform/' + id);
+  }
+
+  public getAssetReport(id) {
+    return this.http.get(this.baseUrl + '/get_report_asset/' + id);
+  }
+
+  public getClients() {
+    return this.http.get(this.baseUrl + '/clients');
+  }
+
+  public getTipoCampanas() {
+    return this.http.get(this.baseUrl + '/campaigns_type');
+  }
+
+  public postCreateCampaign(campaign) {
+    return this.http.post(this.baseUrl + '/campana_new', campaign);
+  }
+
+  public postCreateReportCampaignFile(file) {
+    return this.http.post(this.baseUrl + '/new_report_file', file);
+  }
+
+  public postGetUser(userId) {
+    return this.http.get(this.baseUrl + '/user/' + userId);
+  }
+
+  public postAddAsset(asset) {
+    return this.http.post(this.baseUrl + '/new_asset', asset);
+  }
+
+  public getAssetsByCampaign(campaign) {
+    return this.http.get(this.baseUrl + '/assets_campaign/' + campaign);
+  }
+
+  public getImageAsset(asset) {
+    return this.http.get(this.baseUrl + '/asset_image/' + asset);
+  }
+
+  public postCreateReportAsset(file) {
+    return this.http.post(this.baseUrl + '/add_asset_report', file);
+  }
+
+  public deleteCampaign(campaign) {
+    return this.http.delete(this.baseUrl + '/delete_campaign/' + campaign);
   }
 }

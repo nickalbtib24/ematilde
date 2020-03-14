@@ -17,18 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nombre_usuario');
             $table->string('apellido_usuario');
-            $table->integer('edad_usuario');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('identificacion_usuario');
             $table->string('empresa_usuario');
             $table->string('telefono_usuario');
-            $table->string('direccion_usuario');
-            $table->integer('intentos_usuario');
             $table->boolean('verified')->default(false);
             $table->unsignedInteger('id_perfil')->nullable();
             $table->unsignedInteger('id_tipo_cliente')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

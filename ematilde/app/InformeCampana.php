@@ -4,7 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Campana;
-class InformeCampana extends Model
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+
+
+class InformeCampana extends Model 
 {
 
     protected $fillable = [
@@ -12,15 +16,16 @@ class InformeCampana extends Model
         'budget',
         'result',
         'impressions',
-        'estimated_add_recall',
+        'landing_page_views',
         'ammount_spent',
         'frequency',
         'video_clicks',
         'post_reaction',
-        'carrousel_clicks',
+        'budget_spent',
+        'link_clicks_done',
         'link_clicks',
         'cost_per_result',
-        'bid_strategy',
+        'cost_per_landing_page_view',
         'date',
         'fecha_ultima_actualizacion',
         'fecha_cracion',

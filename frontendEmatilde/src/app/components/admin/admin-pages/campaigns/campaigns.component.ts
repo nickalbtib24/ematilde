@@ -10,28 +10,41 @@ import { Router } from '@angular/router';
 })
 export class CampaignsComponent implements OnInit {
 
-  private client = null
-  public campaigns = []
+  private client = null;
+  public campaigns = [];
 
   constructor(
-    private Route:ActivatedRoute,
-    private Principal:PrincipalService,
-    private Router:Router) { }
+    private Route: ActivatedRoute,
+    private Principal: PrincipalService,
+    private Router: Router
+    ) { }
 
-  getCampaignsByClient(){
-    this.client = this.Route.snapshot.paramMap.get("id")
+  getCampaignsByClient() {
+    this.client = this.Route.snapshot.paramMap.get('id');
     this.Principal.getCampaignsByUser(this.client).subscribe((data: any[])=>{
       this.campaigns = data;
     })
   }
 
   ngOnInit() {
-    this.getCampaignsByClient()
+    this.getCampaignsByClient();
   }
 
-  getSelectedCampaign(campaign){
-    this.Router.navigate(['add-inform-campaign/',campaign])
+  public getSelectedCampaign(campaign){
+    this.Router.navigate(['add-inform-campaign/', campaign]);
 
+  }
+
+  public redirectAddAsset(campaign){
+    this.Router.navigate(['add-asset/', campaign]);
+  }
+
+  public redirectViewAssets(campaign) {
+    this.Router.navigate(['assets-campaign-admin', campaign]);
+  }
+
+  public deleteCampaign(campaign) {
+    this.Principal.deleteCampaign(campaign).subscribe();
   }
 
 }
