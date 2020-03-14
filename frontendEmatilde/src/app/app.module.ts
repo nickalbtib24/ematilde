@@ -41,6 +41,7 @@ import { WatchAssetsComponent } from './components/client/pages_client/watch-ass
 import { AddAssetComponent } from './components/admin/admin-pages/assets/add-asset/add-asset.component';
 import { ViewAssetsComponent } from './components/admin-pages/assets/view-assets/view-assets.component';
 import { AddReportAssetComponent } from './components/admin-pages/assets/add-report-asset/add-report-asset.component';
+import {MatTooltipModule} from '@angular/material';
 
 const MaterialComponents = [
   MatProgressSpinnerModule
@@ -92,6 +93,7 @@ const MaterialComponents = [
     ReactiveFormsModule,
     MaterialComponents,
     MatDialogModule,
+    MatTooltipModule
   ],
   providers: [ExecuteFunctionService],
   bootstrap: [AppComponent],

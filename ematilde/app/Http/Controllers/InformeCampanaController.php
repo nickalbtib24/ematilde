@@ -145,6 +145,14 @@ class InformeCampanaController extends Controller
                             'fecha_cracion' => $newFormat2,
                         ]);
     
+                        $expected_budget = $campana->expected_budget;
+                        $amount_spent = $informe_campana->ammount_spent;
+                        $informe_campana->budget_spent = ($amount_spent / $expected_budget)*100;
+
+                        $expected_link_clicks = $campana->expected_link_clicks;
+                        $link_clicks = $informe_campana->link_clicks;
+                        $informe_campana->link_clicks_done = ($link_clicks / $expected_link_clicks)*100;
+
                         $informe_campana->campana()->associate($campana);
                         $informe_campana->save();
                         $campana->informeCampanas()->save($informe_campana);

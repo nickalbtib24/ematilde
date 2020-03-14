@@ -49,20 +49,31 @@ class InformeAssetController extends Controller
                     $fecha_terminacion = strtotime($customer['Reporting Ends']);
                     $newFormat3 = date('Y-m-d',$fecha_cracion);
 
-                    $informe_asset = InformeAsset::create([
-                        'reach' => $customer['Reach'],
-                        'impressions' => $customer['Impressions'],
-                        'ammount_spent' => $customer['Amount Spent (USD)'],
-                        'cost_per_result' => $customer['Cost per Results'],
-                        'link_clicks' => $customer['Link Clicks'],
-                        'fecha_ultima_actualizacion' => $newFormat3,
-                        'fecha_cracion' => $newFormat2,
-                    ]);
-                    
-                    $informe_asset->asset()->associate($asset);
-                    $informe_asset->save();
-                    $asset->InformeAssets()->save($informe_asset);
-                    $asset->save();
+                    $informe_asset = InformeAsset::where('fecha_cracion', $newFormat2)->where('id_asset',$request['asset'])->first();
+                    if($informe_asset){
+                        $informe_asset->reach = $customer['Reach'];
+                        $informe_asset->impressions = $customer['Impressions'];
+                        $informe_asset->ammount_spent =  $customer['Amount Spent (USD)'];
+                        $informe_asset->cost_per_result = $customer['Cost per Results'];
+                        $informe_asset->link_clicks =  $customer['Link Clicks'];
+                        $informe_asset->fecha_ultima_actualizacion = $newFormat3;
+                        $informe_asset->fecha_cracion = $newFormat2;
+                    }else{
+                        $informe_asset = InformeAsset::create([
+                            'reach' => $customer['Reach'],
+                            'impressions' => $customer['Impressions'],
+                            'ammount_spent' => $customer['Amount Spent (USD)'],
+                            'cost_per_result' => $customer['Cost per Results'],
+                            'link_clicks' => $customer['Link Clicks'],
+                            'fecha_ultima_actualizacion' => $newFormat3,
+                            'fecha_cracion' => $newFormat2,
+                        ]);
+                         
+                        $informe_asset->asset()->associate($asset);
+                        $informe_asset->save();
+                        $asset->InformeAssets()->save($informe_asset);
+                        $asset->save();
+                    }  
                 } 
             }
             return response()->json([

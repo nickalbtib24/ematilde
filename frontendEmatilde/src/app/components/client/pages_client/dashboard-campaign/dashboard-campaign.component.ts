@@ -22,12 +22,28 @@ export class DashboardCampaignComponent implements OnInit {
   private dataImpressions = []; //
   private dataAmountSpent = []; //
   private dataLinkClicks = []; //
+  private dataLinkClicks2 = [];
   private dataCostPerResult = [];
   private dataLandingPageViews = [];
   private dataCostPerLandingPageView = [];
   public budgetSpent = '0%';
   public styleProgressBudgetSpent = {'width': '0%'};
   public budgetReport = '$0 / $0';
+
+  // tslint:disable-next-line: max-line-length
+  public toolTipReach = 'The reach indicates the number of people who saw your ads at least once, this can be affected by the current budget.';
+  public toolTipResults = 'Results indicates the number of purchases that were made as a result of your ad being seen.';
+  // tslint:disable-next-line: max-line-length
+  public toolTipImpressions = 'Impressions are considered the times the ad instance is shown on the screen for the first time. (Example: If a person sees an ad, scroll down, and then return to the same ad, it will count as one impression. If a person sees an ad twice in the same day, it will count as two impressions.) ';
+  public toolTipBudgetSpent = 'Indicates the amount spent of the original budget';
+  // tslint:disable-next-line: max-line-length
+  public toolTipCostPerResult = 'The cost per result indicates how profitable it was to achieve the goals you established in your advertising campaign, it is calculated by dividing the total amount spent by the number of results.';
+  public toolTipAmountSpent = 'Total estimated amount of money you spent on your campaign';
+  // tslint:disable-next-line: max-line-length
+  public toolTipLandingPageViews = 'Landing page views let you know how many times people loaded your website or instant experience after clicking your ad.';
+  public toolTipCostPerLandingPageView = 'This metric is calculated by dividing the total amount spent by landing page views.';
+  // tslint:disable-next-line: max-line-length
+  public toolTipLinkClicks = 'The link clicks metric indicates the number of clicks on ad links that direct you to specific destinations or experiences.';
   constructor(
     private Route: ActivatedRoute,
     private Principal: PrincipalService
@@ -618,13 +634,17 @@ export class DashboardCampaignComponent implements OnInit {
 
 public LinkClicksElements = 7;
   public LinkClicksData1: Array<number> = this.dataLinkClicks;
-  public LinkClicksData2: Array<number> = [];
+  public LinkClicksData2: Array<number> = this.dataLinkClicks2;
   public LinkClicksData3: Array<number> = [];
 
   public LinkClicksData: Array<any> = [
     {
       data: this.LinkClicksData1,
       label: 'Current'
+    },
+    {
+      data: this.LinkClicksData2,
+      label: 'Expected'
     }
   ];
   /* tslint:disable:max-line-length */
@@ -791,6 +811,7 @@ public LinkClicksElements = 7;
       this.dataCostPerResult.push(kpi.cost_per_result);
       this.dataLandingPageViews.push(kpi.landing_page_views);
       this.dataCostPerLandingPageView.push(kpi.cost_per_landing_page_view);
+      this.dataLinkClicks2.push(kpi.campana.expected_link_clicks);
     }
     const percentageBudget = kpis[kpis.length - 1].budget_spent;
     const budgetCamp = kpis[kpis.length - 1].campana.expected_budget;
@@ -798,6 +819,8 @@ public LinkClicksElements = 7;
     this.styleProgressBudgetSpent = {'width' : percentageBudget + '%'};
     this.budgetSpent = percentageBudget + '%';
     this.budgetReport = '$' + budgetRep + ' / ' + budgetCamp + '$';
+
+    const percentageLinkClicks = kpis[kpis.length - 1].link_clicks;
   }
 
   public findMaxOfArray(arr: any[]) {
