@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Http\Response;
-
+use Carbon\Carbon;
 
 class InformeCampanaController extends Controller
 {
@@ -99,8 +99,8 @@ class InformeCampanaController extends Controller
                     if($customer['Cost per Landing Page View (USD)'] === ''){
                         $customer['Cost per Landing Page View (USD)'] = 0;
                     }
-                    $date = strtotime($customer['Reporting Starts']);
-                    $newFormat = date('Y-m-d',$date);
+                    
+                    $newFormat = new Carbon();
         
                     $fecha_cracion = strtotime($customer['Reporting Starts']);
                     $newFormat2 = date('Y-m-d',$fecha_cracion);
