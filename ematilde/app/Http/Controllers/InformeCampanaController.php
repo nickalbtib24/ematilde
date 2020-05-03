@@ -101,11 +101,13 @@ class InformeCampanaController extends Controller
                     }
                     
                     $newFormat = new Carbon();
-        
-                    $fecha_cracion = strtotime($customer['Reporting Starts']);
+                    $date_f = str_replace("/", "-", $customer['Reporting Starts']);
+                    $fecha_cracion = Carbon::parse($date_f)->timestamp;
+
                     $newFormat2 = date('Y-m-d',$fecha_cracion);
 
-                    $fecha_terminacion = strtotime($customer['Reporting Ends']);
+                    $date_f2 = str_replace("/", "-", $customer['Reporting Ends']);
+                    $fecha_terminacion = Carbon::parse($date_f2)->timestamp;
                     $newFormat3 = date('Y-m-d',$fecha_cracion);
 
                     $informe_campana = InformeCampana::where('fecha_cracion', $newFormat2)->where('id_campana',$request['campaign'])->first();
