@@ -10,7 +10,6 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { AuthorizationAdminService } from './services/authorization-admin.service';
 import { AuthorizationClientService } from './services/authorization-client.service';
-import { DashboardClientComponent} from './components/client/pages_client/dashboard-client/dashboard-client.component';
 import { CampaignsClientComponent} from './components/client/pages_client/campaigns-client/campaigns-client.component';
 import { ProfileClientComponent} from './components/client/pages_client/profile-client/profile-client.component';
 import { AddCampaignComponent} from './components/client/pages_client/add-campaign/add-campaign.component';
@@ -30,8 +29,13 @@ import { AddReportAssetComponent } from './components/admin-pages/assets/add-rep
 const appRoutes: Routes = [
 
   { path: '',
-    redirectTo: '/login',
+    component: LoginComponent,
     pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
+    canActivate: [AfterLoginService, AuthorizationClientService]
   },
   {
     path: 'login',
@@ -60,13 +64,8 @@ const appRoutes: Routes = [
     component: DashboardAssetComponent,
     canActivate: [AfterLoginService]
 
-  },
-  {
-    path: 'dashboard-client',
-    component: DashboardClientComponent,
-    canActivate: [AfterLoginService, AuthorizationClientService]
-
-  },
+  }
+  ,
   {
     path: 'dashboard-asset/:id',
     component: DashboardAssetComponent,
@@ -152,8 +151,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(appRoutes)
-  ]
+    RouterModule.forRoot(appRoutes,  {useHash: true})
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
  }

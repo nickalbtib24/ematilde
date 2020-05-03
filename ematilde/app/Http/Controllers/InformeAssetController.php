@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Asset;
 use App\InformeAsset;
+use Carbon\Carbon;
+    
 class InformeAssetController extends Controller
 {
     public function addReportAsset(Request $request){
@@ -40,14 +42,15 @@ class InformeAssetController extends Controller
                     if($customer['Amount Spent (USD)'] === '') {
                         $customer['Link Clicks'] = 0;
                     }
-                    $date = strtotime($customer['Reporting Starts']);
+                    $date_f =str_replace("/", "-", $customer['Reporting Starts']);
+                    $date = Carbon::parse($date_f)->timestamp;
                     $newFormat = date('Y-m-d',$date);
         
-                    $fecha_cracion = strtotime($customer['Reporting Starts']);
+                    $date_f2 = str_replace("/", "-", $customer['Reporting Ends']);
+                    $fecha_cracion = Carbon::parse($date_f2)->timestamp;
                     $newFormat2 = date('Y-m-d',$fecha_cracion);
 
-                    $fecha_terminacion = strtotime($customer['Reporting Ends']);
-                    $newFormat3 = date('Y-m-d',$fecha_cracion);
+                    $newFormat3 = $newFormat2;
 
                     $informe_asset = InformeAsset::where('fecha_cracion', $newFormat2)->where('id_asset',$request['asset'])->first();
                     if($informe_asset){

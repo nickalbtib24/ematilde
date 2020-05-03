@@ -9,12 +9,14 @@ import { PrincipalService } from 'src/app/services/principal.service';
 })
 export class WatchAssetsComponent implements OnInit {
 
+  public information = true;
+
   constructor(
     private Route: Router,
     private Rest: PrincipalService,
     private Rou: ActivatedRoute
   ) { }
-  private assets: any;
+  public assets: any;
   ngOnInit() {
     this.getAssetsByCampaign(this.Rou.snapshot.paramMap.get('id'));
     this.getImages(1);
@@ -24,14 +26,15 @@ export class WatchAssetsComponent implements OnInit {
   public getAssetsByCampaign(campaign) {
     this.Rest.getAssetsByCampaign(campaign).subscribe(
       (data: any[]) => {
-        console.log(data);
         this.assets = data;
+        if (this.assets.length === 0) {
+          this.information = false;
+        }
       }
     );
   }
   public getImages(response) {
     this.Rest.getImageAsset(response).subscribe(
-      data => console.log(data)
     );
   }
 

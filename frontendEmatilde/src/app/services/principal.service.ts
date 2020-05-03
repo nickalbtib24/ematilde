@@ -6,11 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PrincipalService {
 
-  private baseUrl = 'http://localhost:80/ProyectoDeGrad/ematilde/ematilde/public/api';
+  //private baseUrl = 'http://localhost:8000/api';
+
+  private baseUrl = 'https://ematilde.us-south.cf.appdomain.cloud/api';
 
   constructor(
     private http: HttpClient) { }
-
 
   public login(data) {
     return this.http.post(this.baseUrl + '/login', data);
@@ -87,4 +88,5 @@ export class PrincipalService {
   public deleteCampaign(campaign) {
     return this.http.delete(this.baseUrl + '/delete_campaign/' + campaign);
   }
+
 }

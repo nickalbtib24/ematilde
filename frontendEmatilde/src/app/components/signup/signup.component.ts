@@ -13,7 +13,7 @@ import { ExecuteFunctionService } from 'src/app/services/execute-function.servic
 })
 export class SignupComponent implements OnInit {
 
-  public form = {
+  public form: any = {
     nombre_usuario: null,
     apellido_usuario: null,
     email: null,
@@ -22,13 +22,12 @@ export class SignupComponent implements OnInit {
     empresa_usuario: null,
     telefono_usuario: null,
     tipo_cliente: null,
-
   };
-  public tipoUsuarios = null;
+  public tipoUsuarios: any = null;
 
-  public response = [];
+  public response: any = [];
 
-  public error = [];
+  public error: any = [];
 
   public dialogRef: MatDialogRef<ProgressSpinnerDialogComponent>;
 
@@ -41,7 +40,7 @@ export class SignupComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.Principal.getTipoClientes().subscribe((data: any[]) => {
+    this.Principal.getTipoClientes().subscribe((data: any) => {
       console.log(data);
       this.tipoUsuarios = data;
     });
@@ -50,7 +49,7 @@ export class SignupComponent implements OnInit {
   public onSubmit() {
     const observable = new Observable(this.myObservable);
     this.showProgressSpinnerUntilExecuted(observable);
-    console.log(this.form.tipo_cliente);
+    console.log(this.form);
     this.Principal.signup(this.form).subscribe(
      (data) => this.handleError(data),
    );
@@ -59,7 +58,7 @@ export class SignupComponent implements OnInit {
   public handleResponse(data) {
     this.ExecuteFunction.sendSuccessMessageToLogIn();
     if (!data.success) {
-      this.handleError(data);
+      //this.handleError(data);
     }
     this.Routers.navigateByUrl('/login');
   }
@@ -88,6 +87,8 @@ export class SignupComponent implements OnInit {
   }
 
   public ngOnDestroy(): void {
+    const observable = new Observable(this.myObservable);
+    this.showProgressSpinnerUntilExecuted(observable);
     this.dialogRef.close();
   }
 
